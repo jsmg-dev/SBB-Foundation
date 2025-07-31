@@ -6,9 +6,10 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       background: #f4f4f4;
+      color: #333;
     }
 
     header {
@@ -24,11 +25,16 @@
       height: 50px;
     }
 
+    header h1 {
+      margin-left: 1rem;
+      font-size: 1.8rem;
+    }
+
     nav a {
       color: white;
-      margin: 0 1rem;
+      margin: 0 0.8rem;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     nav a:hover {
@@ -37,10 +43,13 @@
 
     main {
       padding: 2rem;
+      background: #e9f0ff;
+      min-height: 80vh;
     }
 
     h2 {
       color: #2d6cdf;
+      text-align: center;
       margin-bottom: 1rem;
     }
 
@@ -48,7 +57,7 @@
       max-width: 600px;
       background: white;
       padding: 2rem;
-      margin: 0 auto;
+      margin: auto;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
@@ -56,28 +65,29 @@
     .donate-section label {
       display: block;
       margin-top: 1rem;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     .donate-section input,
     .donate-section textarea,
     .donate-section select {
       width: 100%;
-      padding: 0.7rem;
+      padding: 0.6rem;
       margin-top: 0.3rem;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
     }
 
     .donate-section button {
       margin-top: 1.5rem;
       background-color: #2d6cdf;
       color: white;
-      padding: 0.75rem 1.5rem;
+      padding: 0.8rem 1.6rem;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+      width: 100%;
     }
 
     .donate-section button:hover {
@@ -97,7 +107,7 @@
   <header>
     <div style="display: flex; align-items: center;">
       <img src="images/logo.jpeg" alt="SBB Foundation Logo" />
-      <h1 style="margin-left: 1rem;">SBB Foundation</h1>
+      <h1>SBB Foundation</h1>
     </div>
     <nav>
       <a href="index.html">Home</a>
@@ -106,14 +116,15 @@
       <a href="contact.html">Contact</a>
       <a href="gallery.html">Gallery</a>
       <a href="ventures.html">Our Ventures</a>
+      <a href="donate.html">Donate Now</a>
     </nav>
   </header>
 
   <main>
+    <h2>Support Our Mission</h2>
     <div class="donate-section">
-      <h2>Support</h2>
-      <p>Your donation can help us educate children and care for animals. Every rupee matters. Thank you for your kindness!</p>
-      <form>
+      <p>Your donation helps us educate poor children and care for animals. Every rupee makes a difference.</p>
+      <form id="donationForm">
         <label for="name">Full Name</label>
         <input type="text" id="name" required />
 
@@ -131,9 +142,9 @@
         </select>
 
         <label for="message">Message (optional)</label>
-        <textarea id="message" rows="4"></textarea>
+        <textarea id="message" rows="3"></textarea>
 
-        <button type="submit">Donate Now</button>
+        <button type="button" onclick="makePayment()">Donate Now</button>
       </form>
     </div>
   </main>
@@ -141,5 +152,44 @@
   <footer>
     <p>&copy; 2025 SBB Foundation | All Rights Reserved</p>
   </footer>
+
+  <!-- Example Razorpay Integration -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    function makePayment() {
+      const amount = document.getElementById("amount").value;
+      const name = document.getElementById("name").value;
+
+      if (!amount || !name) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      const options = {
+        key: "rzp_test_YourKeyHere", // Replace with your Razorpay key
+        amount: amount * 100,
+        currency: "INR",
+        name: "SBB Foundation",
+        description: "Donation",
+        handler: function (response) {
+          alert("Thank you for your donation!");
+        },
+        prefill: {
+          name: name,
+          email: document.getElementById("email").value,
+        },
+        notes: {
+          purpose: document.getElementById("purpose").value,
+          message: document.getElementById("message").value
+        },
+        theme: {
+          color: "#2d6cdf"
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+    }
+  </script>
 </body>
 </html>

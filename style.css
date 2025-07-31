@@ -219,3 +219,39 @@ footer {
   line-height: 1.8;
   color: #444;
 }
+.events-section {
+  padding: 2rem;
+  background-color: #fff;
+  border-top: 2px solid #2d6cdf;
+}
+
+.events-section h2 {
+  color: #2d6cdf;
+  margin-bottom: 1rem;
+  font-size: 28px;
+}
+
+.events-section p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.event-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.event-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.event-gallery img:hover {
+  transform: scale(1.05);
+}
