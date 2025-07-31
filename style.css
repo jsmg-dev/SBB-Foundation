@@ -76,3 +76,37 @@ footer {
   margin: 30px 0;
   color: #222;
 }
+#ventures {
+  background: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+
+.venture-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.venture-card {
+  background: #eaeaea;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.venture-card h3 {
+  color: #2d6cdf;
+}
+
+.venture-card a {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: white;
+  background: #2d6cdf;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
