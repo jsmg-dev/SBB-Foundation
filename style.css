@@ -1,14 +1,17 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   background: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
 }
 
 header {
   background: #2d6cdf;
   color: white;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 nav {
@@ -19,20 +22,54 @@ nav a {
   color: white;
   margin: 0 1rem;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffdd57;
+}
+
+nav a:hover::after {
+  width: 100%;
 }
 
 .hero {
-  padding: 4rem;
-  background: #cce3ff;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #cce3ff, #eaf0ff);
   text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #2d6cdf;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #444;
 }
 
 .content {
   padding: 2rem;
   background: white;
-  margin: 1rem;
-  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 1000px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 footer {
@@ -40,8 +77,7 @@ footer {
   color: white;
   text-align: center;
   padding: 1rem;
-  position: relative;
-  bottom: 0;
+  margin-top: 3rem;
 }
 
 .banner img {
@@ -49,39 +85,62 @@ footer {
   margin: 0 auto;
   width: 100%;
   max-width: 1000px;
+  height: auto;
   max-height: 400px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.banner img:hover {
+  transform: scale(1.03);
 }
 
 .founder {
   margin-top: 2rem;
   text-align: center;
   background-color: #f9f9f9;
-  padding: 1.5rem;
-  border-radius: 10px;
+  padding: 2rem;
+  border-radius: 12px;
 }
 
 .founder-photo {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 100%;
+  border-radius: 50%;
   margin: 1rem 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 4px solid #2d6cdf;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.founder-photo:hover {
+  transform: rotate(2deg) scale(1.05);
 }
 
 .center-heading {
   text-align: center;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
-  margin: 30px 0;
-  color: #222;
+  margin: 40px 0 20px;
+  color: #2d6cdf;
+  position: relative;
+}
+
+.center-heading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #2d6cdf;
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
 #ventures {
   background: #fff;
-  padding: 2rem;
+  padding: 3rem 1rem;
   text-align: center;
 }
 
@@ -93,15 +152,21 @@ footer {
 }
 
 .venture-card {
-  background: #eaeaea;
+  background: #ffffff;
   padding: 1.5rem;
-  border-radius: 10px;
-  width: 300px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  width: 280px;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.venture-card:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
 .venture-card h3 {
   color: #2d6cdf;
+  margin-bottom: 0.5rem;
 }
 
 .venture-card a {
@@ -110,12 +175,17 @@ footer {
   text-decoration: none;
   color: white;
   background: #2d6cdf;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.venture-card a:hover {
+  background: #1b4cbf;
 }
 
 #founder-message {
-  background-color: #f4f4f4;
+  background-color: #eef3fc;
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -126,20 +196,26 @@ footer {
 .founder-card {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 2rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.founder-card:hover {
+  transform: translateY(-5px);
 }
 
 .founder-card h2 {
   color: #2d6cdf;
   margin-bottom: 1rem;
+  font-size: 1.6rem;
 }
 
 .founder-card p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.8;
-  color: #333;
+  color: #444;
 }

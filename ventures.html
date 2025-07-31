@@ -1,20 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Our Ventures - SBB Foundation</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #2d6cdf;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    h2 {
+      color: #2d6cdf;
+    }
+
+    .venture-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .venture-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .venture-card h3 {
+      margin-top: 0;
+      color: #2d6cdf;
+    }
+
+    footer {
+      text-align: center;
+      background: #2d6cdf;
+      color: white;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .venture-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .venture-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-      <h1>SBB Foundation</h1>
+    <h1>SBB Foundation</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="work.html">Our Work</a>
       <a href="contact.html">Contact</a>
-        <a href="Gallery.html">Gallery</a>
-		 <a href="ventures.html">Our Ventures</a>
+      <a href="Gallery.html">Gallery</a>
+      <a href="ventures.html">Our Ventures</a>
     </nav>
   </header>
 
@@ -26,55 +101,20 @@
       <div class="venture-grid">
         <div class="venture-card">
           <h3>SBB Finance – Empowering Lives Through Financial Support</h3>
-          <p>Founded by Jitendra Sharma, SBB Finance is a socially-driven financial service that aims to uplift underprivileged communities by offering small, accessible loans to those in need. With a deep understanding of grassroots challenges, we are committed to helping individuals start small businesses, manage emergencies, or support their families with dignity and independence.
-
-Our goal is not just to provide money, but to build trust, create opportunities, and foster financial independence for people who are often overlooked by traditional banks. Through transparent practices and personalized support, SBB Finance stands as a beacon of hope for many striving for a better future.
-
-“We believe that a small loan at the right time can change a life. That’s why SBB Finance exists — to be that helping hand.”<br><br>
-— Jitendra Sharma, Founder.</p>
-         
+          <p>Founded by Jitendra Sharma, SBB Finance is a socially-driven financial service that aims to uplift underprivileged communities by offering small, accessible loans to those in need.</p>
+          <p>“We believe that a small loan at the right time can change a life. That’s why SBB Finance exists — to be that helping hand.”<br><br><strong>— Jitendra Sharma, Founder</strong></p>
         </div>
 
         <div class="venture-card">
           <h3>SBB Web Services – Bringing Your Ideas to Life Online</h3>
-          <p>At SBB Web Services, we help individuals, businesses, and NGOs build a powerful digital presence. Whether you need a simple informational site or a full-featured software platform, we offer:
+          <p>SBB Web Services helps individuals, businesses, and NGOs build a powerful digital presence. From website design to hosting and custom software development, we offer reliable and affordable tech solutions.</p>
+          <p>“A website is not just a page — it’s your identity. We help you build it with care and creativity.”<br><br><strong>— Jitendra Sharma, Founder</strong></p>
+        </div>
 
-Website Design & Development
-Clean, modern, and mobile-responsive websites tailored to your goals.
-
-Custom Software Development
-From CRM systems to data tracking apps, we build reliable tools for your business.
-
-Website Hosting & Maintenance
-Hassle-free hosting with regular updates and technical support.
-
-We focus on delivering affordable, scalable, and user-friendly solutions — perfect for startups, local businesses, and non-profits.
-
-“A website is not just a page — it’s your identity. We help you build it with care and creativity.”<br><br>
-— Jitendra Sharma, Founder
-
-</p>
-</div>
-
- <div class="venture-card">
+        <div class="venture-card">
           <h3>SBB CA Services – Professional Financial & Tax Solutions</h3>
-          <p>SBB CA Services, led by Jitendra Sharma, provides trustworthy and accessible financial services to individuals, freelancers, and small businesses. We aim to simplify complex tax and compliance processes through:
-
-Income Tax Return (ITR) Filing
-Fast and accurate filing for salaried individuals, freelancers, and business owners.
-
-GST Registration & Filing
-Helping businesses stay compliant with timely GST services.
-
-Accounting & Bookkeeping
-Monthly, quarterly, or annual accounting services tailored to your business needs.
-
-With a focus on clarity, compliance, and confidentiality, we ensure that your finances are in good hands — so you can focus on what matters most.
-
-“Finance and tax should never be confusing. We make it simple, accurate, and stress-free.”<br><br>
-— CA Monika Golani
-
-</p>
+          <p>Led by CA Monika Golani, SBB CA Services provides professional help with ITR filing, GST, bookkeeping, and compliance for individuals and small businesses.</p>
+          <p>“Finance and tax should never be confusing. We make it simple, accurate, and stress-free.”<br><br><strong>— CA Monika Golani</strong></p>
         </div>
       </div>
     </section>

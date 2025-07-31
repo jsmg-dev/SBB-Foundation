@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <nav>
-  
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Photo Gallery - SBB Foundation</title>
-   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f4f4;
       margin: 0;
-      padding: 0;
+      background: #f4f4f4;
     }
 
     header {
-      background-color: #0077cc;
+      background: #2d6cdf;
       color: white;
+      padding: 1rem 2rem;
       text-align: center;
-      padding: 20px;
     }
 
-    h1 {
-      margin: 0;
+    nav {
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2d6cdf;
+      margin-top: 1.5rem;
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      padding: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 30px 50px;
     }
 
     .gallery img {
       width: 100%;
       height: auto;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
     }
 
     .gallery img:hover {
@@ -47,55 +62,58 @@
     footer {
       text-align: center;
       padding: 15px;
-      background-color: #0077cc;
+      background-color: #2d6cdf;
       color: white;
-      margin-top: 20px;
+      margin-top: 40px;
     }
   </style>
 </head>
-  
 <body>
 
   <header>
-   <a href="index.html">Home</a>
+    <h1>SBB Foundation</h1>
+    <nav>
+      <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="work.html">Our Work</a>
       <a href="contact.html">Contact</a>
-       <a href="Gallery.html">Gallery</a>
-	    <a href="ventures.html">Our Ventures</a>
+      <a href="Gallery.html">Gallery</a>
+      <a href="ventures.html">Our Ventures</a>
     </nav>
   </header>
 
+  <h2>Photo Gallery</h2>
+
   <section class="gallery">
-    <img src="images/P1.jpeg" alt="Gallery Photo 1">
-    <img src="images/P2.jpeg" alt="Gallery Photo 2">
-    <img src="images/P3.jpeg" alt="Gallery Photo 3">
-    <img src="images/P4.jpeg" alt="Gallery Photo 4">
-   <img src="images/P6.jpeg" alt="Gallery Photo 4">
-    <img src="images/P5.jpeg" alt="Gallery Photo 4">
-    <img src="images/P7.jpeg" alt="Gallery Photo 4">
-    <img src="images/P8.jpeg" alt="Gallery Photo 4">
-    <img src="images/P9.jpeg" alt="Gallery Photo 4">
-    <img src="images/P10.jpeg" alt="Gallery Photo 4">
-    <img src="images/P11.jpeg" alt="Gallery Photo 4">
-    <img src="images/P12.jpeg" alt="Gallery Photo 4">
-    <img src="images/P13.jpeg" alt="Gallery Photo 4">
-    <img src="images/P14.jpeg" alt="Gallery Photo 4">
-    <img src="images/P15.jpeg" alt="Gallery Photo 4">
-    <img src="images/P16.jpeg" alt="Gallery Photo 4">
-    <img src="images/P17.jpeg" alt="Gallery Photo 4">
-    <img src="images/P18.jpeg" alt="Gallery Photo 4">
-    <img src="images/P19.jpeg" alt="Gallery Photo 4">
-    <img src="images/P20.jpeg" alt="Gallery Photo 4">
-    <img src="images/P21.jpeg" alt="Gallery Photo 4">
-    <img src="images/P22.jpeg" alt="Gallery Photo 4">
-    <img src="images/P23.jpeg" alt="Gallery Photo 4">
-    <img src="images/P24.jpeg" alt="Gallery Photo 4">
-    <img src="images/P25.jpeg" alt="Gallery Photo 4">
-    <img src="images/P27.jpeg" alt="Gallery Photo 4">
-    <img src="images/P28.jpeg" alt="Gallery Photo 4">
-    <img src="images/P29.jpeg" alt="Gallery Photo 4">
-    
+    <img src="images/P1.jpeg" alt="Photo 1">
+    <img src="images/P2.jpeg" alt="Photo 2">
+    <img src="images/P3.jpeg" alt="Photo 3">
+    <img src="images/P4.jpeg" alt="Photo 4">
+
+    <img src="images/P6.jpeg" alt="Photo 6">
+    <img src="images/P7.jpeg" alt="Photo 7">
+    <img src="images/P8.jpeg" alt="Photo 8">
+    <img src="images/P9.jpeg" alt="Photo 9">
+    <img src="images/P10.jpeg" alt="Photo 10">
+    <img src="images/P11.jpeg" alt="Photo 11">
+    <img src="images/P12.jpeg" alt="Photo 12">
+    <img src="images/P13.jpeg" alt="Photo 13">
+    <img src="images/P14.jpeg" alt="Photo 14">
+    <img src="images/P15.jpeg" alt="Photo 15">
+    <img src="images/P16.jpeg" alt="Photo 16">
+    <img src="images/P17.jpeg" alt="Photo 17">
+    <img src="images/P18.jpeg" alt="Photo 18">
+    <img src="images/P19.jpeg" alt="Photo 19">
+    <img src="images/P20.jpeg" alt="Photo 20">
+    <img src="images/P21.jpeg" alt="Photo 21">
+    <img src="images/P22.jpeg" alt="Photo 22">
+    <img src="images/P23.jpeg" alt="Photo 23">
+    <img src="images/P24.jpeg" alt="Photo 24">
+    <img src="images/P25.jpeg" alt="Photo 25">
+    <img src="images/P27.jpeg" alt="Photo 27">
+    <img src="images/P28.jpeg" alt="Photo 28">
+    <img src="images/P29.jpeg" alt="Photo 29">
+	    <img src="images/P5.jpeg" alt="Photo 5">
   </section>
 
   <footer>

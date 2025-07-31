@@ -5,16 +5,22 @@
   <title>SBB Foundation - Home</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
-      background: #f4f4f4;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
     }
 
     header {
       background: #2d6cdf;
       color: white;
-      padding: 1rem 2rem;
+      padding: 1.5rem 2rem;
       text-align: center;
     }
 
@@ -24,46 +30,107 @@
 
     nav a {
       color: white;
-      margin: 0 1rem;
+      margin: 0 1.2rem;
       text-decoration: none;
+      font-weight: bold;
+      transition: opacity 0.3s;
     }
 
-    .center-heading {
-      text-align: center;
-      color: #2d6cdf;
+    nav a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
     }
 
-    section.banner img {
+    .hero-banner {
       width: 100%;
-      height: auto;
+      max-height: 400px;
+      object-fit: cover;
       display: block;
     }
 
-    section.hero {
-      padding: 2rem;
-      background: #fff;
-      margin-top: 1rem;
+    .section {
+      padding: 2rem 4%;
+      background: white;
+      margin: 2rem auto;
+      max-width: 1200px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
 
-    #founder-message {
-      padding: 2rem;
-      background-color: #eaf0fa;
+    .section h2 {
+      color: #2d6cdf;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .section p {
+      line-height: 1.7;
+      text-align: justify;
+      font-size: 1rem;
+    }
+
+    .founder-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
     }
 
     .founder-card {
-      background-color: #fff;
+      background: #eaf0fa;
       padding: 1.5rem;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .founder-card h3 {
+      margin-bottom: 0.5rem;
+      color: #2d6cdf;
+    }
+
+    .founder-card p:last-child {
+      color: #555;
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    .cta-buttons {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .cta-buttons a {
+      display: inline-block;
+      margin: 0.5rem 1rem;
+      padding: 0.8rem 1.5rem;
+      background: #2d6cdf;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background 0.3s;
+    }
+
+    .cta-buttons a:hover {
+      background: #1f4ea3;
     }
 
     footer {
-      text-align: center;
-      padding: 1rem;
       background: #2d6cdf;
       color: white;
-      margin-top: 2rem;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      .section {
+        padding: 1.5rem;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 0.5rem 0.8rem;
+      }
     }
   </style>
 </head>
@@ -80,69 +147,56 @@
     </nav>
   </header>
 
-  <br>
+  <img class="hero-banner" src="images/banner.jpg" alt="SBB Foundation Banner" />
 
-  <h2 class="center-heading">Nurturing Cows with Care at Our Ranch</h2>
-  <p style="padding: 0 2rem;">
-    At SBB Foundation, we believe that every life deserves compassion. Our cow ranch is a peaceful space where cows are nurtured with love, proper care, and dignity. We provide them with nutritious food, clean shelter, and regular medical attention, ensuring a healthy and humane environment. Many of our cows are rescued or abandoned, and through our efforts, we give them a second chance at life. This initiative reflects our commitment to animal welfare and our broader mission of kindness and care for all living beings.
-  </p>
-
-  <section class="banner">
-    <img src="images/banner.jpg" alt="SBB Foundation Banner" />
-  </section>
-
-  <br>
-
-  <h2 class="center-heading">Empowering Poor Children Through Education</h2>
-  <p style="padding: 0 2rem;">
-    At SBB Foundation, we believe that education is the most powerful tool to break the cycle of poverty. We are committed to providing underprivileged children with access to quality learning, a safe environment, and the resources they need to grow and succeed. Through school support, tuition programs, and educational activities, we help children build confidence, gain knowledge, and dream of a better future. Our mission is to ensure that every child, regardless of their background, has the opportunity to learn, grow, and lead a life of dignity.
-  </p>
-
-  <section class="banner">
-    <img src="images/banner2.jpeg" alt="SBB Foundation Banner" />
-  </section>
-
-  <section class="hero">
+  <div class="section">
+    <h2>Nurturing Cows with Care at Our Ranch</h2>
     <p>
-      Welcome to SBB Foundation. <br><br>
-      SBB Foundation is a non-profit organization committed to creating a better future for underprivileged children and promoting sustainable rural development. We work passionately to provide quality education to children from poor backgrounds and operate a caring cow ranch that supports local farmers and ecological balance. Our mission is to uplift lives with compassion, knowledge, and community empowerment. Together, we believe we can build a world where every child learns with dignity and every cow lives with care.
+      At SBB Foundation, we believe that every life deserves compassion. Our cow ranch is a peaceful space where cows are nurtured with love, proper care, and dignity. We provide them with nutritious food, clean shelter, and regular medical attention. Many of our cows are rescued or abandoned, and through our efforts, we give them a second chance at life. This initiative reflects our commitment to animal welfare and our broader mission of kindness and care for all living beings.
     </p>
-  </section>
-
-  <section id="founder-message">
-    <div class="founder-card">
-      <h2>Message from the Founder</h2>
-      <p>
-        "At SBB Foundation, our mission is guided by compassion, dignity, and a desire to create lasting change. 
-        From nurturing abandoned cows to educating underprivileged children, our goal is to serve those in need with 
-        sincerity and care. Through our finance and service ventures, we also strive to uplift communities economically.
-        I invite you to join us in building a more inclusive, kind, and empowered society."
-      </p>
-      <p style="margin-top: 1rem; font-weight: bold; color: #444;">— Jitendra Sharma, Founder</p>
-      <p><em>15/10/2023</em></p>
+    <div class="cta-buttons">
+      <a href="contact.html">Join Us</a>
+      <a href="#">Donate Now</a>
     </div>
+  </div>
 
-    <div class="founder-card">
-      <h2>Message from the Founder</h2>
-      <p>
-        "SBB Foundation was born out of a simple belief — that everyone, whether a child in need or an abandoned animal, deserves love, dignity, and a chance to thrive. Through our efforts in education, animal care, and community upliftment, we aim to create a world where compassion leads the way. I am deeply grateful to everyone who supports this journey — together, we are making a real difference."
-      </p>
-      <p style="margin-top: 1rem; font-weight: bold; color: #444;">— Jitendra Sharma, Founder</p>
-      <p><em>5/2/2024</em></p>
-    </div>
+  <img class="hero-banner" src="images/banner2.jpeg" alt="Cow and Children Banner" />
 
-    <div class="founder-card">
-      <h2>Message from the Founder</h2>
-      <p>
-        "Every small act of kindness can spark a wave of change. Through SBB Foundation, I aim to create a bridge between compassion and action — whether it’s educating a child, caring for a cow, or supporting someone through a small loan. I believe that real progress begins when we uplift those who are often forgotten. Thank you for being part of this journey."
-      </p>
-      <p style="margin-top: 1rem; font-weight: bold; color: #444;">— Jitendra Sharma, Founder</p>
-      <p><em>24/5/2025</em></p>
+  <div class="section">
+    <h2>Empowering Poor Children Through Education</h2>
+    <p>
+      Education is the most powerful tool to break the cycle of poverty. SBB Foundation is committed to providing underprivileged children with access to quality learning, a safe environment, and the resources they need to grow and succeed. Through school support, tuition programs, and educational activities, we help children build confidence, gain knowledge, and dream of a better future.
+    </p>
+    <div class="cta-buttons">
+      <a href="about.html">Learn More</a>
     </div>
-  </section>
+  </div>
+
+  <div class="section">
+    <h2>Message from the Founder</h2>
+    <div class="founder-container">
+      <div class="founder-card">
+        <h3>15/10/2023</h3>
+        <p>"At SBB Foundation, our mission is guided by compassion, dignity, and a desire to create lasting change."</p>
+        <p>— Jitendra Sharma, Founder</p>
+      </div>
+
+      <div class="founder-card">
+        <h3>5/2/2024</h3>
+        <p>"SBB Foundation was born out of a belief that everyone deserves love, dignity, and a chance to thrive."</p>
+        <p>— Jitendra Sharma, Founder</p>
+      </div>
+
+      <div class="founder-card">
+        <h3>24/5/2025</h3>
+        <p>"Every act of kindness can spark change. Whether it’s educating a child or caring for a cow, compassion leads the way."</p>
+        <p>— Jitendra Sharma, Founder</p>
+      </div>
+    </div>
+  </div>
 
   <footer>
-    <p>&copy; 2016 SBB Foundation. All rights reserved.</p>
+    <p>&copy; 2016 - 2025 SBB Foundation. All rights reserved.</p>
   </footer>
 </body>
 </html>
