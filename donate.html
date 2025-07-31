@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Donate Now - SBB Foundation</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #2d6cdf;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    h2 {
+      color: #2d6cdf;
+      margin-bottom: 1rem;
+    }
+
+    .donate-section {
+      max-width: 600px;
+      background: white;
+      padding: 2rem;
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .donate-section label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .donate-section input,
+    .donate-section textarea,
+    .donate-section select {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .donate-section button {
+      margin-top: 1.5rem;
+      background-color: #2d6cdf;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .donate-section button:hover {
+      background-color: #1e4fad;
+    }
+
+    footer {
+      text-align: center;
+      background: #2d6cdf;
+      color: white;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="images/logo.jpeg" alt="SBB Foundation Logo" />
+      <h1 style="margin-left: 1rem;">SBB Foundation</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="work.html">Our Work</a>
+      <a href="contact.html">Contact</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="ventures.html">Our Ventures</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="donate-section">
+      <h2>Support Our Cause</h2>
+      <p>Your donation can help us educate children and care for animals. Every rupee matters. Thank you for your kindness!</p>
+      <form>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required />
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required />
+
+        <label for="amount">Donation Amount (INR)</label>
+        <input type="number" id="amount" required />
+
+        <label for="purpose">Purpose</label>
+        <select id="purpose">
+          <option value="education">Child Education</option>
+          <option value="cow_ranch">Cow Ranch Care</option>
+          <option value="general">General Fund</option>
+        </select>
+
+        <label for="message">Message (optional)</label>
+        <textarea id="message" rows="4"></textarea>
+
+        <button type="submit">Donate Now</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SBB Foundation | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
