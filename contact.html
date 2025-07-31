@@ -14,8 +14,25 @@
     header {
       background: #2d6cdf;
       color: white;
-      padding: 1rem 2rem;
-      text-align: center;
+      padding: 0.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 1rem;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      margin: 0;
     }
 
     nav {
@@ -73,12 +90,15 @@
 </head>
 <body>
   <header>
-    <h1>SBB Foundation</h1>
+    <div class="logo">
+      <img src="images/logo.jpeg" alt="SBB Foundation Logo" />
+      <h1>SBB Foundation</h1>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="work.html">Our Work</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="active">Contact</a>
       <a href="Gallery.html">Gallery</a>
       <a href="ventures.html">Our Ventures</a>
     </nav>

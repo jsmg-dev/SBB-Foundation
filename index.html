@@ -20,24 +20,36 @@
     header {
       background: #2d6cdf;
       color: white;
-      padding: 1.5rem 2rem;
-      text-align: center;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    nav {
-      margin-top: 0.5rem;
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .logo-container h1 {
+      font-size: 1.5rem;
     }
 
     nav a {
       color: white;
-      margin: 0 1.2rem;
+      margin-left: 1rem;
       text-decoration: none;
       font-weight: bold;
-      transition: opacity 0.3s;
+      transition: color 0.3s;
     }
 
     nav a:hover {
-      opacity: 0.8;
+      color: #dbe6ff;
       text-decoration: underline;
     }
 
@@ -123,20 +135,28 @@
     }
 
     @media screen and (max-width: 768px) {
-      .section {
-        padding: 1.5rem;
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        margin-top: 0.5rem;
       }
 
       nav a {
+        margin: 0.5rem;
         display: inline-block;
-        margin: 0.5rem 0.8rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>SBB Foundation</h1>
+    <div class="logo-container">
+      <img src="images/logo.jpeg" alt="SBB Foundation Logo" />
+      <h1>SBB Foundation</h1>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>

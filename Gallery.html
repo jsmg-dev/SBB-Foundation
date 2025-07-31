@@ -15,19 +15,31 @@
       background: #2d6cdf;
       color: white;
       padding: 1rem 2rem;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-title img {
+      height: 60px;
+      margin-right: 15px;
     }
 
     nav {
-      margin-top: 0.5rem;
       text-align: center;
     }
 
     nav a {
       color: white;
-      margin: 0 1rem;
+      margin: 0 0.75rem;
       text-decoration: none;
       font-weight: bold;
+      font-size: 16px;
     }
 
     nav a:hover {
@@ -71,7 +83,10 @@
 <body>
 
   <header>
-    <h1>SBB Foundation</h1>
+    <div class="logo-title">
+      <img src="images/logo.jpeg" alt="SBB Foundation Logo">
+      <h1>SBB Foundation</h1>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -89,7 +104,7 @@
     <img src="images/P2.jpeg" alt="Photo 2">
     <img src="images/P3.jpeg" alt="Photo 3">
     <img src="images/P4.jpeg" alt="Photo 4">
-
+  
     <img src="images/P6.jpeg" alt="Photo 6">
     <img src="images/P7.jpeg" alt="Photo 7">
     <img src="images/P8.jpeg" alt="Photo 8">
@@ -113,7 +128,7 @@
     <img src="images/P27.jpeg" alt="Photo 27">
     <img src="images/P28.jpeg" alt="Photo 28">
     <img src="images/P29.jpeg" alt="Photo 29">
-	    <img src="images/P5.jpeg" alt="Photo 5">
+	  <img src="images/P5.jpeg" alt="Photo 5">
   </section>
 
   <footer>

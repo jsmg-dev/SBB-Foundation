@@ -15,16 +15,37 @@
       background: #2d6cdf;
       color: white;
       padding: 1rem 2rem;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 1rem;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      margin: 0;
     }
 
     nav {
       margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
     }
 
     nav a {
       color: white;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
     }
@@ -82,7 +103,10 @@
 </head>
 <body>
   <header>
-    <h1>SBB Foundation</h1>
+    <div class="logo">
+      <img src="images/logo.jpeg" alt="SBB Foundation Logo">
+      <h1>SBB Foundation</h1>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
