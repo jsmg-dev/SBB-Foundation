@@ -110,3 +110,11 @@ footer {
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
+#founder-message h2 {
+  color: #2d6cdf;
+  margin-bottom: 1rem;
+}
+
+#founder-message p {
+  color: #333;
+}
