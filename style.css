@@ -16,6 +16,10 @@ header {
 
 nav {
   margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 nav a {
@@ -53,15 +57,33 @@ nav a:hover::after {
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   color: #2d6cdf;
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
   margin-top: 1rem;
   color: #444;
 }
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  header {
+    padding: 1rem;
+  }
+
+  .hero {
+    padding: 2.5rem 1.2rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
 
 .content {
   padding: 2rem;
