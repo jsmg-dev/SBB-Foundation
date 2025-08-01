@@ -59,12 +59,15 @@
       object-fit: cover;
       display: block;
     }
-	 .hero-banner1 {
-      width: 100%;
-      max-height: 1000px;
-      object-fit: cover;
-      display: block;
-    }
+	
+	.hero-banner1 {
+  width: 100%;
+  max-height: 1000px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px; /* optional rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* optional shadow */
+}
  .hero-banner2 {
       width: 100%;
       max-height: 600px;
@@ -160,6 +163,7 @@
         display: inline-block;
       }
     }
+	
   </style>
 </head>
 <body>
@@ -200,8 +204,10 @@
   </div>
 </section>
 
+<section class="hero-colored">
+  <img class="hero-banner1" src="images/infinity.png" alt="SBB Foundation Banner" />
+</section>
 
- <section> <img class="hero-banner1" src="images/infinity.png" alt="SBB Foundation Banner" /></section>
   <img class="hero-banner2" src="images/banner.jpg" alt="SBB Foundation Banner" />
   <div class="section">
 
