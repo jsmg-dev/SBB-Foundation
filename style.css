@@ -255,3 +255,31 @@ footer {
 .event-gallery img:hover {
   transform: scale(1.05);
 }
+.event-gallery {
+  margin-top: 1.5rem;
+}
+
+.event-gallery h4 {
+  color: #2d6cdf;
+  margin-bottom: 1rem;
+  font-size: 20px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
