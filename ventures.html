@@ -32,25 +32,29 @@
     }
 
     .logo h1 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       margin: 0;
     }
 
-    nav {
-      margin-top: 0.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
+  nav {
+        margin-top: 0.5rem;
+      }
 
+      nav a {
+        margin: 0.5rem;
+        display: inline-block;
+      }
+  
     nav a {
       color: white;
+      margin-left: 1rem;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s;
     }
 
     nav a:hover {
+      color: #dbe6ff;
       text-decoration: underline;
     }
 
@@ -62,18 +66,20 @@
       color: #2d6cdf;
     }
 
-    .venture-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
+  .venture-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.1rem; /* Reduced gap between cards */
+}
 
-    .venture-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
+.venture-card {
+  background: white;
+  padding: 5rem; /* Reduced padding inside cards */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem; /* Ensures vertical spacing on smaller screens */
+}
+
 
     .venture-card h3 {
       margin-top: 0;
@@ -99,11 +105,25 @@
         grid-template-columns: repeat(3, 1fr);
       }
     }
+	
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .logo-container h1 {
+      font-size: 1.5rem;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
+ <div class="logo-container">
       <img src="images/logo.jpeg" alt="SBB Foundation Logo">
       <h1>SBB Foundation</h1>
     </div>
@@ -146,7 +166,14 @@ Digital branding or presence support”<br><br><strong>— Jitendra Sharma, Foun
         <div class="venture-card">
           <h3>SBB CA Services – Professional Financial & Tax Solutions</h3>
           <p>Led by CA Monika Golani, SBB CA Services provides professional help with ITR filing, GST, bookkeeping, and compliance for individuals and small businesses.</p>
-          <p>“Finance and tax should never be confusing. We make it simple, accurate, and stress-free.”<br><br><strong>— CA Monika Golani</strong></p>
+          <p>“Finance and tax should never be confusing. We make it simple, accurate, and stress-free.”<br><br><strong>— Jitendra Sharma, Founder</strong></p>
+        </div>
+      </div>
+	   <div class="venture-card">
+          <h3>Vault SBBF – A Venture of SBB Foundation</h3>
+          <p>Vault SBBF is a secure and innovative banking software solution developed under the visionary leadership of the SBB Foundation. Designed to empower community-based financial operations, Vault SBBF offers intuitive tools for managing loans, deposits, user accounts, reporting, and more — all tailored for NGOs, cooperatives, and rural banking initiatives.
+
+Built with trust, transparency, and impact at its core, Vault SBBF carries forward the foundation’s mission to support financial inclusion and social upliftment through technology.”<br><br><strong>— Jitendra Sharma, Founder</strong></p>
         </div>
       </div>
     </section>
