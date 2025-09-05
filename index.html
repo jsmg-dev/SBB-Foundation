@@ -1,290 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>SBB Foundation - Home</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SBB Foundation - Software & Social Impact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #333; background: #f9f9f9; line-height: 1.6; }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-    }
-
+    /* Header */
     header {
       background: #2d6cdf;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 1rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
     }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      height: 50px;
-      margin-right: 10px;
-    }
-
-    .logo-container h1 {
-      font-size: 1.5rem;
-    }
-
+    header .logo { display: flex; align-items: center; }
+    header .logo img { height: 50px; margin-right: 10px; border-radius: 8px; }
+    header h1 { color: white; font-size: 1.4rem; font-weight: 700; }
     nav a {
-      color: white;
-      margin-left: 1rem;
-      text-decoration: none;
-      font-weight: bold;
+      color: white; text-decoration: none; margin-left: 1rem; font-weight: 600;
       transition: color 0.3s;
     }
-
-    nav a:hover {
-      color: #dbe6ff;
-      text-decoration: underline;
-    }
-
-    .hero-banner {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      display: block;
-    }
+    nav a:hover { color: #ffeb3b; }
 	
-	.hero-banner1 {
-  width: 100%;
-  max-height: 1000px;
-  object-fit: cover;
-  display: block;
-  border-radius: 12px; /* optional rounded corners */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* optional shadow */
+	
+/* Base Hero */
+.hero {
+  position: relative;
+  min-height: 55vh;             /* balanced height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
 }
- .hero-banner2 {
-      width: 100%;
-      max-height: 600px;
-      object-fit: cover;
-      display: block;
-    }
-    .section {
-      padding: 2rem 4%;
-      background: white;
-      margin: 2rem auto;
-      max-width: 1200px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
 
-    .section h2 {
-      color: #2d6cdf;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+.hero::after {
+  content: "";
+  position: absolute;
+  top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.4));
+}
 
-    .section p {
-      line-height: 1.7;
-      text-align: justify;
-      font-size: 1rem;
-    }
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 2rem;
+}
 
-    .founder-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
+.hero-content h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
 
-    .founder-card {
-      background: #eaf0fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.8rem;
+}
 
-    .founder-card h3 {
-      margin-bottom: 0.5rem;
-      color: #2d6cdf;
-    }
+.hero-content a {
+  background: #ffeb3b;
+  color: #2d6cdf;
+  padding: 0.9rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+.hero-content a:hover {
+  background: white;
+  color: #1e4fad;
+}
 
-    .founder-card p:last-child {
-      color: #555;
-      font-style: italic;
-      margin-top: 0.5rem;
-    }
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { min-height: 40vh; }
+  .hero-content h2 { font-size: 2rem; }
+  .hero-content p { font-size: 1rem; }
+}
 
-    .cta-buttons {
-      text-align: center;
-      margin-top: 2rem;
-    }
 
-    .cta-buttons a {
-      display: inline-block;
-      margin: 0.5rem 1rem;
-      padding: 0.8rem 1.5rem;
-      background: #2d6cdf;
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
+    /* Mission Block */
+    .mission {
+      text-align: center; padding: 4rem 5%; background: white;
+    }
+    .mission h2 { font-size: 2.2rem; margin-bottom: 1rem; color: #2d6cdf; }
+    .mission p { max-width: 800px; margin: auto; font-size: 1.1rem; color: #444; }
+
+    /* Services */
+    .services {
+      padding: 4rem 5%; text-align: center; background: #f4f7ff;
+    }
+    .services h2 { color: #2d6cdf; margin-bottom: 2rem; font-size: 2.2rem; }
+    .service-grid {
+      display: grid; gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .service-card {
+      background: white; padding: 2rem; border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+    .service-card h3 { color: #2d6cdf; margin-bottom: 1rem; font-size: 1.3rem; }
+    .service-card p { font-size: 0.95rem; color: #555; }
+
+    /* NGO Section */
+    .ngo {
+      background: #eaf0ff; padding: 4rem 5%; text-align: center;
+    }
+    .ngo h2 { color: #2d6cdf; margin-bottom: 1rem; font-size: 2.2rem; }
+    .ngo p { max-width: 700px; margin: auto; margin-bottom: 2rem; font-size: 1.1rem; }
+    .ngo a {
+      background: #2d6cdf; color: white; padding: 0.9rem 1.8rem;
+      border-radius: 30px; text-decoration: none; font-weight: bold;
       transition: background 0.3s;
     }
+    .ngo a:hover { background: #1e4fad; }
 
-    .cta-buttons a:hover {
-      background: #1f4ea3;
+    /* Why Choose Us */
+    .why {
+      padding: 4rem 5%; text-align: center; background: white;
     }
+    .why h2 { color: #2d6cdf; margin-bottom: 2rem; font-size: 2.2rem; }
+    .why-grid {
+      display: grid; gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      max-width: 1000px; margin: auto;
+    }
+    .why-card {
+      background: #f9f9f9; padding: 2rem; border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .why-card h3 { margin-bottom: 1rem; color: #2d6cdf; font-size: 1.2rem; }
 
+    /* Footer */
     footer {
-      background: #2d6cdf;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
+      background: #2d6cdf; color: white; text-align: center;
+      padding: 1.2rem; margin-top: 3rem;
     }
-
-    @media screen and (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav {
-        margin-top: 0.5rem;
-      }
-
-      nav a {
-        margin: 0.5rem;
-        display: inline-block;
-      }
-    }
-	
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-    <div class="logo-container">
-      <img src="images/logo.jpeg" alt="SBB Foundation Logo" />
+    <div class="logo">
+      <img src="images/logo.jpeg" alt="SBB Logo">
       <h1>SBB Foundation</h1>
     </div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="work.html">Our Work</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="ventures.html">Ventures</a>
+      <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
-      <a href="Gallery.html">Gallery</a>
-      <a href="ventures.html">Our Ventures</a>
     </nav>
   </header>
-<section class="stats-section">
-  <div class="stats-card blue">
-    <h2>10,000+</h2>
-    <p>Children Educated</p>
-  </div>
-  <div class="stats-card green">
-    <h2>5+</h2>
-    <p>Volunteers</p>
-  </div>
-  <div class="stats-card orange">
-    <h2>20+</h2>
-    <p>Cows Sheltered</p>
-  </div>
-  <div class="stats-card purple">
-    <h2>15+</h2>
-    <p>Districts Reached</p>
-  </div>
-  <div class="stats-card darkblue">
-    <h2>8+</h2>
-    <p>Years of Service</p>
+
+  <!-- Hero -->
+  <section class="hero hero-home">
+  <div class="hero-content">
+    <h2>Building Software, Creating Social Impact</h2>
+    <p>We design technology that empowers businesses and uplifts communities.</p>
+    <a href="services.html">Explore Services</a>
   </div>
 </section>
 
-<section class="hero-colored">
-  <img class="hero-banner1" src="images/infinity.png" alt="SBB Foundation Banner" />
-</section>
 
-  <img class="hero-banner2" src="images/banner.jpg" alt="SBB Foundation Banner" />
-  <div class="section">
 
-    <h2>Nurturing Cows with Care at Our Ranch</h2>
-    <p>
-      At SBB Foundation, we believe that every life deserves compassion. Our cow ranch is a peaceful space where cows are nurtured with love, proper care, and dignity. We provide them with nutritious food, clean shelter, and regular medical attention. Many of our cows are rescued or abandoned, and through our efforts, we give them a second chance at life. This initiative reflects our commitment to animal welfare and our broader mission of kindness and care for all living beings.
-    </p>
-    <div class="cta-buttons">
-      <a href="contact.html">Join Us</a>
-      <a href="donate.html">Donate Now</a>
-    </div>
-  </div>
+  <!-- Mission -->
+  <section class="mission">
+    <h2>Our Mission</h2>
+    <p>At SBB Foundation, every project we build serves two purposes: empowering businesses with smart software and funding social causes that uplift communities. 100% of our resources are directed towards education for underprivileged children, rural empowerment, and sustainable initiatives like our cow ranch program.</p>
+  </section>
 
-  <img class="hero-banner2" src="images/banner2.jpeg" alt="Cow and Children Banner" />
-
-  <div class="section">
-    <h2>Empowering Poor Children Through Education</h2>
-    <p>
-      Education is the most powerful tool to break the cycle of poverty. SBB Foundation is committed to providing underprivileged children with access to quality learning, a safe environment, and the resources they need to grow and succeed. Through school support, tuition programs, and educational activities, we help children build confidence, gain knowledge, and dream of a better future.
-    </p>
-    <div class="cta-buttons">
-      <a href="about.html">Learn More</a>
-    </div>
-  </div>
-<section class="events-section">
-  <div class="container">
-    <h2>Upcoming Events</h2>
-    <div class="events-grid">
-      <div class="event-card">
-
-        <h3>Education Drive</h3>
-        <p>Join us as we distribute school supplies to underprivileged children across villages.</p>
-        <span class="event-date">12 August 2025</span>
+  <!-- Services -->
+  <section class="services">
+    <h2>Our Software Solutions</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <h3>Custom Software</h3>
+        <p>Tailored solutions built to match your unique business needs and processes.</p>
       </div>
-
-      <div class="event-card">
-
-        <h3>Cow Welfare Camp</h3>
-        <p>A health and nutrition checkup camp organized at the SBBF Ranch for better cattle care.</p>
-        <span class="event-date">20 August 2025</span>
+      <div class="service-card">
+        <h3>Web & Mobile Apps</h3>
+        <p>Modern, responsive, and scalable applications to grow your digital presence.</p>
       </div>
-
-      <div class="event-card">
-
-        <h3>Community Workshop</h3>
-        <p>Interactive sessions for rural youth to learn digital skills and career building tips.</p>
-        <span class="event-date">5 September 2025</span>
+      <div class="service-card">
+        <h3>Vault SBBF</h3>
+        <p>Our in-house Loan Management System crafted for NGOs and finance institutions.</p>
+      </div>
+      <div class="service-card">
+        <h3>ERP Solutions</h3>
+        <p>Comprehensive enterprise systems covering HR, operations, and finance.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-  <div class="section">
-    <h2>Message from the Founder</h2>
-    <div class="founder-container">
-      <div class="founder-card">
-        <h3>15/10/2023</h3>
-        <p>"At SBB Foundation, our mission is guided by compassion, dignity, and a desire to create lasting change."</p>
-        <p>— Jitendra Sharma, Founder</p>
+  <!-- NGO Section -->
+  <section class="ngo">
+    <h2>Our Social Mission</h2>
+    <p>We are more than a software company. Every rupee earned is reinvested into social causes — educating children, providing rural support, and running our cow ranch to promote sustainable living.</p>
+    <a href="donate.html">Support Our Cause</a>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why">
+    <h2>Why Choose SBB Foundation?</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Tech + Humanity</h3>
+        <p>Every project you fund helps us invest in education and rural development.</p>
       </div>
-
-      <div class="founder-card">
-        <h3>5/2/2024</h3>
-        <p>"SBB Foundation was born out of a belief that everyone deserves love, dignity, and a chance to thrive."</p>
-        <p>— Jitendra Sharma, Founder</p>
+      <div class="why-card">
+        <h3>Professional Expertise</h3>
+        <p>Led by experienced engineers, we deliver solutions that scale with your vision.</p>
       </div>
-
-      <div class="founder-card">
-        <h3>24/5/2025</h3>
-        <p>"Every act of kindness can spark change. Whether it’s educating a child or caring for a cow, compassion leads the way."</p>
-        <p>— Jitendra Sharma, Founder</p>
+      <div class="why-card">
+        <h3>Transparent Impact</h3>
+        <p>We openly share how your support directly contributes to social change.</p>
       </div>
     </div>
-  </div>
+  </section>
 
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2016 - 2025 SBB Foundation. All rights reserved.</p>
+    <p>&copy; 2025 SBB Foundation | Software & Social Impact</p>
   </footer>
+
 </body>
 </html>

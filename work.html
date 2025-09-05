@@ -1,319 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Our Work - SBB Foundation</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Work — SBB Foundation</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f4f4;
-    }
-
-    header {
-      background: #2d6cdf;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo-title {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-title img {
-      height: 50px;
-      margin-right: 15px;
-    }
-
-    nav {
-      margin-top: 0.5rem;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 0.8rem;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .content {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .content h2 {
-      color: #2d6cdf;
-      font-size: 28px;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 0.5rem;
-    }
-
-    .content h3 {
-      color: #333;
-      font-size: 22px;
-      margin-top: 1.8rem;
-    }
-
-    .content ul {
-      padding-left: 1.2rem;
-      margin-top: 0.5rem;
-    }
-
-    .content ul li {
-      margin-bottom: 0.6rem;
-      line-height: 1.6;
-    }
-
-    .content p {
-      color: #444;
-      line-height: 1.7;
-    }
-
-    .emoji {
-      font-size: 20px;
-      margin-right: 8px;
-    }
-
-    footer {
-      background: #2d6cdf;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-    }
-
-    header {
-      background: #2d6cdf;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      height: 50px;
-      margin-right: 10px;
-    }
-
-    .logo-container h1 {
-      font-size: 1.5rem;
-    }
-
-    nav a {
-      color: white;
-      margin-left: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #dbe6ff;
-      text-decoration: underline;
-    }
-
-    .hero-banner {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .section {
-      padding: 2rem 4%;
-      background: white;
-      margin: 2rem auto;
-      max-width: 1200px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    .section h2 {
-      color: #2d6cdf;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .section p {
-      line-height: 1.7;
-      text-align: justify;
-      font-size: 1rem;
-    }
-
-    .founder-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .founder-card {
-      background: #eaf0fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    .founder-card h3 {
-      margin-bottom: 0.5rem;
-      color: #2d6cdf;
-    }
-
-    .founder-card p:last-child {
-      color: #555;
-      font-style: italic;
-      margin-top: 0.5rem;
-    }
-
-    .cta-buttons {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .cta-buttons a {
-      display: inline-block;
-      margin: 0.5rem 1rem;
-      padding: 0.8rem 1.5rem;
-      background: #2d6cdf;
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      transition: background 0.3s;
-    }
-
-    .cta-buttons a:hover {
-      background: #1f4ea3;
-    }
-
-    footer {
-      background: #2d6cdf;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
-    }
-
-    @media screen and (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav {
-        margin-top: 0.5rem;
-      }
-
-      nav a {
-        margin: 0.5rem;
-        display: inline-block;
-      }
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <img src="images/logo.jpeg" alt="SBB Foundation Logo" />
-      <h1>SBB Foundation</h1>
+  <header class="header-top header-wrap">
+    <div class="container header-inner">
+      <div class="logo">
+        <img src="images/logo.jpeg" alt="SBB Logo" />
+        <h1>SBB Foundation</h1>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="work.html">Our Work</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="ventures.html">Ventures</a>
+        <a href="contact.html">Contact</a>
+        <a class="donate-btn" href="donate.html">Donate</a>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle3">☰</button>
     </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="work.html">Our Work</a>
-      <a href="contact.html">Contact</a>
-      <a href="Gallery.html">Gallery</a>
-      <a href="ventures.html">Our Ventures</a>
-    </nav>
   </header>
 
-  <section class="content">
-    <h2>Our Programs</h2>
+  <main class="container">
+    <section class="hero" style="padding-top:28px">
+      <div class="hero-card" style="padding:20px">
+        <div class="kicker">Our Programs</div>
+        <h2 class="hero-title">Programs that change lives</h2>
+        <p class="hero-desc">We run practical, community-rooted programs in education and animal welfare to create sustainable impact.</p>
+      </div>
+    </section>
 
-    <h3><span class="emoji">📚</span>Child Education</h3>
-    <p>
-      At SBB Foundation, we are dedicated to transforming lives through quality education. 
-      Our programs focus on:
-    </p>
-    <ul>
-      <li>Providing free schooling and mentorship to underprivileged children</li>
-      <li>Supplying uniforms, books, and stationery</li>
-      <li>Offering nutritious meals for better health and focus</li>
-      <li>Encouraging creativity through activity-based learning</li>
-    </ul>
-    <p>
-      We empower children to grow into confident, skilled citizens ready to lead the future.
-    </p>
-	<div class="event-gallery">
+    <section class="section" style="margin-top:18px">
+      <h3>Child Education</h3>
+      <p class="muted">We run after-school classes, distribute books & uniforms, provide scholarships and hold creative learning sessions to build confidence and skills.</p>
+      <ul style="margin-top:10px;">
+        <li>After-school tuition & mentoring</li>
+        <li>Monthly learning kits & stationery</li>
+        <li>Scholarships for meritorious students</li>
+      </ul>
+    </section>
 
-  <div class="gallery-grid">
-    <img src="images/e1.jpeg" alt="Teaching session with kids">
-    <img src="images/e2.jpeg" alt="Distribution of books">
-    <img src="images/e3.jpeg" alt="Classroom activities">
-    <img src="images/e4.jpeg" alt="Celebration with students">
-  </div>
-</div>
+    <section class="section" style="margin-top:18px">
+      <h3>Cow Ranch & Animal Welfare</h3>
+      <p class="muted">Our ranch cares for rescued and sheltered cows, provides veterinary care and produces organic manure used in sustainable farming initiatives.</p>
+      <ul style="margin-top:10px;">
+        <li>Health camps & vaccination drives</li>
+        <li>Feeding & shelter programs</li>
+        <li>Organic manure & small-scale farm training</li>
+      </ul>
+    </section>
 
+    <section class="section" style="margin-top:18px">
+      <h3>Community Engagement</h3>
+      <p class="muted">Workshops, youth-skills training, and local enterprise support to increase employment and empower families.</p>
+    </section>
+  </main>
 
-    <h3><span class="emoji">🐄</span>Cow Ranch (गौशाला)</h3>
-    <p>
-      Our Cow Ranch is a reflection of our values—compassion, sustainability, and tradition.
-      The initiative includes:
-    </p>
-    <ul>
-      <li>Spacious and clean cow shelters</li>
-      <li>Regular veterinary support and nutritious feed</li>
-      <li>Use of organic cow dung manure for eco-farming</li>
-      <li>Milk production to support local needs and self-reliance</li>
-    </ul>
-    <p>
-      Through this venture, we promote animal care and generate rural employment.
-    </p>
-	<div class="event-gallery">
-  <div class="gallery-grid">
-    <img src="images/c1.jpeg" alt="Cow shelter view">
-    <img src="images/c2.jpeg" alt="Feeding the cows">
-    <img src="images/c3.jpeg" alt="Cow health checkup event">
-    <img src="images/c4.jpeg" alt="Organic manure production">
-  </div>
-</div>
-
-  </section>
-
-  <footer>
-    <p>&copy; 2016 - SBB Foundation. All rights reserved.</p>
+  <footer class="footer">
+    <div class="container foot-inner">
+      <div class="col"><strong>SBB Foundation</strong><p class="muted">Impact through education & farming</p></div>
+      <div class="col"><strong>Contact</strong><div class="muted">jitendra.sharma@sbbf.in<br/>+91-7726093111</div></div>
+    </div>
   </footer>
+
+  <script>
+    document.getElementById('mobileToggle3').addEventListener('click',()=>{
+      const nav = document.querySelector('.main-nav');
+      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    });
+  </script>
 </body>
 </html>

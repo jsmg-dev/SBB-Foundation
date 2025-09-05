@@ -2,208 +2,228 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Photo Gallery - SBB Foundation</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery - SBB Foundation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #333; }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-    }
-
+    /* Header */
     header {
       background: #2d6cdf;
-      color: white;
-      padding: 1rem 2rem;
+      padding: 1rem 5%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      height: 50px;
-      margin-right: 10px;
-    }
-
-    .logo-container h1 {
-      font-size: 1.5rem;
-    }
-
+    header .logo { display: flex; align-items: center; }
+    header .logo img { height: 50px; margin-right: 10px; border-radius: 8px; }
+    header h1 { color: white; font-size: 1.4rem; }
     nav a {
-      color: white;
-      margin-left: 1rem;
-      text-decoration: none;
-      font-weight: bold;
+      color: white; text-decoration: none; margin-left: 1rem; font-weight: 600;
       transition: color 0.3s;
     }
+    nav a:hover, nav a.active { color: #ffeb3b; }
 
-    nav a:hover {
-      color: #dbe6ff;
-      text-decoration: underline;
-    }
-
-    .hero-banner {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .section {
-      padding: 2rem 4%;
-      background: white;
-      margin: 2rem auto;
-      max-width: 1200px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    .section h2 {
-      color: #2d6cdf;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .section p {
-      line-height: 1.7;
-      text-align: justify;
-      font-size: 1rem;
-    }
-
-    .founder-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .founder-card {
-      background: #eaf0fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    .founder-card h3 {
-      margin-bottom: 0.5rem;
-      color: #2d6cdf;
-    }
-
-    .founder-card p:last-child {
-      color: #555;
-      font-style: italic;
-      margin-top: 0.5rem;
-    }
-
-    .cta-buttons {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .cta-buttons a {
-      display: inline-block;
-      margin: 0.5rem 1rem;
-      padding: 0.8rem 1.5rem;
-      background: #2d6cdf;
+    /* Hero Section */
+    .hero {
+      background: url('images/hero-bg.jpg') center/cover no-repeat;
       color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      transition: background 0.3s;
+      text-align: center;
+      padding: 5rem 2rem;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: auto;
+    }
+    .hero-content h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .hero-content p { font-size: 1.2rem; }
+
+    /* Gallery Section */
+    main { padding: 4rem 5%; max-width: 1100px; margin: auto; }
+    h3 { color: #2d6cdf; margin-bottom: 1rem; }
+    .muted { color: #666; font-size: 0.95rem; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+      gap: 15px;
+      margin-top: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%; border-radius: 8px; cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
-    .cta-buttons a:hover {
-      background: #1f4ea3;
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center; align-items: center; z-index: 999;
     }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
 
+    /* Footer */
     footer {
       background: #2d6cdf;
       color: white;
       text-align: center;
-      padding: 1rem;
+      padding: 1.2rem;
       margin-top: 3rem;
     }
+    footer .muted { color: #ddd; font-size: 0.9rem; }
+	/* Base Hero */
+.hero {
+  position: relative;
+  min-height: 55vh;             /* balanced height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
 
-    @media screen and (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
+.hero::after {
+  content: "";
+  position: absolute;
+  top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.4));
+}
 
-      nav {
-        margin-top: 0.5rem;
-      }
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 2rem;
+}
 
-      nav a {
-        margin: 0.5rem;
-        display: inline-block;
-      }
-    }
+.hero-content h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.hero-content a {
+  background: #ffeb3b;
+  color: #2d6cdf;
+  padding: 0.9rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+.hero-content a:hover {
+  background: white;
+  color: #1e4fad;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { min-height: 40vh; }
+  .hero-content h2 { font-size: 2rem; }
+  .hero-content p { font-size: 1rem; }
+}
+
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-    <div class="logo-container">
-      <img src="images/logo.jpeg" alt="SBB Foundation Logo" />
+    <div class="logo">
+      <img src="images/logo.jpeg" alt="SBB Logo">
       <h1>SBB Foundation</h1>
     </div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="work.html">Our Work</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="ventures.html">Ventures</a>
+      <a href="gallery.html" class="active">Gallery</a>
+
       <a href="contact.html">Contact</a>
-      <a href="Gallery.html">Gallery</a>
-      <a href="ventures.html">Our Ventures</a>
     </nav>
   </header>
 
-  <h2>Photo Gallery</h2>
-
-  <section class="gallery">
-    <img src="images/P1.jpeg" alt="Photo 1">
-    <img src="images/P2.jpeg" alt="Photo 2">
-    <img src="images/P3.jpeg" alt="Photo 3">
-    <img src="images/P4.jpeg" alt="Photo 4">
-  
-    <img src="images/P6.jpeg" alt="Photo 6">
-    <img src="images/P7.jpeg" alt="Photo 7">
-    <img src="images/P8.jpeg" alt="Photo 8">
-    <img src="images/P9.jpeg" alt="Photo 9">
-    <img src="images/P10.jpeg" alt="Photo 10">
-    <img src="images/P11.jpeg" alt="Photo 11">
-    <img src="images/P12.jpeg" alt="Photo 12">
-    <img src="images/P13.jpeg" alt="Photo 13">
-    <img src="images/P14.jpeg" alt="Photo 14">
-    <img src="images/P15.jpeg" alt="Photo 15">
-    <img src="images/P16.jpeg" alt="Photo 16">
-    <img src="images/P17.jpeg" alt="Photo 17">
-    <img src="images/P18.jpeg" alt="Photo 18">
-    <img src="images/P19.jpeg" alt="Photo 19">
-    <img src="images/P20.jpeg" alt="Photo 20">
-    <img src="images/P21.jpeg" alt="Photo 21">
-    <img src="images/P22.jpeg" alt="Photo 22">
-    <img src="images/P23.jpeg" alt="Photo 23">
-    <img src="images/P24.jpeg" alt="Photo 24">
-    <img src="images/P25.jpeg" alt="Photo 25">
-    <img src="images/P27.jpeg" alt="Photo 27">
-    <img src="images/P28.jpeg" alt="Photo 28">
-    <img src="images/P29.jpeg" alt="Photo 29">
-	  <img src="images/P5.jpeg" alt="Photo 5">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Our Gallery</h2>
+      <p>Capturing impactful moments from our work, education programs, and cow ranch initiatives.</p>
+	  <a href="services.html">Explore Services</a>
+    </div>
   </section>
 
-  <footer>
-    &copy; 2016 SBB Foundation. All rights reserved.
-  </footer>
+  <!-- Gallery -->
+  <main>
+    <h3>Photo Gallery</h3>
+    <p class="muted">Click an image to view in full size.</p>
+    <div class="gallery-grid">
+      <!-- Your photos -->
+      <img src="images/P1.jpeg" alt="P1" onclick="openLightbox(this.src)">
+      <img src="images/P2.jpeg" alt="P2" onclick="openLightbox(this.src)">
+      <img src="images/P3.jpeg" alt="P3" onclick="openLightbox(this.src)">
+      <img src="images/P4.jpeg" alt="P4" onclick="openLightbox(this.src)">
+      <img src="images/P20.jpeg" alt="P5" onclick="openLightbox(this.src)">
+      <img src="images/P6.jpeg" alt="P6" onclick="openLightbox(this.src)">
+      <img src="images/P7.jpeg" alt="P7" onclick="openLightbox(this.src)">
+      <img src="images/P8.jpeg" alt="P8" onclick="openLightbox(this.src)">
+      <img src="images/P9.jpeg" alt="P9" onclick="openLightbox(this.src)">
+      <img src="images/P10.jpeg" alt="P10" onclick="openLightbox(this.src)">
+      <img src="images/P11.jpeg" alt="P11" onclick="openLightbox(this.src)">
+      <img src="images/P12.jpeg" alt="P12" onclick="openLightbox(this.src)">
+      <img src="images/P13.jpeg" alt="P13" onclick="openLightbox(this.src)">
+      <img src="images/P14.jpeg" alt="P14" onclick="openLightbox(this.src)">
+      <img src="images/P15.jpeg" alt="P15" onclick="openLightbox(this.src)">
+      <img src="images/P16.jpeg" alt="P16" onclick="openLightbox(this.src)">
+      <img src="images/P17.jpeg" alt="P17" onclick="openLightbox(this.src)">
+      <img src="images/P18.jpeg" alt="P18" onclick="openLightbox(this.src)">
+      <img src="images/P19.jpeg" alt="P19" onclick="openLightbox(this.src)">
+      <img src="images/P20.jpeg" alt="P20" onclick="openLightbox(this.src)">
+    </div>
+  </main>
 
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lb2" src="" alt="">
+  </div>
+
+ 
+  <!-- Script -->
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lb2').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  </script>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2016 SBB Foundation | Software & Social Impact</p>
+  </footer>
 </body>
 </html>

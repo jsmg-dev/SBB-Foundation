@@ -1,382 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>About Us - SBB Foundation</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — SBB Foundation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f4f4;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #333; background: #f9f9f9; line-height: 1.6; }
 
+    /* Header */
     header {
       background: #2d6cdf;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 1rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap;
     }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      height: 50px;
-      margin-right: 15px;
-    }
-
-    header h1 {
-      font-size: 1.8rem;
-      margin: 0;
-    }
-
-    nav {
-      margin-top: 10px;
-    }
-
+    header .logo { display: flex; align-items: center; }
+    header .logo img { height: 50px; margin-right: 10px; border-radius: 8px; }
+    header h1 { color: white; font-size: 1.4rem; }
     nav a {
-      color: white;
-      margin: 0 12px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a.active {
-      text-decoration: underline;
-    }
-
-    .hero {
-      background: #fdfdfd;
-      padding: 2rem;
-      text-align: center;
-      background-image: linear-gradient(to right, #e0ecff, #ffffff);
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .content {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .newsletter-card,
-    .social-connect {
-      background: #ffffff;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .newsletter-card h3,
-    .social-connect h3 {
-      margin-bottom: 10px;
-    }
-
-    .newsletter-card input[type="email"] {
-      padding: 0.5rem;
-      width: 70%;
-      max-width: 300px;
-      margin-right: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .newsletter-card button {
-      padding: 0.5rem 1rem;
-      background: #2d6cdf;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .social-icons a {
-      font-size: 1.5rem;
-      color: #2d6cdf;
-      margin-right: 15px;
-      text-decoration: none;
-    }
-
-    #founder-message {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem;
-    }
-
-    .founder-card {
-      background: white;
-      border-radius: 8px;
-      padding: 1.5rem;
-      max-width: 300px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .founder-photo {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      background: #2d6cdf;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .logo-container {
-        justify-content: center;
-      }
-
-      nav {
-        margin-top: 1rem;
-      }
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-    }
-
-    header {
-      background: #2d6cdf;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      height: 50px;
-      margin-right: 10px;
-    }
-
-    .logo-container h1 {
-      font-size: 1.5rem;
-    }
-
-    nav a {
-      color: white;
-      margin-left: 1rem;
-      text-decoration: none;
-      font-weight: bold;
+      color: white; text-decoration: none; margin-left: 1rem; font-weight: 600;
       transition: color 0.3s;
     }
+    nav a:hover { color: #ffeb3b; }
 
-    nav a:hover {
-      color: #dbe6ff;
-      text-decoration: underline;
+    /* Hero Banner */
+    .hero {
+      background: url('images/about-hero.jpg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+      position: relative;
     }
-
-    .hero-banner {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      display: block;
+    .hero::after {
+      content: ""; position: absolute; top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.5);
     }
+    .hero-content {
+      position: relative; z-index: 1; max-width: 800px; margin:auto;
+    }
+    .hero-content h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero-content p { font-size: 1.2rem; }
 
+    /* Section */
     .section {
-      padding: 2rem 4%;
+      padding: 4rem 8%;
       background: white;
+      max-width: 1100px;
       margin: 2rem auto;
-      max-width: 1200px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-
     .section h2 {
       color: #2d6cdf;
-      text-align: center;
       margin-bottom: 1rem;
+      text-align: center;
     }
-
     .section p {
-      line-height: 1.7;
+      margin-bottom: 1rem;
       text-align: justify;
-      font-size: 1rem;
     }
 
-    .founder-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+    /* Impact Section */
+    .impact {
+      background: #f0f6ff;
+      padding: 4rem 8%;
+      text-align: center;
     }
-
-    .founder-card {
-      background: #eaf0fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    .founder-card h3 {
-      margin-bottom: 0.5rem;
+    .impact h2 {
       color: #2d6cdf;
+      margin-bottom: 1rem;
+      font-size: 2rem;
     }
+    .impact p {
+      max-width: 800px;
+      margin: 0.5rem auto;
+      line-height: 1.6;
+    }
+    .impact ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem auto 2rem;
+      max-width: 600px;
+      text-align: left;
+    }
+    .impact ul li {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .impact .highlight {
+      font-size: 1.2rem;
+      color: #1e4fad;
+      font-weight: bold;
+      margin: 1.5rem auto;
+    }
+/* Base Hero */
+.hero {
+  position: relative;
+  min-height: 55vh;             /* balanced height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
 
-    .founder-card p:last-child {
+.hero::after {
+  content: "";
+  position: absolute;
+  top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.4));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-content h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.hero-content a {
+  background: #ffeb3b;
+  color: #2d6cdf;
+  padding: 0.9rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+.hero-content a:hover {
+  background: white;
+  color: #1e4fad;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { min-height: 40vh; }
+  .hero-content h2 { font-size: 2rem; }
+  .hero-content p { font-size: 1rem; }
+}
+
+    /* Founder Section */
+    .founder {
+      padding: 4rem 8%;
+      background: white;
+      max-width: 1000px;
+      margin: 2rem auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .founder img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .founder-content {
+      flex: 1;
+    }
+    .founder-content h2 {
+      color: #2d6cdf;
+      margin-bottom: 0.5rem;
+    }
+    .founder-content h3 {
+      margin-bottom: 1rem;
       color: #555;
-      font-style: italic;
-      margin-top: 0.5rem;
+    }
+    .founder-content p {
+      text-align: justify;
     }
 
-    .cta-buttons {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .cta-buttons a {
-      display: inline-block;
-      margin: 0.5rem 1rem;
-      padding: 0.8rem 1.5rem;
-      background: #2d6cdf;
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      transition: background 0.3s;
-    }
-
-    .cta-buttons a:hover {
-      background: #1f4ea3;
-    }
-
+    /* Footer */
     footer {
-      background: #2d6cdf;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
-    }
-
-    @media screen and (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav {
-        margin-top: 0.5rem;
-      }
-
-      nav a {
-        margin: 0.5rem;
-        display: inline-block;
-      }
+      background: #2d6cdf; color: white; text-align: center;
+      padding: 1.2rem; margin-top: 3rem;
     }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-    <div class="logo-container">
-      <img src="images/logo.jpeg" alt="SBB Foundation Logo" />
+    <div class="logo">
+      <img src="images/logo.jpeg" alt="SBB Logo">
       <h1>SBB Foundation</h1>
     </div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="work.html">Our Work</a>
+      <a href="about.html" class="active">About</a>
+      <a href="services.html">Services</a>
+      <a href="ventures.html">Ventures</a>
+      <a href="gallery.html">Gallery</a>
+
       <a href="contact.html">Contact</a>
-      <a href="Gallery.html">Gallery</a>
-      <a href="ventures.html">Our Ventures</a>
     </nav>
   </header>
 
-
-<section class="events-section">
-  <h2>Founder’s Events</h2>
-  <p>Here are some glimpses from various events and initiatives led by our founder, <strong>Jitendra Sharma</strong>, representing SBB Foundation’s mission of education and compassion.</p>
-
-  <div class="event-gallery">
-    <img src="images/event1.jpeg" alt="Founder speaking at child education event">
-    <img src="images/event2.jpeg" alt="Founder at animal care drive">
-    <img src="images/event3.jpeg" alt="Jitendra Sharma with children">
-    <img src="images/event4.jpeg" alt="Community awareness program">
-
+  <!-- Hero -->
+  <section class="hero hero-about">
+  <div class="hero-content">
+    <h2>Our Mission</h2>
+    <p>Every project fuels education for children and rural development.</p>
+    <a href="services.html">Explore Services</a>
   </div>
 </section>
-  <section class="content">
-    <h2>About SBB Foundation</h2>
+
+
+  <!-- Company + NGO Story -->
+  <section class="section">
+    <h2>Who We Are</h2>
     <p>
-      SBB Foundation is a non-profit organization committed to uplifting underprivileged children through quality education and development programs. 
-      Founded in 2015, it began as a response to the devastating earthquake in Nepal, which left over 1 million students without access to classrooms. 
-      Our foundation works relentlessly to bridge this gap by building schools, libraries, and supporting students and teachers in marginalized communities.
+      <strong>SBB Foundation</strong> is a unique blend of technology and social responsibility. 
+      On one hand, we are a <strong>software development company</strong>, 
+      building modern, reliable, and scalable solutions for businesses and NGOs. 
+      On the other hand, we are a <strong>non-profit organization</strong> 
+      investing our earnings into impactful social causes.
     </p>
-
     <p>
-      Our mission is to unlock the power of education and sustainable development to transform lives. Alongside education, we also run a cow ranch to support rural livelihoods and self-sustainability for local families.
+      Our philosophy is simple: <em>technology should empower, not just profit</em>. 
+      Every project we deliver helps us continue our mission of educating children, 
+      uplifting rural communities, and preserving traditions through initiatives like our cow ranch.
     </p>
+  </section>
 
-    <div class="newsletter-card">
-      <h3><i class="fas fa-envelope"></i> Stay Updated</h3>
-      <p>Subscribe to receive the latest updates and newsletters from SBB Foundation.</p>
-      <input type="email" placeholder="Enter your email" />
-      <button>Subscribe</button>
-    </div>
+  <!-- Impact Section -->
+  <section class="impact">
+    <h2>Our Impact</h2>
+    <p>
+      Every rupee we earn from software services goes directly into <strong>social good</strong>.
+    </p>
+    <ul>
+      <li>📘 Free <strong>education programs</strong> for underprivileged children.</li>
+      <li>🐄 A sustainable <strong>cow ranch</strong> supporting rural livelihoods.</li>
+      <li>🌍 <strong>Community development initiatives</strong> for dignity and opportunity.</li>
+    </ul>
+    <p class="highlight">
+      Unlike many, we don’t measure success by profits.<br>
+      👉 <strong>We measure it by lives touched.</strong>
+    </p>
+    <p>
+      When you choose SBB Foundation, you are not only choosing a software partner — 
+      ✨ <strong>you’re becoming part of a mission that uplifts society.</strong>
+    </p>
+  </section>
 
-    <div class="social-connect">
-      <h3><i class="fas fa-share-alt"></i> Connect With Us</h3>
-      <p>Follow us on social media to stay engaged.</p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-      </div>
+  <!-- Founder Section -->
+  <section class="founder">
+    <img src="images/event1.jpeg" alt="Founder - Jitendra Sharma">
+    <div class="founder-content">
+      <h2>Meet Our Founder</h2>
+      <h3>Jitendra Sharma — Founder & Software Architect</h3>
+      <p>
+        Jitendra Sharma is the driving force behind <strong>SBB Foundation</strong>.  
+        With a deep belief that technology should create social change, he chose to dedicate his 
+        own resources and expertise toward empowering communities.  
+      </p>
+      <p>
+        Instead of chasing profits, Jitendra invests every earning from his software work 
+        into <strong>education for underprivileged children</strong>, 
+        <strong>sustainable farming through the cow ranch</strong>, 
+        and <strong>community development projects</strong>.  
+      </p>
+      <p>
+        His vision is clear: <em>to build a foundation where technology and compassion work hand in hand</em>, 
+        uplifting countless lives along the way.
+      </p>
     </div>
   </section>
 
-  <section id="founder-message">
-    <div class="founder-card">
-      <img src="images/js.jpeg" alt="Jitendra Sharma - Founder" class="founder-photo" />
-      <h2>Jitendra Sharma</h2>
-      <p>Jitendra Sharma is the driving force behind SBB Foundation. He is passionate about child education and rural development through innovative programs such as cow ranching. His commitment continues to uplift communities in need.</p>
-    </div>
-
-    <div class="founder-card">
-      <img src="images/R.jpeg" alt="Ritesh Sharma - Co-Founder" class="founder-photo" />
-      <h2>Ritesh Gautam</h2>
-      <p>Ritesh shares the vision of empowering underprivileged communities. His focus on education and sustainability helps bring real change to the lives of countless families and children.</p>
-    </div>
-  </section>
-
-  
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2016 - SBB Foundation | All Rights Reserved</p>
+    <p>&copy; 2025 SBB Foundation | Software & Social Impact</p>
   </footer>
+
 </body>
 </html>
