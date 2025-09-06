@@ -59,10 +59,29 @@ html,body{height:100%;margin:0;font-family:Inter, "Segoe UI", Roboto, system-ui,
 .columns{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:18px}
 .section{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow-soft)}
 
-/* gallery */
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.gallery-grid img{width:100%;height:150px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .25s}
-.gallery-grid img:hover{transform:scale(1.03)}
+/* Gallery Section */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+  margin-top: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;       /* perfect square tiles */
+  object-fit: cover;          /* crop nicely without stretching */
+  border-radius: 12px;        /* smooth rounded corners */
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+
 
 /* team */
 .team{display:flex;gap:12px;flex-wrap:wrap}
