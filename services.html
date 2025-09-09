@@ -14,16 +14,84 @@
       background: #2d6cdf;
       padding: 1rem 5%;
       display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      position: relative;
     }
-    header .logo { display: flex; align-items: center; gap:10px; }
+    header .logo { display: flex; align-items: center; gap:10px; flex-shrink:0; }
     header .logo img { height: 50px; width:50px; object-fit:cover; border-radius: 8px; }
     header h1 { color: white; font-size: 1.2rem; font-weight:700; }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
     nav a {
       color: white; text-decoration: none; margin-left: 1rem; font-weight: 600;
       transition: color 0.3s;
     }
     nav a:hover { color: #ffeb3b; }
+
+    /* three-dot mobile menu button */
+    .mobile-menu {
+      display: none;           /* hidden on desktop */
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 28px;
+      line-height: 1;
+      padding: 6px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-menu:focus { outline: 2px solid #ffeb3b; outline-offset: 2px; }
+
+    /* dropdown panel that appears under the three dots on mobile */
+    .mobile-panel {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 5%;
+      background: white;
+      color: #10203a;
+      min-width: 160px;
+      border-radius: 10px;
+      box-shadow: 0 12px 34px rgba(8,30,80,0.16);
+      overflow: hidden;
+      transform-origin: top right;
+      z-index: 1200;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: none;
+    }
+    .mobile-panel.open { display: block; animation: panel-in .15s ease; }
+    @keyframes panel-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity:1; transform: translateY(0) scale(1); } }
+
+    .mobile-panel a {
+      display: block;
+      padding: 12px 14px;
+      color: #10203a;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(16,32,58,0.04);
+    }
+    .mobile-panel a:last-child { border-bottom: none; }
+    .mobile-panel a:hover, .mobile-panel a:focus {
+      background: #f4f7ff;
+      outline: none;
+    }
+
+    /* Hide desktop nav on small screens, show mobile three dots */
+    @media (max-width: 880px) {
+      nav { display: none; }              /* hide full nav */
+      .mobile-menu { display: flex; }     /* show three-dot button */
+      header { padding-right: 14%; }      /* give space for dropdown */
+    }
+
+    /* On very small screens push the panel left a bit if right is constrained */
+    @media (max-width: 360px) {
+      .mobile-panel { right: 6%; left: 6%; min-width: unset; }
+    }
 
     /* ---------- UPDATED HERO ---------- */
     .hero {
@@ -162,17 +230,33 @@
 
   <!-- Header -->
   <header>
-    <div class="logo">
+    <div class="logo" aria-hidden="false">
       <img src="images/logo.jpeg" alt="SBB Logo">
       <h1>SBB Foundation</h1>
     </div>
-    <nav>
+
+    <!-- Desktop nav (hidden on small screens) -->
+    <nav aria-label="Primary navigation">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="services.html" class="active">Services</a>
       <a href="ventures.html">Ventures</a>
       <a href="contact.html">Contact</a>
     </nav>
+
+    <!-- Mobile three-dot menu button (visible on small screens) -->
+    <button class="mobile-menu" id="mobileMenuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="mobilePanel" title="Open menu">
+      <span aria-hidden="true">⋮</span>
+    </button>
+
+    <!-- Mobile dropdown panel -->
+    <div class="mobile-panel" id="mobilePanel" role="menu" aria-labelledby="mobileMenuBtn">
+      <a href="index.html" role="menuitem" tabindex="0">Home</a>
+      <a href="about.html" role="menuitem" tabindex="0">About</a>
+      <a href="services.html" role="menuitem" tabindex="0">Services</a>
+      <a href="ventures.html" role="menuitem" tabindex="0">Ventures</a>
+      <a href="contact.html" role="menuitem" tabindex="0">Contact</a>
+    </div>
   </header>
 
   <!-- Updated Hero -->
@@ -249,10 +333,69 @@
     <p>&copy; 2016 SBB Foundation | Software & Social Impact</p>
   </footer>
 
-  <!-- JS: reveal, gentle parallax, chevron scroll -->
+  <!-- JS: mobile menu toggle, reveal, gentle parallax, chevron scroll -->
   <script>
   (function(){
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Mobile panel logic
+    const btn = document.getElementById('mobileMenuBtn');
+    const panel = document.getElementById('mobilePanel');
+
+    function closePanel() {
+      if(!panel) return;
+      panel.classList.remove('open');
+      if(btn){
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+    function openPanel() {
+      if(!panel) return;
+      panel.classList.add('open');
+      if(btn){
+        btn.setAttribute('aria-expanded', 'true');
+        btn.focus();
+      }
+    }
+
+    // Toggle on button click
+    if(btn){
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        const isOpen = panel.classList.contains('open');
+        if(isOpen) closePanel(); else openPanel();
+      });
+      // keyboard: open with Enter/Space
+      btn.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          btn.click();
+        } else if(e.key === 'Escape') {
+          closePanel();
+        }
+      });
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e){
+      if(!panel) return;
+      if(panel.classList.contains('open') && !panel.contains(e.target) && e.target !== btn) {
+        closePanel();
+      }
+    });
+
+    // Close on Esc
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closePanel();
+    });
+
+    // Make panel links keyboard accessible (close after click)
+    const panelLinks = panel ? panel.querySelectorAll('a') : [];
+    panelLinks.forEach(link => {
+      link.addEventListener('click', function(){
+        closePanel();
+      });
+    });
 
     // staged reveal for hero text
     function revealHero() {
