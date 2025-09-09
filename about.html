@@ -32,368 +32,60 @@
     }
     nav a:hover { color: #ffeb3b; }
 
-    /* three-dot mobile menu button */
-    .mobile-menu {
-      display: none;           /* hidden on desktop */
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 28px;
-      line-height: 1;
-      padding: 6px 8px;
-      border-radius: 8px;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mobile-menu:focus { outline: 2px solid #ffeb3b; outline-offset: 2px; }
-
-    /* dropdown panel that appears under the three dots on mobile */
-    .mobile-panel {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 5%;
-      background: white;
-      color: #10203a;
-      min-width: 160px;
-      border-radius: 10px;
-      box-shadow: 0 12px 34px rgba(8,30,80,0.16);
-      overflow: hidden;
-      transform-origin: top right;
-      z-index: 1200;
-      border: 1px solid rgba(0,0,0,0.06);
-      display: none;
-    }
+    /* Mobile menu */
+    .mobile-menu { display: none; background: transparent; border: none; color: white; font-size: 28px; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+    .mobile-panel { position: absolute; top: calc(100% + 8px); right: 5%; background: white; color: #10203a; min-width: 160px; border-radius: 10px; box-shadow: 0 12px 34px rgba(8,30,80,0.16); overflow: hidden; transform-origin: top right; z-index: 1200; border: 1px solid rgba(0,0,0,0.06); display: none; }
     .mobile-panel.open { display: block; animation: panel-in .15s ease; }
     @keyframes panel-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity:1; transform: translateY(0) scale(1); } }
+    .mobile-panel a { display:block; padding:12px 14px; color:#10203a; text-decoration:none; font-weight:600; border-bottom:1px solid rgba(16,32,58,0.04); }
+    .mobile-panel a:last-child{ border-bottom:none }
 
-    .mobile-panel a {
-      display: block;
-      padding: 12px 14px;
-      color: #10203a;
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px solid rgba(16,32,58,0.04);
-    }
-    .mobile-panel a:last-child { border-bottom: none; }
-    .mobile-panel a:hover, .mobile-panel a:focus {
-      background: #f4f7ff;
-      outline: none;
-    }
+    @media (max-width:880px){ nav{display:none} .mobile-menu{display:flex} header{padding-right:14%} }
+    @media (max-width:360px){ .mobile-panel{ right:6%; left:6%; min-width:unset } }
 
-    /* Hide desktop nav on small screens, show mobile three dots */
-    @media (max-width: 880px) {
-      nav { display: none; }              /* hide full nav */
-      .mobile-menu { display: flex; }     /* show three-dot button */
-      header { padding-right: 14%; }      /* give space for dropdown */
-    }
-
-    /* On very small screens push the panel left a bit if right is constrained */
-    @media (max-width: 360px) {
-      .mobile-panel { right: 6%; left: 6%; min-width: unset; }
-    }
-
-    /* ---------- UPDATED HERO (only this block changed) ---------- */
-    .hero{
-      position: relative;
-      min-height: 55vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      overflow:hidden;
-      padding:3.5rem 2rem;
-      background: url('images/about-hero.jpg') center/cover no-repeat;
-      transition: transform 0.35s ease;
-      will-change: transform;
-    }
-
-    /* lighter overlay so background shows more color */
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.40), rgba(0,0,0,0.16));
-      pointer-events:none;
-      z-index:0;
-    }
-
-    /* subtle decorative radial */
-    .hero::before{
-      content:"";
-      position:absolute;
-      right:-6%;
-      top:-8%;
-      width:320px;
-      height:320px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,203,51,0.08), rgba(45,108,223,0.04) 45%, transparent 60%);
-      filter: blur(26px);
-      transform: translateZ(0);
-      z-index:0;
-      pointer-events:none;
-    }
-
-    .hero-content{
-      position:relative;
-      z-index:2;
-      max-width:900px;
-      margin:auto;
-      padding:2rem;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:16px;
-    }
-
-    /* staged reveal for title + lead */
-    .hero-title{
-      font-size:2.4rem;
-      font-weight:700;
-      line-height:1.08;
-      color:#fff;
-      transform:translateY(18px);
-      opacity:0;
-      transition:all .7s cubic-bezier(.2,.9,.2,1);
-    }
-    .hero-lead{
-      font-size:1.05rem;
-      color:rgba(255,255,255,0.95);
-      max-width:78ch;
-      transform:translateY(14px);
-      opacity:0;
-      transition:all .7s .08s cubic-bezier(.2,.9,.2,1);
-    }
-
-    .hero-cta-row{ display:flex; gap:12px; align-items:center; }
-
+    /* HERO (unchanged) */
+    .hero{ position: relative; min-height: 55vh; display:flex; align-items:center; justify-content:center; text-align:center; overflow:hidden; padding:3.5rem 2rem; background: url('images/about-hero.jpg') center/cover no-repeat; transition: transform 0.35s ease; will-change: transform; }
+    .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.40), rgba(0,0,0,0.16)); pointer-events:none; z-index:0; }
+    .hero::before{ content:""; position:absolute; right:-6%; top:-8%; width:320px; height:320px; background: radial-gradient(circle at 30% 30%, rgba(255,203,51,0.08), rgba(45,108,223,0.04) 45%, transparent 60%); filter: blur(26px); transform: translateZ(0); z-index:0; pointer-events:none; }
+    .hero-content{ position:relative; z-index:2; max-width:900px; margin:auto; padding:2rem; display:flex; flex-direction:column; align-items:center; gap:16px; }
+    .hero-title{ font-size:2.4rem; font-weight:700; line-height:1.08; color:#fff; transform:translateY(18px); opacity:0; transition:all .7s cubic-bezier(.2,.9,.2,1); }
+    .hero-lead{ font-size:1.05rem; color:rgba(255,255,255,0.95); max-width:78ch; transform:translateY(14px); opacity:0; transition:all .7s .08s cubic-bezier(.2,.9,.2,1); }
     .btn{ border-radius:999px; padding:12px 18px; font-weight:700; text-decoration:none; cursor:pointer; }
     .btn-primary{ background:#ffcf33; color:#10203a; box-shadow:0 10px 26px rgba(255,207,51,0.12); }
     .btn-ghost{ background:transparent; color:#10203a; border:1px solid rgba(255,255,255,0.12); }
-    .btn-primary:hover{ transform:translateY(-4px); }
-
-    .chevron-wrap{ display:block; margin-top:16px; cursor:pointer; opacity:0.95; }
     .chev{ width:36px; height:36px; display:inline-block; transform-origin:center; animation:chev-bob 2s infinite; fill:rgba(255,255,255,0.95); }
-    @keyframes chev-bob{ 0%{transform:translateY(0)}50%{transform:translateY(8px)}100%{transform:translateY(0)} }
-    .chevron-wrap:hover .chev{ transform:translateY(10px) scale(1.02); }
 
-    @media (max-width:900px){ .hero{ background-position:center 35%; } }
-    @media (max-width:560px){ .hero{ min-height:46vh; padding:2.4rem 1.2rem } .hero-title{ font-size:1.8rem } .chev{ width:28px; height:28px } }
+    /* Sections */
+    .section { padding: 4rem 8%; background: white; max-width: 1100px; margin: 2rem auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .section h2 { color: #2d6cdf; margin-bottom: 1rem; text-align: center; }
 
-    /* ---------- END HERO ---------- */
+    .impact { background: #f0f6ff; padding: 4rem 8%; text-align: center; }
 
-    /* Section */
-    .section {
-      padding: 4rem 8%;
-      background: white;
-      max-width: 1100px;
-      margin: 2rem auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    .section h2 {
-      color: #2d6cdf;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    .section p {
-      margin-bottom: 1rem;
-      text-align: justify;
-    }
+    /* Founders: reflow to 3 columns for desktop */
+    .founders-section .container { max-width: 1200px; margin: 2rem auto; padding: 2.2rem 4%; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .founders-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; align-items: stretch; }
 
-    /* Impact Section */
-    .impact {
-      background: #f0f6ff;
-      padding: 4rem 8%;
-      text-align: center;
-    }
-    .impact h2 {
-      color: #2d6cdf;
-      margin-bottom: 1rem;
-      font-size: 2rem;
-    }
-    .impact p {
-      max-width: 800px;
-      margin: 0.5rem auto;
-      line-height: 1.6;
-    }
-    .impact ul {
-      list-style: none;
-      padding: 0;
-      margin: 1rem auto 2rem;
-      max-width: 600px;
-      text-align: left;
-    }
-    .impact ul li {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-    }
-    .impact .highlight {
-      font-size: 1.2rem;
-      color: #1e4fad;
-      font-weight: bold;
-      margin: 1.5rem auto;
-    }
+    /* Keep cards same styling */
+    .founder-card { display:flex; flex-direction:column; align-items:center; text-align:center; background:#fff; padding:1.6rem; border-radius:12px; box-shadow: 0 6px 18px rgba(27,43,91,0.06); transition: transform .22s ease, box-shadow .22s ease; }
+    .founder-avatar { width:140px; height:140px; border-radius:50%; overflow:hidden; margin-bottom:1rem; box-shadow:0 6px 14px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg,#eef6ff,#ffffff); }
+    .founder-avatar img{ width:100%; height:100%; object-fit:cover; display:block }
+    .founder-name{ margin:0.4rem 0 0.2rem; font-size:1.05rem; color:#1e3a8a; }
+    .founder-role{ margin:0; font-weight:600; color:#556; font-size:.92rem }
+    .founder-bio{ margin-top:0.9rem; color:#555; font-size:.95rem; line-height:1.45 }
 
-    /* Founder Section */
-    .founder {
-      padding: 4rem 8%;
-      background: white;
-      max-width: 1000px;
-      margin: 2rem auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 2rem;
-    }
-    .founder img {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    .founder-content {
-      flex: 1;
-    }
-    .founder-content h2 {
-      color: #2d6cdf;
-      margin-bottom: 0.5rem;
-    }
-    .founder-content h3 {
-      margin-bottom: 1rem;
-      color: #555;
-    }
-    .founder-content p {
-      text-align: justify;
-    }
+    /* Responsive: 2 columns under 1024, 1 column under 640 */
+    @media (max-width: 1024px) { .founders-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .founders-grid { grid-template-columns: 1fr; } .founder-avatar { width:120px; height:120px } }
 
-    /* Container narrow to match your sections */
-    .founders-section .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 2.2rem 4%;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    /* Titles */
-    .section-title {
-      color: #2d6cdf;
-      text-align: center;
-      font-size: 1.9rem;
-      margin-bottom: 0.4rem;
-    }
-    .section-sub {
-      text-align: center;
-      color: #555;
-      max-width: 880px;
-      margin: 0 auto 1.6rem;
-    }
-
-    /* Grid */
-    .founders-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.6rem;
-      align-items: stretch;
-    }
-
-    /* Card */
-    .founder-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      background: #fff;
-      padding: 1.6rem;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(27,43,91,0.06);
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-      min-height: 320px;
-    }
-    .founder-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 14px 28px rgba(27,43,91,0.10);
-    }
-
-    /* Avatar */
-    .founder-avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 1rem;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(180deg,#eef6ff,#ffffff);
-    }
-    .founder-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Body */
-    .founder-name {
-      margin: 0.4rem 0 0.2rem;
-      font-size: 1.05rem;
-      color: #1e3a8a;
-    }
-    .founder-role {
-      margin: 0;
-      font-weight: 600;
-      color: #556;
-      font-size: 0.92rem;
-    }
-    .founder-bio {
-      margin-top: 0.9rem;
-      color: #555;
-      font-size: 0.95rem;
-      line-height: 1.45;
-    }
-
-    /* Responsive breakpoints: reduce columns on smaller screens */
-    @media (max-width: 1024px) {
-      .founders-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 640px) {
-      .founders-grid { grid-template-columns: 1fr; }
-      .founder-card { min-height: auto; padding: 1.25rem; }
-      .founder-avatar { width: 120px; height: 120px; }
-      .section-title { font-size: 1.6rem; }
-    }
-
-    /* Footer */
-    footer {
-      background: #2d6cdf; color: white; text-align: center;
-      padding: 1.2rem; margin-top: 3rem;
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .chev{ animation:none; }
-      .hero{ transition:none; transform:none; background-position:50% 50%; }
-    }
+    footer { background:#2d6cdf; color:white; text-align:center; padding:1.2rem; margin-top:3rem }
   </style>
 </head>
 <body>
-
-  <!-- Header -->
   <header>
     <div class="logo" aria-hidden="false">
       <img src="images/logo.jpeg" alt="SBB Logo">
       <h1>SBB Foundation</h1>
     </div>
-
-    <!-- Desktop nav (hidden on small screens) -->
     <nav aria-label="Primary navigation">
       <a href="index.html">Home</a>
       <a href="about.html" class="active">About</a>
@@ -401,14 +93,8 @@
       <a href="ventures.html">Ventures</a>
       <a href="contact.html">Contact</a>
     </nav>
+    <button class="mobile-menu" id="mobileMenuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="mobilePanel" title="Open menu"><span aria-hidden="true">⋮</span></button>
 
-    <!-- Mobile three-dot menu button (visible on small screens) -->
-    <button class="mobile-menu" id="mobileMenuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="mobilePanel" title="Open menu">
-      <!-- three vertical dots (⋮) -->
-      <span aria-hidden="true">⋮</span>
-    </button>
-
-    <!-- Mobile dropdown panel -->
     <div class="mobile-panel" id="mobilePanel" role="menu" aria-labelledby="mobileMenuBtn">
       <a href="index.html" role="menuitem" tabindex="0">Home</a>
       <a href="about.html" role="menuitem" tabindex="0">About</a>
@@ -418,264 +104,80 @@
     </div>
   </header>
 
-  <!-- HERO (updated only) -->
   <section class="hero hero-about" aria-label="About hero banner">
     <div class="hero-content">
       <h1 class="hero-title">Our Mission</h1>
       <p class="hero-lead">We build software, and every project supports education for children and rural progress.</p>
-
       <div class="hero-cta-row">
         <a class="btn btn-primary" href="services.html">Explore Services</a>
         <a class="btn btn-ghost" href="contact.html">Contact Sales</a>
       </div>
-
-      <!-- chevron: scroll to mission -->
       <a class="chevron-wrap" id="scrollChevron" href="#mission" aria-label="Scroll to mission">
-        <svg class="chev" viewBox="0 0 24 24" role="img" aria-hidden="true">
-          <path d="M12 16.5c-.3 0-.5-.1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 13.09l5.3-5.3a1 1 0 1 1 1.4 1.42l-6 6c-.2.2-.4.29-.7.29z"></path>
-        </svg>
+        <svg class="chev" viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 16.5c-.3 0-.5-.1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 13.09l5.3-5.3a1 1 0 1 1 1.4 1.42l-6 6c-.2.2-.4.29-.7.29z"></path></svg>
       </a>
     </div>
   </section>
 
-    <!-- Company + NGO Story -->
   <section class="section" id="mission">
     <h2>Who We Are</h2>
-    <p>
-      At <strong>SBB Foundation</strong>, we believe that true success is measured not by profits, 
-      but by the positive change we create. We are a <strong>unique blend of a software powerhouse 
-      and a purpose-driven non-profit</strong>.  
-    </p>
-    <p>
-      On one side, our team builds <strong>modern, scalable, and reliable software solutions</strong> 
-      that help businesses and NGOs thrive in the digital age. On the other, we channel those very 
-      earnings into <strong>transformative social initiatives</strong> — providing education to 
-      underprivileged children, empowering rural communities, and nurturing sustainability 
-      through our cow ranch projects.  
-    </p>
-    <p>
-      Our philosophy is simple yet powerful: <em>technology should not only generate growth — 
-      it should also generate hope</em>. Every line of code we write, every project we deliver, 
-      fuels our mission to <strong>uplift lives, preserve traditions, and create a future 
-      where innovation and compassion walk hand in hand</strong>.  
-    </p>
+    <p>At <strong>SBB Foundation</strong>, we believe that true success is measured not by profits, but by the positive change we create. We are a <strong>unique blend of a software powerhouse and a purpose-driven non-profit</strong>.</p>
+    <p>On one side, our team builds <strong>modern, scalable, and reliable software solutions</strong> that help businesses and NGOs thrive in the digital age. On the other, we channel those very earnings into <strong>transformative social initiatives</strong> — providing education to underprivileged children, empowering rural communities, and nurturing sustainability through our cow ranch projects.</p>
   </section>
-  <!-- Impact Section -->
+
   <section class="impact">
-    <h2>Our Impact</h2>
-    <p>
-      Every rupee we earn from software services goes directly into <strong>social good</strong>.
-    </p>
-    <ul>
-      <li>📘 Free <strong>education programs</strong> for underprivileged children.</li>
-      <li>🐄 A sustainable <strong>cow ranch</strong> supporting rural livelihoods.</li>
-      <li>🌍 <strong>Community development initiatives</strong> for dignity and opportunity.</li>
-    </ul>
-    <p class="highlight">
-      Unlike many, we don’t measure success by profits.<br>
-      👉 <strong>We measure it by lives touched.</strong>
-    </p>
-    <p>
-      When you choose SBB Foundation, you are not only choosing a software partner — 
-      ✨ <strong>you’re becoming part of a mission that uplifts society.</strong>
-    </p>
-  </section>
-
-    <section class="founders-section">
-  <div class="container">
-    <h2 class="section-title">Meet Our Founders</h2>
-    <p class="section-sub">
-      Our founders combine technology, empathy and community action to drive SBB Foundation’s mission.
-    </p>
-
-    <div class="founders-grid">
-      <!-- Card: Jitendra -->
-      <article class="founder-card">
-        <div class="founder-avatar">
-          <img src="images/event1.jpeg" alt="Jitendra Sharma">
-        </div>
-        <div class="founder-body">
-          <h3 class="founder-name">Jitendra Sharma</h3>
-          <p class="founder-role">Founder</p>
-          <p class="founder-bio">
-            Jitendra leads SBB Foundation’s vision to merge technology with social good — funding education, sustainable farming, and rural development projects.
-          </p>
-        </div>
-      </article>
-
-      <!-- Card: Akshar -->
-      <article class="founder-card">
-        <div class="founder-avatar">
-          <img src="images/akshar.jpeg" alt="Akshar Arora">
-        </div>
-        <div class="founder-body">
-          <h3 class="founder-name">Akshar Arora</h3>
-          <p class="founder-role">Co-Founder — Director Technology</p>
-          <p class="founder-bio">
-            Akshar leads the <strong>technology vision</strong> of SBB Foundation.  
-            He ensures our software solutions are modern, scalable, and aligned with our mission 
-            to use technology as a force for social good.
-          </p>
-        </div>
-      </article>
-
-      <!-- Card: Ronak -->
-      <article class="founder-card">
-        <div class="founder-avatar">
-          <img src="images/ronak.jpeg" alt="Ronak Tiwari">
-        </div>
-        <div class="founder-body">
-          <h3 class="founder-name">Ronak Tiwari</h3>
-          <p class="founder-role">Co-Founder — Director Business Success </p>
-          <p class="founder-bio">
-            Ronak leads the <strong>business success strategy</strong> for our software division.  
-            He ensures client satisfaction, builds long-term relationships, and aligns projects 
-            with both business growth and our social mission.
-          </p>
-        </div>
-      </article>
-
-      <!-- Card: Maharishi -->
-      <article class="founder-card">
-        <div class="founder-avatar">
-          <img src="images/maha.jpeg" alt="Maharishi">
-        </div>
-        <div class="founder-body">
-          <h3 class="founder-name">Maharishi</h3>
-          <p class="founder-role">Co-Founder — Director Sales & Marketing</p>
-          <p class="founder-bio">
-            Maharishi heads <strong>sales and client engagement</strong> at SBB Foundation.  
-            He builds strong customer relationships, expands our outreach, and ensures that our 
-            software services directly support the foundation’s social initiatives.
-          </p>
-        </div>
-      </article>
-
-    </div>
-  </div>
+  <h2>Our Impact</h2>
+  <p>Every rupee we earn from software services goes directly into <strong>social good</strong>.</p>
+  <ul style="list-style:none; padding-left:0; margin:1rem 0;">
+    <li>📘 Free <strong>education programs</strong> for underprivileged children.</li>
+    <li>🐄 A sustainable <strong>cow ranch</strong> supporting rural livelihoods.</li>
+    <li>🌍 <strong>Community development initiatives</strong> for dignity and opportunity.</li>
+  </ul>
 </section>
 
-  <!-- Footer -->
+  <section class="founders-section">
+    <div class="container">
+      <h2 class="section-title">Meet Our Founders</h2>
+      <p class="section-sub">Our founders combine technology, empathy and community action to drive SBB Foundation’s mission.</p>
+
+      <div class="founders-grid">
+        <article class="founder-card">
+          <div class="founder-avatar"><img src="images/event1.jpeg" alt="Jitendra Sharma"></div>
+          <div class="founder-body"><h3 class="founder-name">Jitendra Sharma</h3><p class="founder-role">Founder</p><p class="founder-bio">Jitendra leads SBB Foundation’s vision to merge technology with social good — funding education, sustainable farming, and rural development projects.</p></div>
+        </article>
+
+        <article class="founder-card">
+          <div class="founder-avatar"><img src="images/akshar.jpeg" alt="Akshar Arora"></div>
+          <div class="founder-body"><h3 class="founder-name">Akshar Arora</h3><p class="founder-role">Co-Founder — Director Technology</p><p class="founder-bio">Akshar leads the <strong>technology vision</strong> of SBB Foundation. He ensures our software solutions are modern, scalable, and aligned with our mission to use technology as a force for social good.</p></div>
+        </article>
+
+        <article class="founder-card">
+          <div class="founder-avatar"><img src="images/ronak.jpeg" alt="Ronak Tiwari"></div>
+          <div class="founder-body"><h3 class="founder-name">Ronak Tiwari</h3><p class="founder-role">Co-Founder — Director Business Success</p><p class="founder-bio">Ronak leads the <strong>business success strategy</strong> for our software division. He ensures client satisfaction, builds long-term relationships, and aligns projects with both business growth and our social mission.</p></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <footer>
     <p>&copy; 2016 SBB Foundation | Software & Social Impact</p>
   </footer>
 
-  <!-- JS: mobile menu toggle, reveal, gentle parallax, chevron scroll -->
   <script>
-  (function(){
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const btn = document.getElementById('mobileMenuBtn');
+      const panel = document.getElementById('mobilePanel');
+      function closePanel(){ if(!panel) return; panel.classList.remove('open'); if(btn) btn.setAttribute('aria-expanded','false'); }
+      function openPanel(){ if(!panel) return; panel.classList.add('open'); if(btn) btn.setAttribute('aria-expanded','true'); btn.focus(); }
+      if(btn){ btn.addEventListener('click', function(e){ e.stopPropagation(); const isOpen = panel.classList.contains('open'); if(isOpen) closePanel(); else openPanel(); }); btn.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); btn.click(); } else if(e.key==='Escape'){ closePanel(); } }); }
+      document.addEventListener('click', function(e){ if(!panel) return; if(panel.classList.contains('open') && !panel.contains(e.target) && e.target !== btn) closePanel(); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePanel(); });
+      const panelLinks = panel ? panel.querySelectorAll('a') : []; panelLinks.forEach(link => link.addEventListener('click', ()=> closePanel()));
 
-    // Mobile panel logic
-    const btn = document.getElementById('mobileMenuBtn');
-    const panel = document.getElementById('mobilePanel');
-
-    function closePanel() {
-      if(!panel) return;
-      panel.classList.remove('open');
-      if(btn){
-        btn.setAttribute('aria-expanded', 'false');
-      }
-    }
-    function openPanel() {
-      if(!panel) return;
-      panel.classList.add('open');
-      if(btn){
-        btn.setAttribute('aria-expanded', 'true');
-        btn.focus();
-      }
-    }
-
-    // Toggle on button click
-    if(btn){
-      btn.addEventListener('click', function(e){
-        e.stopPropagation();
-        const isOpen = panel.classList.contains('open');
-        if(isOpen) closePanel(); else openPanel();
-      });
-      // keyboard: open with Enter/Space
-      btn.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          btn.click();
-        } else if(e.key === 'Escape') {
-          closePanel();
-        }
-      });
-    }
-
-    // Close when clicking outside
-    document.addEventListener('click', function(e){
-      if(!panel) return;
-      if(panel.classList.contains('open') && !panel.contains(e.target) && e.target !== btn) {
-        closePanel();
-      }
-    });
-
-    // Close on Esc
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') closePanel();
-    });
-
-    // Make panel links keyboard accessible (close after click)
-    const panelLinks = panel ? panel.querySelectorAll('a') : [];
-    panelLinks.forEach(link => {
-      link.addEventListener('click', function(){
-        closePanel();
-      });
-    });
-
-    // staged reveal for hero text
-    function revealHero() {
-      const title = document.querySelector('.hero-title') || document.querySelector('.hero h1');
-      const lead  = document.querySelector('.hero-lead') || document.querySelector('.hero p');
-      if(title){ title.style.opacity = 1; title.style.transform = 'translateY(0)'; }
-      if(lead){ lead.style.opacity = 1; lead.style.transform = 'translateY(0)'; }
-    }
-
-    // chevron smooth scroll with focus for accessibility
-    const chevron = document.getElementById('scrollChevron');
-    if(chevron){
-      chevron.addEventListener('click', function(e){
-        e.preventDefault();
-        const target = document.querySelector('#mission') || document.querySelector('main');
-        if(target){
-          target.scrollIntoView({behavior: prefersReduced ? 'auto' : 'smooth', block:'start'});
-          if(!prefersReduced) setTimeout(()=>{ target.focus({preventScroll:true}); }, 500);
-        }
-      });
-    }
-
-    // gentle parallax (background position + small translate)
-    function attachParallax(){
-      const hero = document.querySelector('.hero');
-      if(!hero || prefersReduced) return;
-      const intensity = 12;
-      function onMove(e){
-        const rect = hero.getBoundingClientRect();
-        const cx = rect.left + rect.width/2;
-        const cy = rect.top + rect.height/2;
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        const dx = (clientX - cx) / rect.width;
-        const dy = (clientY - cy) / rect.height;
-        hero.style.transform = `translate3d(${dx * intensity * 0.12}px, ${dy * intensity * 0.05}px, 0)`;
-        const posX = 50 + dx * 4;
-        const posY = 35 + dy * 3;
-        hero.style.backgroundPosition = `${posX}% ${posY}%`;
-      }
-      function onLeave(){ hero.style.transform=''; hero.style.backgroundPosition=''; }
-      hero.addEventListener('mousemove', onMove);
-      hero.addEventListener('mouseleave', onLeave);
-      hero.addEventListener('touchmove', function(ev){
-        if(ev.touches && ev.touches[0]) onMove(ev.touches[0]);
-      }, {passive:true});
-    }
-
-    document.addEventListener('DOMContentLoaded', function(){
-      setTimeout(revealHero, 120);
-      attachParallax();
-    });
-  })();
+      function revealHero(){ const title = document.querySelector('.hero-title') || document.querySelector('.hero h1'); const lead = document.querySelector('.hero-lead') || document.querySelector('.hero p'); if(title){ title.style.opacity=1; title.style.transform='translateY(0)'; } if(lead){ lead.style.opacity=1; lead.style.transform='translateY(0)'; } }
+      document.addEventListener('DOMContentLoaded', function(){ setTimeout(revealHero, 120); });
+    })();
   </script>
 </body>
 </html>
