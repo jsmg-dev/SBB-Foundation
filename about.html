@@ -190,6 +190,117 @@
       text-align: justify;
     }
 
+<style>
+/* Container narrow to match your sections */
+.founders-section .container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 2.2rem 4%;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Titles */
+.section-title {
+  color: #2d6cdf;
+  text-align: center;
+  font-size: 1.9rem;
+  margin-bottom: 0.4rem;
+}
+.section-sub {
+  text-align: center;
+  color: #555;
+  max-width: 880px;
+  margin: 0 auto 1.6rem;
+}
+
+/* Grid */
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
+  align-items: stretch;
+}
+
+/* Card */
+.founder-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  padding: 1.6rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(27,43,91,0.06);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  min-height: 320px;
+}
+.founder-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(27,43,91,0.10);
+}
+
+/* Avatar */
+.founder-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg,#eef6ff,#ffffff);
+}
+.founder-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Fallback initials if image missing (optional) */
+.founder-avatar.no-img {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #2d6cdf;
+}
+
+/* Body */
+.founder-name {
+  margin: 0.4rem 0 0.2rem;
+  font-size: 1.05rem;
+  color: #1e3a8a;
+}
+.founder-role {
+  margin: 0;
+  font-weight: 600;
+  color: #556;
+  font-size: 0.92rem;
+}
+.founder-bio {
+  margin-top: 0.9rem;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+/* Responsive breakpoints: reduce columns on smaller screens */
+@media (max-width: 1024px) {
+  .founders-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .founders-grid { grid-template-columns: 1fr; }
+  .founder-card { min-height: auto; padding: 1.25rem; }
+  .founder-avatar { width: 120px; height: 120px; }
+  .section-title { font-size: 1.6rem; }
+}
+</style>
+
+
     /* Footer */
     footer {
       background: #2d6cdf; color: white; text-align: center;
@@ -224,23 +335,28 @@
 </section>
 
 
-  <!-- Company + NGO Story -->
+    <!-- Company + NGO Story -->
   <section class="section">
     <h2>Who We Are</h2>
     <p>
-      <strong>SBB Foundation</strong> is a unique blend of technology and social responsibility. 
-      On one hand, we are a <strong>software development company</strong>, 
-      building modern, reliable, and scalable solutions for businesses and NGOs. 
-      On the other hand, we are a <strong>non-profit organization</strong> 
-      investing our earnings into impactful social causes.
+      At <strong>SBB Foundation</strong>, we believe that true success is measured not by profits, 
+      but by the positive change we create. We are a <strong>unique blend of a software powerhouse 
+      and a purpose-driven non-profit</strong>.  
     </p>
     <p>
-      Our philosophy is simple: <em>technology should empower, not just profit</em>. 
-      Every project we deliver helps us continue our mission of educating children, 
-      uplifting rural communities, and preserving traditions through initiatives like our cow ranch.
+      On one side, our team builds <strong>modern, scalable, and reliable software solutions</strong> 
+      that help businesses and NGOs thrive in the digital age. On the other, we channel those very 
+      earnings into <strong>transformative social initiatives</strong> — providing education to 
+      underprivileged children, empowering rural communities, and nurturing sustainability 
+      through our cow ranch projects.  
+    </p>
+    <p>
+      Our philosophy is simple yet powerful: <em>technology should not only generate growth — 
+      it should also generate hope</em>. Every line of code we write, every project we deliver, 
+      fuels our mission to <strong>uplift lives, preserve traditions, and create a future 
+      where innovation and compassion walk hand in hand</strong>.  
     </p>
   </section>
-
   <!-- Impact Section -->
   <section class="impact">
     <h2>Our Impact</h2>
@@ -262,29 +378,80 @@
     </p>
   </section>
 
-  <!-- Founder Section -->
-  <section class="founder">
-    <img src="images/event1.jpeg" alt="Founder - Jitendra Sharma">
-    <div class="founder-content">
-      <h2>Meet Our Founder</h2>
-      <h3>Jitendra Sharma — Founder & Software Architect</h3>
-      <p>
-        Jitendra Sharma is the driving force behind <strong>SBB Foundation</strong>.  
-        With a deep belief that technology should create social change, he chose to dedicate his 
-        own resources and expertise toward empowering communities.  
-      </p>
-      <p>
-        Instead of chasing profits, Jitendra invests every earning from his software work 
-        into <strong>education for underprivileged children</strong>, 
-        <strong>sustainable farming through the cow ranch</strong>, 
-        and <strong>community development projects</strong>.  
-      </p>
-      <p>
-        His vision is clear: <em>to build a foundation where technology and compassion work hand in hand</em>, 
-        uplifting countless lives along the way.
-      </p>
+    <section class="founders-section">
+  <div class="container">
+    <h2 class="section-title">Meet Our Founders</h2>
+    <p class="section-sub">
+      Our founders combine technology, empathy and community action to drive SBB Foundation’s mission.
+    </p>
+
+    <div class="founders-grid">
+      <!-- Card: Jitendra -->
+      <article class="founder-card">
+        <div class="founder-avatar">
+          <img src="images/event1.jpeg" alt="Jitendra Sharma">
+        </div>
+        <div class="founder-body">
+          <h3 class="founder-name">Jitendra Sharma</h3>
+          <p class="founder-role">Founder</p>
+          <p class="founder-bio">
+            Jitendra leads SBB Foundation’s vision to merge technology with social good — funding education, sustainable farming, and rural development projects.
+          </p>
+        </div>
+      </article>
+
+            <!-- Card: Akshar -->
+      <article class="founder-card">
+        <div class="founder-avatar">
+          <img src="images/akshar.jpeg" alt="Akshar Arora">
+        </div>
+        <div class="founder-body">
+          <h3 class="founder-name">Akshar Arora</h3>
+          <p class="founder-role">Co-Founder — Director Technology</p>
+          <p class="founder-bio">
+            Akshar leads the <strong>technology vision</strong> of SBB Foundation.  
+            He ensures our software solutions are modern, scalable, and aligned with our mission 
+            to use technology as a force for social good.
+          </p>
+        </div>
+      </article>
+
+            <!-- Card: Ronak -->
+      <article class="founder-card">
+        <div class="founder-avatar">
+          <img src="images/ronak.jpeg" alt="Ronak Tiwari">
+        </div>
+        <div class="founder-body">
+          <h3 class="founder-name">Ronak Tiwari</h3>
+          <p class="founder-role">Co-Founder — Director Business Success </p>
+          <p class="founder-bio">
+            Ronak leads the <strong>business success strategy</strong> for our software division.  
+            He ensures client satisfaction, builds long-term relationships, and aligns projects 
+            with both business growth and our social mission.
+          </p>
+        </div>
+      </article>
+
+
+           <!-- Card: Maharishi -->
+      <article class="founder-card">
+        <div class="founder-avatar">
+          <img src="images/maha.jpeg" alt="Maharishi">
+        </div>
+        <div class="founder-body">
+          <h3 class="founder-name">Maharishi</h3>
+          <p class="founder-role">Co-Founder — Director Sales & Marketing</p>
+          <p class="founder-bio">
+            Maharishi heads <strong>sales and client engagement</strong> at SBB Foundation.  
+            He builds strong customer relationships, expands our outreach, and ensures that our 
+            software services directly support the foundation’s social initiatives.
+          </p>
+        </div>
+      </article>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer>
