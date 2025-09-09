@@ -48,7 +48,6 @@
       text-align:center;
       overflow:hidden;
       padding:3.5rem 2rem;
-      /* using same background as your sample — change if needed */
       background: url('images/services-bg.jpg') center/cover no-repeat;
       transition: transform 0.35s ease;
       will-change: transform;
@@ -130,11 +129,6 @@
     .left-controls{display:flex;gap:.5rem;align-items:center}
     .filter-btn{appearance:none;border:1px solid rgba(16,32,58,.06);background:#fff;padding:.45rem .8rem;border-radius:999px;font-weight:600;cursor:pointer;color:#10203a}
     .filter-btn[aria-pressed="true"]{background:#2d6cdf;color:#fff}
-    .upload-btn{margin-left:auto;background:#ffcf33;color:#10203a;padding:.5rem .8rem;border-radius:10px;border:0;font-weight:700;cursor:pointer}
-
-    /* dropzone */
-    .dropzone{margin-top:10px;border:2px dashed rgba(16,32,58,0.06);padding:12px;border-radius:8px;text-align:center;color:#444}
-    .dropzone.drag{background:#eef6ff;border-color:#2d6cdf}
 
     /* grid */
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
@@ -222,14 +216,9 @@
         <button class="filter-btn" data-filter="press" aria-pressed="false">Press Releases</button>
         <button class="filter-btn" data-filter="event" aria-pressed="false">Events</button>
       </div>
-
-      <input id="fileInput" type="file" accept="image/jpeg" multiple style="display:none">
-      <button class="upload-btn" id="addPhotosBtn">Add Photos</button>
     </div>
 
-    <div class="dropzone" id="dropzone">Drag & drop JPEGs here to add them (files stay in your browser)</div>
-
-    <section id="grid" class="grid" aria-live="polite"></section>
+    <section id="grid" class="grid" aria-live="polite" tabindex="-1"></section>
   </main>
 
   <!-- Presentation overlay -->
@@ -316,7 +305,7 @@
     });
 
 
-    /* ------------- Gallery app (unchanged core behavior) ------------- */
+    /* ------------- Gallery app (client-only, remote folders) ------------- */
 
     const PRESS_FOLDER = 'images/press/';
     const EVENT_FOLDER = 'images/event/';
@@ -326,22 +315,10 @@
 
     const grid = document.getElementById('grid');
     const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
-    const addPhotosBtn = document.getElementById('addPhotosBtn');
-    const fileInput = document.getElementById('fileInput');
-    const dropzone = document.getElementById('dropzone');
-
-    const present = document.getElementById('present');
-    const presentImg = document.getElementById('presentImg');
-    const presentCaption = document.getElementById('presentCaption');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const playBtn = document.getElementById('playBtn');
-    const closeBtn = document.getElementById('closeBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
 
     const items = [];
-    for (let i=1;i<=PRESS_COUNT;i++) items.push({src: PRESS_FOLDER + 'press' + i + EXT, title: 'Press ' + i, category: 'press', source: 'remote'});
-    for (let i=1;i<=EVENT_COUNT;i++) items.push({src: EVENT_FOLDER + 'event' + i + EXT, title: 'Event ' + i, category: 'event', source: 'remote'});
+    for (let i=1;i<=PRESS_COUNT;i++) items.push({src: PRESS_FOLDER + 'press' + i + EXT, title: 'Press ' + i, category: 'press'});
+    for (let i=1;i<=EVENT_COUNT;i++) items.push({src: EVENT_FOLDER + 'event' + i + EXT, title: 'Event ' + i, category: 'event'});
 
     let currentFilter = 'all';
     function renderGrid(){
@@ -370,6 +347,15 @@
     });
 
     // presentation
+    const present = document.getElementById('present');
+    const presentImg = document.getElementById('presentImg');
+    const presentCaption = document.getElementById('presentCaption');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const playBtn = document.getElementById('playBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
     let currentIndex = 0, isPlaying=false, timer=null, PLAY_INTERVAL=3000;
     function openPresentation(idx){
       const filtered = items.filter(it => currentFilter === 'all' || it.category === currentFilter);
@@ -404,27 +390,6 @@
       }
     });
     present.addEventListener('click', (e) => { if (e.target === present) closePresentation(); });
-
-    // Add photos - client only
-    addPhotosBtn.addEventListener('click', ()=> fileInput.click());
-    fileInput.addEventListener('change', handleFiles);
-    ['dragenter','dragover'].forEach(ev => { dropzone.addEventListener(ev, (e)=>{ e.preventDefault(); dropzone.classList.add('drag'); }, false); });
-    ['dragleave','drop'].forEach(ev => { dropzone.addEventListener(ev, (e)=>{ e.preventDefault(); dropzone.classList.remove('drag'); }, false); });
-    dropzone.addEventListener('drop', (e)=> {
-      const dt = e.dataTransfer; if(!dt) return; const files = Array.from(dt.files); handleFileList(files);
-    });
-
-    function handleFiles(e){ const files = Array.from(e.target.files || []); handleFileList(files); fileInput.value=''; }
-    function handleFileList(files){
-      const allowed = files.filter(f => f.type === 'image/jpeg' || f.name.toLowerCase().endsWith('.jpeg') || f.name.toLowerCase().endsWith('.jpg'));
-      if(allowed.length === 0){ alert('Please add JPEG images only.'); return; }
-      allowed.forEach(f => {
-        const url = URL.createObjectURL(f);
-        const title = f.name;
-        items.unshift({ src: url, title: title, category: 'event', source: 'local' }); // default new uploads to 'event'
-      });
-      renderGrid();
-    }
 
     // Initial render
     renderGrid();
