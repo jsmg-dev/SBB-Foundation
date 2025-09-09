@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gallery — SBB Foundation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Simple reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:#222;background:#fafafa}
+    a{color:inherit}
+    /* Header (keeps your hero unchanged visually) */
+    header{background:#2d6cdf;padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .logo{display:flex;gap:10px;align-items:center}
+    .logo img{height:44px;width:44px;object-fit:cover;border-radius:8px}
+    .logo h1{color:#fff;font-size:1.05rem;font-weight:700}
+    nav a{color:#fff;text-decoration:none;margin-left:1rem;font-weight:600}
+    nav a:hover{color:#ffeb3b}
+    /* hero unchanged */
+    .hero{position:relative;min-height:40vh;display:flex;align-items:center;justify-content:center;padding:3rem 2rem;background:url('images/gallery-hero.jpg')center/cover no-repeat}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.44)}
+    .hero-content{position:relative;z-index:1;text-align:center;color:#fff;max-width:900px}
+    .hero-content h1{font-size:2.2rem;margin-bottom:.4rem}
+    .hero-content p{opacity:.95}
+    /* layout */
+    .container{max-width:1200px;margin:1.5rem auto;padding:0 5%}
+    .controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:8px 0}
+    .left-controls{display:flex;gap:.5rem;align-items:center}
+    .filter-btn{appearance:none;border:1px solid rgba(16,32,58,.06);background:#fff;padding:.45rem .8rem;border-radius:999px;font-weight:600;cursor:pointer;color:#10203a}
+    .filter-btn[aria-pressed="true"]{background:#2d6cdf;color:#fff}
+    .upload-btn{margin-left:auto;background:#ffcf33;color:#10203a;padding:.5rem .8rem;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    /* grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:980px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .grid{grid-template-columns:repeat(1,1fr)} }
+    .tile{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 8px 28px rgba(8,30,80,0.06);display:flex;flex-direction:column}
+    .tile img{display:block;width:100%;height:240px;object-fit:cover;cursor:pointer}
+    .meta{padding:.6rem .8rem;display:flex;justify-content:space-between;align-items:center}
+    .meta .title{font-weight:700;color:#1e3a8a;font-size:.95rem}
+    .meta .tag{font-size:.82rem;color:#6b7280;background:#eef2ff;padding:.25rem .45rem;border-radius:999px}
+    /* drop area */
+    .dropzone{margin-top:10px;border:2px dashed rgba(16,32,58,0.06);padding:12px;border-radius:8px;text-align:center;color:#444}
+    .dropzone.drag{background:#eef6ff;border-color:#2d6cdf}
+    /* presentation overlay (simple lightbox / slideshow) */
+    .present{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.94);z-index:2000;padding:20px}
+    .present.open{display:flex}
+    .present-inner{width:100%;max-width:1400px;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:10px}
+    .present-img{max-width:100%;max-height:80vh;border-radius:10px}
+    .caption{color:#fff;background:rgba(0,0,0,0.3);padding:.4rem .7rem;border-radius:8px}
+    .controls-row{display:flex;gap:8px;align-items:center;margin-top:6px}
+    .ctrl{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:#fff;padding:.5rem .8rem;border-radius:8px;cursor:pointer}
+    .ctrl:focus{outline:3px solid #ffeb3b;outline-offset:3px}
+    footer{background:#2d6cdf;color:#fff;text-align:center;padding:1.2rem;margin-top:2rem}
+    /* small screens */
+    @media (max-width:420px){ .tile img{height:180px} }
+  </style>
+</head>
+<body>
+
+  <!-- header -->
+  <header>
+    <div class="logo"><img src="images/logo.jpeg" alt="SBB Logo"><h1>SBB Foundation</h1></div>
+    <nav aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="ventures.html">Ventures</a>
+      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- hero (unchanged) -->
+  <section class="hero" aria-hidden="false">
+    <div class="hero-content"><h1>Gallery</h1><p>Press releases and events — easy browse & present.</p></div>
+  </section>
+
+  <main class="container">
+    <div class="controls">
+      <div class="left-controls" role="toolbar" aria-label="Filter gallery">
+        <button class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="press" aria-pressed="false">Press Releases</button>
+        <button class="filter-btn" data-filter="event" aria-pressed="false">Events</button>
+      </div>
+
+      <input id="fileInput" type="file" accept="image/jpeg" multiple style="display:none">
+      <button class="upload-btn" id="addPhotosBtn">Add Photos</button>
+    </div>
+
+    <div class="dropzone" id="dropzone">Drag & drop JPEGs here to add them (files stay in your browser)</div>
+
+    <section id="grid" class="grid" aria-live="polite" style="margin-top:12px"></section>
+  </main>
+
+  <!-- Presentation / Lightbox -->
+  <div id="present" class="present" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="present-inner" role="document">
+      <img id="presentImg" class="present-img" src="" alt="">
+      <div id="presentCaption" class="caption">Caption</div>
+      <div class="controls-row">
+        <button id="prevBtn" class="ctrl" aria-label="Previous">◀ Prev</button>
+        <button id="playBtn" class="ctrl" aria-label="Play">Play</button>
+        <button id="nextBtn" class="ctrl" aria-label="Next">Next ▶</button>
+        <button id="downloadBtn" class="ctrl" aria-label="Download">⬇ Download</button>
+        <button id="closeBtn" class="ctrl" aria-label="Close">✕ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer><p>&copy; 2016 SBB Foundation | Software & Social Impact</p></footer>
+
+  <script>
+  (function(){
+    /* CONFIG — existing folders and counts (keeps your naming) */
+    const PRESS_FOLDER = 'images/press/';
+    const EVENT_FOLDER = 'images/event/';
+    const PRESS_COUNT = 48;
+    const EVENT_COUNT = 70;
+    const EXT = '.jpeg';
+
+    // DOM
+    const grid = document.getElementById('grid');
+    const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+    const addPhotosBtn = document.getElementById('addPhotosBtn');
+    const fileInput = document.getElementById('fileInput');
+    const dropzone = document.getElementById('dropzone');
+
+    // Presentation elements
+    const present = document.getElementById('present');
+    const presentImg = document.getElementById('presentImg');
+    const presentCaption = document.getElementById('presentCaption');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const playBtn = document.getElementById('playBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // Data model: items = [{src,title,category,source:'remote'|'local'} ...]
+    const items = [];
+
+    // load initial images from folders with expected names
+    function loadInitial() {
+      for (let i=1;i<=PRESS_COUNT;i++){
+        items.push({src: PRESS_FOLDER + 'press' + i + EXT, title: 'Press ' + i, category: 'press', source: 'remote'});
+      }
+      for (let i=1;i<=EVENT_COUNT;i++){
+        items.push({src: EVENT_FOLDER + 'event' + i + EXT, title: 'Event ' + i, category: 'event', source: 'remote'});
+      }
+    }
+
+    loadInitial();
+
+    // render grid according to current filter
+    let currentFilter = 'all';
+    function renderGrid() {
+      grid.innerHTML = '';
+      const filtered = items.filter(it => currentFilter === 'all' || it.category === currentFilter);
+      // iterate and create tiles
+      filtered.forEach((it, idx) => {
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.setAttribute('data-index', idx);
+
+        // image
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.src = it.src;
+        img.alt = it.title;
+        img.tabIndex = 0;
+        img.addEventListener('click', ()=> openPresentation(idx));
+        img.addEventListener('keydown', (e)=> { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPresentation(idx); } });
+
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        const t = document.createElement('div'); t.className = 'title'; t.textContent = it.title;
+        const tag = document.createElement('div'); tag.className = 'tag'; tag.textContent = it.category === 'press' ? 'Press' : 'Event';
+        meta.appendChild(t); meta.appendChild(tag);
+
+        tile.appendChild(img);
+        tile.appendChild(meta);
+        grid.appendChild(tile);
+      });
+    }
+
+    // filter buttons
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.setAttribute('aria-pressed','false'));
+        btn.setAttribute('aria-pressed','true');
+        currentFilter = btn.getAttribute('data-filter');
+        renderGrid();
+      });
+    });
+
+    // ---------------- Presentation / lightbox ----------------
+    let currentIndex = 0;
+    let isPlaying = false;
+    let timer = null;
+    const PLAY_INTERVAL = 3000;
+
+    function openPresentation(idx) {
+      const filtered = items.filter(it => currentFilter === 'all' || it.category === currentFilter);
+      if (filtered.length === 0) return;
+      currentIndex = idx;
+      updatePresentationImage(filtered[currentIndex]);
+      present.classList.add('open'); present.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      // reset play
+      stopPlay();
+      playBtn.textContent = 'Play';
+      playBtn.focus();
+    }
+
+    function updatePresentationImage(item) {
+      presentImg.src = item.src;
+      presentImg.alt = item.title;
+      presentCaption.textContent = item.title + ' — ' + (item.category === 'press' ? 'Press' : 'Event');
+      // update download
+      downloadBtn.onclick = () => downloadFile(item.src, item.title + EXT);
+    }
+
+    function closePresentation() {
+      present.classList.remove('open'); present.setAttribute('aria-hidden','true');
+      presentImg.src = '';
+      document.body.style.overflow = '';
+      stopPlay();
+    }
+
+    function prevImage() {
+      const filtered = items.filter(it => currentFilter === 'all' || it.category === currentFilter);
+      if(!filtered.length) return;
+      currentIndex = (currentIndex - 1 + filtered.length) % filtered.length;
+      updatePresentationImage(filtered[currentIndex]);
+    }
+    function nextImage() {
+      const filtered = items.filter(it => currentFilter === 'all' || it.category === currentFilter);
+      if(!filtered.length) return;
+      currentIndex = (currentIndex + 1) % filtered.length;
+      updatePresentationImage(filtered[currentIndex]);
+    }
+
+    function startPlay() {
+      if (isPlaying) return;
+      isPlaying = true;
+      playBtn.textContent = 'Pause';
+      timer = setInterval(() => nextImage(), PLAY_INTERVAL);
+    }
+    function stopPlay() {
+      isPlaying = false;
+      playBtn.textContent = 'Play';
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    function togglePlay() {
+      if (isPlaying) stopPlay(); else startPlay();
+    }
+
+    function downloadFile(url, filename) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    // presentation button bindings
+    prevBtn.addEventListener('click', ()=> { stopPlay(); prevImage(); });
+    nextBtn.addEventListener('click', ()=> { stopPlay(); nextImage(); });
+    playBtn.addEventListener('click', ()=> togglePlay());
+    closeBtn.addEventListener('click', ()=> closePresentation());
+    // keyboard nav
+    document.addEventListener('keydown', (e) => {
+      if (present.classList.contains('open')) {
+        if (e.key === 'ArrowLeft') { stopPlay(); prevImage(); }
+        if (e.key === 'ArrowRight') { stopPlay(); nextImage(); }
+        if (e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); togglePlay(); }
+        if (e.key === 'Escape') { closePresentation(); }
+      }
+    });
+    // click outside image to close
+    present.addEventListener('click', (e) => { if (e.target === present) closePresentation(); });
+
+    // ---------------- Add photos (client-side only) ----------------
+    addPhotosBtn.addEventListener('click', ()=> fileInput.click());
+    fileInput.addEventListener('change', handleFiles);
+    // drag & drop
+    ['dragenter','dragover'].forEach(ev => { dropzone.addEventListener(ev, (e)=>{ e.preventDefault(); dropzone.classList.add('drag'); }, false); });
+    ['dragleave','drop'].forEach(ev => { dropzone.addEventListener(ev, (e)=>{ e.preventDefault(); dropzone.classList.remove('drag'); }, false); });
+
+    dropzone.addEventListener('drop', (e)=> {
+      const dt = e.dataTransfer;
+      if (!dt) return;
+      const files = Array.from(dt.files);
+      handleFileList(files);
+    });
+
+    function handleFiles(e) {
+      const files = Array.from(e.target.files || []);
+      handleFileList(files);
+      fileInput.value = ''; // reset input
+    }
+
+    function handleFileList(files) {
+      // accept only image/jpeg
+      const allowed = files.filter(f => f.type === 'image/jpeg' || f.name.toLowerCase().endsWith('.jpeg') || f.name.toLowerCase().endsWith('.jpg'));
+      if (allowed.length === 0) {
+        alert('Please add JPEG images only.');
+        return;
+      }
+      // read each file as object URL and push into items as 'local'
+      allowed.forEach(f => {
+        const url = URL.createObjectURL(f);
+        const title = f.name;
+        items.unshift({ src: url, title: title, category: 'event', source: 'local' }); // default uploaded as 'event' — easy for you to change later
+      });
+      // re-render preserving filter
+      renderGrid();
+      // tip: local files will persist only while this tab is open
+    }
+
+    // initial render
+    renderGrid();
+
+    // helpful hint: free local-uploaded images are placed at front (most recent first)
+    // You can change uploaded items' category manually by editing their 'category' in code or via future UI.
+
+  })();
+  </script>
+</body>
+</html>
