@@ -16,34 +16,106 @@
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap;
     }
-    header .logo { display: flex; align-items: center; }
-    header .logo img { height: 50px; margin-right: 10px; border-radius: 8px; }
-    header h1 { color: white; font-size: 1.4rem; }
+    header .logo { display: flex; align-items: center; gap:10px; }
+    header .logo img { height: 50px; width:50px; object-fit:cover; border-radius: 8px; }
+    header h1 { color: white; font-size: 1.2rem; font-weight:700; }
     nav a {
       color: white; text-decoration: none; margin-left: 1rem; font-weight: 600;
       transition: color 0.3s;
     }
     nav a:hover { color: #ffeb3b; }
 
-    /* Hero */
-    .hero {
-      background: url('images/hero-bg.jpg') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 6rem 2rem;
+    /* ---------- UPDATED HERO (copied/adapted from your sample) ---------- */
+    .hero{
       position: relative;
+      min-height: 55vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+      padding:3.5rem 2rem;
+      background: url('images/hero-bg.jpg') center/cover no-repeat;
+      transition: transform 0.35s ease;
+      will-change: transform;
     }
-    .hero::after {
-      content: ""; position: absolute; top:0; left:0; width:100%; height:100%;
-      background: rgba(0,0,0,0.5);
+
+    /* lighter overlay so background shows more color */
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.40), rgba(0,0,0,0.16));
+      pointer-events:none;
+      z-index:0;
     }
-    .hero-content { position: relative; z-index: 1; max-width: 800px; margin:auto; }
-    .hero-content h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-    .hero-content p { font-size: 1.2rem; }
+
+    /* subtle decorative radial */
+    .hero::before{
+      content:"";
+      position:absolute;
+      right:-6%;
+      top:-8%;
+      width:320px;
+      height:320px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,203,51,0.08), rgba(45,108,223,0.04) 45%, transparent 60%);
+      filter: blur(26px);
+      transform: translateZ(0);
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:900px;
+      margin:auto;
+      padding:2rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+    }
+
+    /* staged reveal for title + lead */
+    .hero-title{
+      font-size:2.4rem;
+      font-weight:700;
+      line-height:1.08;
+      color:#fff;
+      transform:translateY(18px);
+      opacity:0;
+      transition:all .7s cubic-bezier(.2,.9,.2,1);
+    }
+    .hero-lead{
+      font-size:1.05rem;
+      color:rgba(255,255,255,0.95);
+      max-width:78ch;
+      transform:translateY(14px);
+      opacity:0;
+      transition:all .7s .08s cubic-bezier(.2,.9,.2,1);
+    }
+
+    .hero-cta-row{ display:flex; gap:12px; align-items:center; }
+
+    .btn{ border-radius:999px; padding:12px 18px; font-weight:700; text-decoration:none; cursor:pointer; }
+    .btn-primary{ background:#ffcf33; color:#10203a; box-shadow:0 10px 26px rgba(255,207,51,0.12); }
+    .btn-ghost{ background:transparent; color:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.12); }
+    .btn-primary:hover{ transform:translateY(-4px); }
+
+    .chevron-wrap{ display:block; margin-top:16px; cursor:pointer; opacity:0.95; }
+    .chev{ width:36px; height:36px; display:inline-block; transform-origin:center; animation:chev-bob 2s infinite; fill:rgba(255,255,255,0.95); }
+    @keyframes chev-bob{ 0%{transform:translateY(0)}50%{transform:translateY(8px)}100%{transform:translateY(0)} }
+    .chevron-wrap:hover .chev{ transform:translateY(10px) scale(1.02); }
+
+    @media (max-width:900px){ .hero{ background-position:center 35%; } }
+    @media (max-width:560px){ .hero{ min-height:46vh; padding:2.4rem 1.2rem } .hero-title{ font-size:1.8rem } .chev{ width:28px; height:28px } }
+
+    /* ---------- END HERO ---------- */
 
     /* Contact Section */
     .contact {
-      padding: 4rem 5%; max-width: 1200px; margin: auto;
+      padding: 4rem 5%; max-width: 1200px; margin: -2.5rem auto 3rem; /* slight overlap with hero */
       display: grid; gap: 2rem;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
@@ -72,66 +144,12 @@
       background: #2d6cdf; color: white; text-align: center;
       padding: 1.2rem; margin-top: 3rem;
     }
-	/* Base Hero */
-.hero {
-  position: relative;
-  min-height: 55vh;             /* balanced height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #fff;
-  overflow: hidden;
-}
 
-.hero::after {
-  content: "";
-  position: absolute;
-  top:0; left:0; width:100%; height:100%;
-  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.4));
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  padding: 2rem;
-}
-
-.hero-content h2 {
-  font-size: 2.6rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 1.8rem;
-}
-
-.hero-content a {
-  background: #ffeb3b;
-  color: #2d6cdf;
-  padding: 0.9rem 2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.05rem;
-  transition: all 0.3s ease;
-}
-.hero-content a:hover {
-  background: white;
-  color: #1e4fad;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero { min-height: 40vh; }
-  .hero-content h2 { font-size: 2rem; }
-  .hero-content p { font-size: 1rem; }
-}
-
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .chev{ animation:none; }
+      .hero{ transition:none; transform:none; background-position:50% 50%; }
+    }
   </style>
 </head>
 <body>
@@ -147,27 +165,38 @@
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="ventures.html">Ventures</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="active">Contact</a>
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- HERO: updated to match the design you provided -->
+  <section class="hero" aria-label="Contact hero banner">
     <div class="hero-content">
-      <h2>Get in Touch</h2>
-      <p>We’d love to hear from you! Reach out for software projects or to support our social initiatives.</p>
-	      <a href="services.html">Explore Services</a>
+      <h1 class="hero-title">Get in Touch</h1>
+      <p class="hero-lead">We’d love to hear from you — for software projects, partnerships, or to support our social initiatives.</p>
+
+      <div class="hero-cta-row">
+        <a class="btn btn-primary" href="services.html">Explore Services</a>
+        <a class="btn btn-ghost" href="#contact-form">Contact Us</a>
+      </div>
+
+      <!-- chevron: scroll to contact form -->
+      <a class="chevron-wrap" id="scrollChevron" href="#contact-form" aria-label="Scroll to contact form">
+        <svg class="chev" viewBox="0 0 24 24" role="img" aria-hidden="true">
+          <path d="M12 16.5c-.3 0-.5-.1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 13.09l5.3-5.3a1 1 0 1 1 1.4 1.42l-6 6c-.2.2-.4.29-.7.29z"></path>
+        </svg>
+      </a>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section class="contact">
+  <section class="contact" id="contact-form" tabindex="-1">
     <!-- Contact Info -->
     <div class="contact-info">
       <h3>Contact Information</h3>
       <div class="info-item">
         <strong>Address:</strong>
-		SBB Foundation,
+        SBB Foundation,
         3A Rajbhawan Road , Jaipur, India
       </div>
       <div class="info-item">
@@ -197,5 +226,63 @@
     <p>&copy; 2016 SBB Foundation | Software & Social Impact</p>
   </footer>
 
+  <!-- JS: reveal, gentle parallax, chevron scroll -->
+  <script>
+  (function(){
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // staged reveal for hero text
+    function revealHero() {
+      const title = document.querySelector('.hero-title');
+      const lead  = document.querySelector('.hero-lead');
+      if(title){ title.style.opacity = 1; title.style.transform = 'translateY(0)'; }
+      if(lead){ lead.style.opacity = 1; lead.style.transform = 'translateY(0)'; }
+    }
+
+    // chevron smooth scroll with focus for accessibility
+    const chevron = document.getElementById('scrollChevron');
+    if(chevron){
+      chevron.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector('#contact-form');
+        if(target){
+          target.scrollIntoView({behavior: prefersReduced ? 'auto' : 'smooth', block:'start'});
+          if(!prefersReduced) setTimeout(()=>{ target.focus({preventScroll:true}); }, 500);
+        }
+      });
+    }
+
+    // gentle parallax (background position + small translate)
+    function attachParallax(){
+      const hero = document.querySelector('.hero');
+      if(!hero || prefersReduced) return;
+      const intensity = 12;
+      function onMove(e){
+        const rect = hero.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top + rect.height/2;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const dx = (clientX - cx) / rect.width;
+        const dy = (clientY - cy) / rect.height;
+        hero.style.transform = `translate3d(${dx * intensity * 0.12}px, ${dy * intensity * 0.05}px, 0)`;
+        const posX = 50 + dx * 4;
+        const posY = 35 + dy * 3;
+        hero.style.backgroundPosition = `${posX}% ${posY}%`;
+      }
+      function onLeave(){ hero.style.transform=''; hero.style.backgroundPosition=''; }
+      hero.addEventListener('mousemove', onMove);
+      hero.addEventListener('mouseleave', onLeave);
+      hero.addEventListener('touchmove', function(ev){
+        if(ev.touches && ev.touches[0]) onMove(ev.touches[0]);
+      }, {passive:true});
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      setTimeout(revealHero, 120);
+      attachParallax();
+    });
+  })();
+  </script>
 </body>
 </html>
