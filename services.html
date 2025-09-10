@@ -32,68 +32,59 @@
     }
     nav a:hover { color: #ffeb3b; }
 
-    /* three-dot mobile menu button */
+    /* Hamburger button */
     .mobile-menu {
-      display: none;           /* hidden on desktop */
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 28px;
-      line-height: 1;
-      padding: 6px 8px;
-      border-radius: 8px;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-    }
-    .mobile-menu:focus { outline: 2px solid #ffeb3b; outline-offset: 2px; }
-
-    /* dropdown panel that appears under the three dots on mobile */
-    .mobile-panel {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 5%;
-      background: white;
-      color: #10203a;
-      min-width: 160px;
-      border-radius: 10px;
-      box-shadow: 0 12px 34px rgba(8,30,80,0.16);
-      overflow: hidden;
-      transform-origin: top right;
-      z-index: 1200;
-      border: 1px solid rgba(0,0,0,0.06);
       display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1300;
     }
-    .mobile-panel.open { display: block; animation: panel-in .15s ease; }
-    @keyframes panel-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity:1; transform: translateY(0) scale(1); } }
+    .hamburger, .hamburger::before, .hamburger::after {
+      content: "";
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    /* Slide-in mobile panel */
+    .mobile-panel {
+      position: fixed;
+      top: 0;
+      right: -260px;   /* hidden off-screen */
+      width: 260px;
+      height: 100%;
+      background: white;
+      box-shadow: -2px 0 12px rgba(0,0,0,0.2);
+      border-left: 1px solid rgba(0,0,0,0.06);
+      z-index: 1200;
+      padding-top: 4rem;
+      transition: right 0.3s ease;
+    }
+    .mobile-panel.open { right: 0; }
 
     .mobile-panel a {
       display: block;
-      padding: 12px 14px;
+      padding: 14px 20px;
       color: #10203a;
       text-decoration: none;
       font-weight: 600;
-      border-bottom: 1px solid rgba(16,32,58,0.04);
+      border-bottom: 1px solid rgba(16,32,58,0.06);
     }
-    .mobile-panel a:last-child { border-bottom: none; }
-    .mobile-panel a:hover, .mobile-panel a:focus {
-      background: #f4f7ff;
-      outline: none;
-    }
+    .mobile-panel a:hover { background: #f4f7ff; }
 
-    /* Hide desktop nav on small screens, show mobile three dots */
+    /* Show hamburger on small screens */
     @media (max-width: 880px) {
-      nav { display: none; }              /* hide full nav */
-      .mobile-menu { display: flex; }     /* show three-dot button */
-      header { padding-right: 14%; }      /* give space for dropdown */
+      nav { display: none; }
+      .mobile-menu { display: block; }
     }
 
-    /* On very small screens push the panel left a bit if right is constrained */
-    @media (max-width: 360px) {
-      .mobile-panel { right: 6%; left: 6%; min-width: unset; }
-    }
-
-    /* ---------- UPDATED HERO ---------- */
+    /* ---------- HERO ---------- */
     .hero {
       position: relative;
       min-height: 56vh;
@@ -107,8 +98,6 @@
       transition: transform 0.35s ease;
       will-change: transform;
     }
-
-    /* overlay so hero text remains readable but background still visible */
     .hero::after{
       content:"";
       position:absolute;
@@ -117,8 +106,6 @@
       pointer-events:none;
       z-index:0;
     }
-
-    /* subtle decorative radial */
     .hero::before{
       content:"";
       position:absolute;
@@ -132,7 +119,6 @@
       z-index:0;
       pointer-events:none;
     }
-
     .hero-content{
       position:relative;
       z-index:2;
@@ -144,8 +130,6 @@
       align-items:center;
       gap:14px;
     }
-
-    /* staged reveal for title + lead */
     .hero-title{
       font-size:2.6rem;
       font-weight:700;
@@ -163,19 +147,15 @@
       opacity:0;
       transition:all .7s .08s cubic-bezier(.2,.9,.2,1);
     }
-
     .hero-cta-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:center; margin-top:6px; }
-
     .btn{ border-radius:999px; padding:12px 18px; font-weight:700; text-decoration:none; cursor:pointer; display:inline-block; }
     .btn-primary{ background:#ffcf33; color:#10203a; box-shadow:0 10px 26px rgba(255,207,51,0.12); }
     .btn-ghost{ background:transparent; color:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.12); }
     .btn-primary:hover{ transform:translateY(-4px); }
-
     .chevron-wrap{ display:block; margin-top:12px; cursor:pointer; opacity:0.95; }
     .chev{ width:36px; height:36px; display:inline-block; transform-origin:center; animation:chev-bob 2s infinite; fill:rgba(255,255,255,0.95); }
     @keyframes chev-bob{ 0%{transform:translateY(0)}50%{transform:translateY(8px)}100%{transform:translateY(0)} }
     .chevron-wrap:hover .chev{ transform:translateY(10px) scale(1.02); }
-
     @media (max-width:900px){ .hero{ background-position:center 35%; } }
     @media (max-width:560px){ .hero{ min-height:46vh; padding:2.4rem 1.2rem } .hero-title{ font-size:1.9rem } .chev{ width:28px; height:28px } }
 
@@ -235,33 +215,33 @@
       <h1>SBB Foundation</h1>
     </div>
 
-    <!-- Desktop nav (hidden on small screens) -->
+    <!-- Desktop nav -->
     <nav aria-label="Primary navigation">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="services.html" class="active">Services</a>
       <a href="ventures.html">Ventures</a>
-      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Mobile three-dot menu button (visible on small screens) -->
+    <!-- Mobile hamburger -->
     <button class="mobile-menu" id="mobileMenuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="mobilePanel" title="Open menu">
-      <span aria-hidden="true">⋮</span>
+      <span class="hamburger"></span>
     </button>
 
-    <!-- Mobile dropdown panel -->
+    <!-- Slide-in panel -->
     <div class="mobile-panel" id="mobilePanel" role="menu" aria-labelledby="mobileMenuBtn">
       <a href="index.html" role="menuitem" tabindex="0">Home</a>
       <a href="about.html" role="menuitem" tabindex="0">About</a>
-      <a href="services.html" role="menuitem" tabindex="0">Services</a>
+      <a href="services.html" class="active" role="menuitem" tabindex="0">Services</a>
       <a href="ventures.html" role="menuitem" tabindex="0">Ventures</a>
-      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="gallery.html" role="menuitem" tabindex="0">Gallery</a>
       <a href="contact.html" role="menuitem" tabindex="0">Contact</a>
     </div>
   </header>
 
-  <!-- Updated Hero -->
+  <!-- Hero -->
   <section class="hero hero-services" aria-label="Services hero banner">
     <div class="hero-content">
       <h1 class="hero-title">Our Software Services</h1>
@@ -272,7 +252,6 @@
         <a class="btn btn-ghost" href="contact.html">Contact Us</a>
       </div>
 
-      <!-- chevron: scroll to services -->
       <a class="chevron-wrap" id="scrollChevron" href="#services" aria-label="Scroll to services">
         <svg class="chev" viewBox="0 0 24 24" role="img" aria-hidden="true">
           <path d="M12 16.5c-.3 0-.5-.1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 13.09l5.3-5.3a1 1 0 1 1 1.4 1.42l-6 6c-.2.2-.4.29-.7.29z"></path>
@@ -335,79 +314,51 @@
     <p>&copy; 2016 SBB Foundation | Software & Social Impact</p>
   </footer>
 
-  <!-- JS: mobile menu toggle, reveal, gentle parallax, chevron scroll -->
+  <!-- JS -->
   <script>
   (function(){
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Mobile panel logic
     const btn = document.getElementById('mobileMenuBtn');
     const panel = document.getElementById('mobilePanel');
 
     function closePanel() {
       if(!panel) return;
       panel.classList.remove('open');
-      if(btn){
-        btn.setAttribute('aria-expanded', 'false');
-      }
+      if(btn){ btn.setAttribute('aria-expanded', 'false'); }
     }
     function openPanel() {
       if(!panel) return;
       panel.classList.add('open');
-      if(btn){
-        btn.setAttribute('aria-expanded', 'true');
-        btn.focus();
-      }
+      if(btn){ btn.setAttribute('aria-expanded', 'true'); }
     }
 
-    // Toggle on button click
     if(btn){
       btn.addEventListener('click', function(e){
         e.stopPropagation();
         const isOpen = panel.classList.contains('open');
         if(isOpen) closePanel(); else openPanel();
       });
-      // keyboard: open with Enter/Space
-      btn.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          btn.click();
-        } else if(e.key === 'Escape') {
-          closePanel();
-        }
-      });
     }
 
-    // Close when clicking outside
     document.addEventListener('click', function(e){
-      if(!panel) return;
-      if(panel.classList.contains('open') && !panel.contains(e.target) && e.target !== btn) {
+      if(panel && panel.classList.contains('open') && !panel.contains(e.target) && e.target !== btn){
         closePanel();
       }
     });
-
-    // Close on Esc
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape') closePanel();
     });
-
-    // Make panel links keyboard accessible (close after click)
     const panelLinks = panel ? panel.querySelectorAll('a') : [];
     panelLinks.forEach(link => {
-      link.addEventListener('click', function(){
-        closePanel();
-      });
+      link.addEventListener('click', closePanel);
     });
 
-    // staged reveal for hero text
     function revealHero() {
       const title = document.querySelector('.hero-title');
       const lead  = document.querySelector('.hero-lead');
       if(title){ title.style.opacity = 1; title.style.transform = 'translateY(0)'; }
       if(lead){ lead.style.opacity = 1; lead.style.transform = 'translateY(0)'; }
     }
-
-    // chevron smooth scroll with focus for accessibility
     const chevron = document.getElementById('scrollChevron');
     if(chevron){
       chevron.addEventListener('click', function(e){
@@ -419,8 +370,6 @@
         }
       });
     }
-
-    // gentle parallax (background position + small translate)
     function attachParallax(){
       const hero = document.querySelector('.hero');
       if(!hero || prefersReduced) return;
@@ -441,11 +390,8 @@
       function onLeave(){ hero.style.transform=''; hero.style.backgroundPosition=''; }
       hero.addEventListener('mousemove', onMove);
       hero.addEventListener('mouseleave', onLeave);
-      hero.addEventListener('touchmove', function(ev){
-        if(ev.touches && ev.touches[0]) onMove(ev.touches[0]);
-      }, {passive:true});
+      hero.addEventListener('touchmove', function(ev){ if(ev.touches && ev.touches[0]) onMove(ev.touches[0]); }, {passive:true});
     }
-
     document.addEventListener('DOMContentLoaded', function(){
       setTimeout(revealHero, 120);
       attachParallax();
