@@ -32,73 +32,92 @@
     }
     nav a:hover { color: #ffeb3b; }
 
-    /* three-dot mobile menu button */
+    /* Hamburger */
     .mobile-menu {
-      display: none;           /* hidden on desktop */
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 28px;
-      line-height: 1;
-      padding: 6px 8px;
-      border-radius: 8px;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mobile-menu:focus { outline: 2px solid #ffeb3b; outline-offset: 2px; }
-
-    /* dropdown panel that appears under the three dots on mobile */
-    .mobile-panel {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 5%;
-      background: white;
-      color: #10203a;
-      min-width: 160px;
-      border-radius: 10px;
-      box-shadow: 0 12px 34px rgba(8,30,80,0.16);
-      overflow: hidden;
-      transform-origin: top right;
-      z-index: 1200;
-      border: 1px solid rgba(0,0,0,0.06);
       display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1300;
     }
-    .mobile-panel.open { display: block; animation: panel-in .15s ease; }
-    @keyframes panel-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity:1; transform: translateY(0) scale(1); } }
+    .hamburger {
+      width: 24px;
+      height: 18px;
+      position: relative;
+      display: block;
+    }
+    .hamburger::before,
+    .hamburger::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: white;
+      border-radius: 1px;
+      transition: all 0.3s ease;
+    }
+    .hamburger::before {
+      top: 0;
+    }
+    .hamburger::after {
+      bottom: 0;
+    }
+    .hamburger::before,
+    .hamburger::after {
+      left: 0;
+    }
+    .hamburger::before,
+    .hamburger::after {
+      transform-origin: center;
+    }
+    .hamburger-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: white;
+      border-radius: 1px;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+    }
 
+    /* Slide-in mobile panel */
+    .mobile-panel {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 260px;
+      height: 100%;
+      background: white;
+      box-shadow: -2px 0 12px rgba(0,0,0,0.2);
+      border-left: 1px solid rgba(0,0,0,0.06);
+      z-index: 1200;
+      padding-top: 4rem;
+      transition: right 0.3s ease;
+    }
+    .mobile-panel.open { right: 0; }
     .mobile-panel a {
       display: block;
-      padding: 12px 14px;
+      padding: 14px 20px;
       color: #10203a;
       text-decoration: none;
       font-weight: 600;
-      border-bottom: 1px solid rgba(16,32,58,0.04);
+      border-bottom: 1px solid rgba(16,32,58,0.06);
     }
-    .mobile-panel a:last-child { border-bottom: none; }
-    .mobile-panel a:hover, .mobile-panel a:focus {
-      background: #f4f7ff;
-      outline: none;
-    }
+    .mobile-panel a:hover { background: #f4f7ff; }
 
-    /* Hide desktop nav on small screens, show mobile three dots */
+    /* Responsive */
     @media (max-width: 880px) {
-      nav { display: none; }              /* hide full nav */
-      .mobile-menu { display: flex; }     /* show three-dot button */
-      header { padding-right: 14%; }      /* give space for dropdown */
+      nav { display: none; }
+      .mobile-menu { display: block; }
     }
 
-    /* On very small screens push the panel left a bit if right is constrained */
-    @media (max-width: 360px) {
-      .mobile-panel { right: 6%; left: 6%; min-width: unset; }
-    }
-
-    /* Rest of your existing styles (hero, content) - kept unchanged */
-    /* ---------- HERO (identical to your previous) ---------- */
-    .hero{
+    /* ---------- HERO ---------- */
+    .hero {
       position: relative;
-      min-height: 55vh;
+      min-height: 56vh;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -113,7 +132,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.40), rgba(0,0,0,0.16));
+      background: linear-gradient(180deg, rgba(0,0,0,0.44), rgba(0,0,0,0.18));
       pointer-events:none;
       z-index:0;
     }
@@ -126,25 +145,24 @@
       height:320px;
       background: radial-gradient(circle at 30% 30%, rgba(255,203,51,0.08), rgba(45,108,223,0.04) 45%, transparent 60%);
       filter: blur(26px);
-      transform: translateZ(0);
       z-index:0;
       pointer-events:none;
     }
     .hero-content{
       position:relative;
       z-index:2;
-      max-width:900px;
+      max-width:920px;
       margin:auto;
       padding:2rem;
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:16px;
+      gap:14px;
     }
     .hero-title{
-      font-size:2.4rem;
+      font-size:2.6rem;
       font-weight:700;
-      line-height:1.08;
+      line-height:1.06;
       color:#fff;
       transform:translateY(18px);
       opacity:0;
@@ -158,20 +176,20 @@
       opacity:0;
       transition:all .7s .08s cubic-bezier(.2,.9,.2,1);
     }
-    .hero-cta-row{ display:flex; gap:12px; align-items:center; }
-    .btn{ border-radius:999px; padding:12px 18px; font-weight:700; text-decoration:none; cursor:pointer; }
+    .hero-cta-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:center; margin-top:6px; }
+    .btn{ border-radius:999px; padding:12px 18px; font-weight:700; text-decoration:none; cursor:pointer; display:inline-block; }
     .btn-primary{ background:#ffcf33; color:#10203a; box-shadow:0 10px 26px rgba(255,207,51,0.12); }
     .btn-ghost{ background:transparent; color:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.12); }
-    .btn-ghost1{ background:#ffcf33; color:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.12); }
-    .chevron-wrap{ display:block; margin-top:16px; cursor:pointer; opacity:0.95; }
+    .btn-ghost1{ background:#ffcf33; color:#10203a; }
+    .btn-primary:hover{ transform:translateY(-4px); }
+    .chevron-wrap{ display:block; margin-top:12px; cursor:pointer; opacity:0.95; }
     .chev{ width:36px; height:36px; display:inline-block; transform-origin:center; animation:chev-bob 2s infinite; fill:rgba(255,255,255,0.95); }
     @keyframes chev-bob{ 0%{transform:translateY(0)}50%{transform:translateY(8px)}100%{transform:translateY(0)} }
     .chevron-wrap:hover .chev{ transform:translateY(10px) scale(1.02); }
     @media (max-width:900px){ .hero{ background-position:center 35%; } }
-    @media (max-width:560px){ .hero{ min-height:46vh; padding:2.4rem 1.2rem } .hero-title{ font-size:1.8rem } .chev{ width:28px; height:28px } }
-    @media (prefers-reduced-motion: reduce){ .chev{ animation:none; } .hero{ transition:none; transform:none; background-position:50% 50%; } }
+    @media (max-width:560px){ .hero{ min-height:46vh; padding:2.4rem 1.2rem } .hero-title{ font-size:1.9rem } .chev{ width:28px; height:28px } }
 
-    /* Basic page content styles kept as-is (mission/services/etc) */
+    /* Sections */
     .mission { text-align: center; padding: 4rem 5%; background: white; }
     .mission h2 { font-size: 2.2rem; margin-bottom: 1rem; color: #2d6cdf; }
     .mission p { max-width: 800px; margin: auto; font-size: 1.1rem; color: #444; }
@@ -181,48 +199,60 @@
     .service-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
     .ngo { background: #eaf0ff; padding: 4rem 5%; text-align: center; }
     .why { padding: 4rem 5%; text-align: center; background: white; }
+    
+    @media (max-width: 768px) {
+      .mission, .services, .ngo, .why { padding: 2rem 5%; }
+      .mission h2, .services h2 { font-size: 1.8rem; }
+      .mission p { font-size: 1rem; }
+      .service-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .service-card { padding: 1.5rem; }
+    }
     footer { background: #2d6cdf; color: white; text-align: center; padding: 1.2rem; margin-top: 3rem; }
 
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .chev{ animation:none; }
+      .hero{ transition:none; transform:none; background-position:50% 50%; }
+    }
   </style>
 </head>
 <body>
 
   <!-- Header -->
   <header>
-    <div class="logo" aria-hidden="false">
+    <div class="logo">
       <img src="images/logo.jpeg" alt="SBB Logo">
       <h1>SBB Foundation</h1>
     </div>
 
-    <!-- Desktop nav (hidden on small screens) -->
-    <nav aria-label="Primary navigation">
-      <a href="index.html">Home</a>
+    <nav>
+      <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="ventures.html">Ventures</a>
-      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Mobile three-dot menu button (visible on small screens) -->
+    <!-- Mobile hamburger -->
     <button class="mobile-menu" id="mobileMenuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="mobilePanel" title="Open menu">
-      <!-- three vertical dots (⋮) -->
-      <span aria-hidden="true">⋮</span>
+      <span class="hamburger">
+        <span class="hamburger-line"></span>
+      </span>
     </button>
 
-    <!-- Mobile dropdown panel -->
     <div class="mobile-panel" id="mobilePanel" role="menu" aria-labelledby="mobileMenuBtn">
-      <a href="index.html" role="menuitem" tabindex="0">Home</a>
+      <a href="index.html" class="active" role="menuitem" tabindex="0">Home</a>
       <a href="about.html" role="menuitem" tabindex="0">About</a>
       <a href="services.html" role="menuitem" tabindex="0">Services</a>
       <a href="ventures.html" role="menuitem" tabindex="0">Ventures</a>
-      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="gallery.html" role="menuitem" tabindex="0">Gallery</a>
       <a href="contact.html" role="menuitem" tabindex="0">Contact</a>
     </div>
   </header>
 
-  <!-- HERO (identical to previous) -->
-  <section class="hero hero-home" aria-label="Hero banner">
+  <!-- Hero -->
+  <section class="hero">
     <div class="hero-content">
       <h1 class="hero-title">Building Software, Creating Social Impact</h1>
       <p class="hero-lead">We design technology that empowers businesses and uplifts communities.</p>
@@ -232,203 +262,131 @@
         <a class="btn btn-ghost" href="contact.html">Contact Us</a>
       </div>
 
-      <!-- chevron: scroll to mission -->
-      <a class="chevron-wrap" id="scrollChevron" href="#mission" aria-label="Scroll to mission">
-        <svg class="chev" viewBox="0 0 24 24" role="img" aria-hidden="true">
-          <path d="M12 16.5c-.3 0-.5-.1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 13.09l5.3-5.3a1 1 0 1 1 1.4 1.42l-6 6c-.2.2-.4.29-.7.29z"></path>
-        </svg>
+      <a class="chevron-wrap" id="scrollChevron" href="#mission">
+        <svg class="chev" viewBox="0 0 24 24"><path d="M12 16.5c-.3 0-.5-.1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 13.09l5.3-5.3a1 1 0 1 1 1.4 1.42l-6 6c-.2.2-.4.29-.7.29z"></path></svg>
       </a>
     </div>
   </section>
 
-    <!-- Mission -->
-    <section class="mission" id="mission">
-      <h2>Our Mission</h2>
-  <p>
-    <strong>SBB Foundation</strong> transforms software success into social change. Every project we deliver powers two goals: reliable, innovative software for our clients — and meaningful, traceable impact for communities in need.
-  </p>
+  <!-- Mission -->
+  <section class="mission" id="mission">
+    <h2>Our Mission</h2>
+    <p><strong>SBB Foundation</strong> transforms software success into social change...</p>
+  </section>
 
-  <p>
-    From funding <strong>education for disadvantaged children</strong> and creating <strong>livelihoods in rural communities</strong>, to supporting sustainable farming through our <strong>cow ranch program</strong>, we commit all our earnings to initiatives that improve lives and preserve livelihoods.
-  </p>
+  <!-- Services -->
+  <section class="services">
+    <h2>Our Software Solutions</h2>
+    <div class="service-grid">
+      <div class="service-card"><h3>Custom Software</h3><p>Tailored solutions built for you.</p></div>
+      <div class="service-card"><h3>Web & Mobile Apps</h3><p>Responsive, scalable apps.</p></div>
+      <div class="service-card"><h3>Vault SBBF</h3><p>Our in-house Loan Management System.</p></div>
+      <div class="service-card"><h3>ERP Solutions</h3><p>Enterprise-wide systems for HR, finance, ops.</p></div>
+    </div>
+  </section>
 
-  <p>
-    <strong>Innovation for us is a responsibility:</strong> <em>to turn success into significance and technology into lasting impact.</em>
-  </p>
-</section>
+  <!-- NGO -->
+  <section class="ngo">
+    <h2>Our Social Mission</h2>
+    <p>Every rupee we earn is reinvested in social causes.</p>
+    <a href="contact.html" class="btn btn-ghost1">Support Our Cause</a>
+  </section>
 
-
-    <!-- Services -->
-    <section class="services">
-      <h2>Our Software Solutions</h2>
-      <div class="service-grid">
-        <div class="service-card">
-          <h3>Custom Software</h3>
-          <p>Tailored solutions built to match your unique business needs and processes.</p>
-        </div>
-        <div class="service-card">
-          <h3>Web & Mobile Apps</h3>
-          <p>Modern, responsive, and scalable applications to grow your digital presence.</p>
-        </div>
-        <div class="service-card">
-          <h3>Vault SBBF</h3>
-          <p>Our in-house Loan Management System crafted for NGOs and finance institutions.</p>
-        </div>
-        <div class="service-card">
-          <h3>ERP Solutions</h3>
-          <p>Comprehensive enterprise systems covering HR, operations, and finance.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- NGO -->
-    <section class="ngo">
-      <h2>Our Social Mission</h2>
-      <p>We are more than a software company. Every rupee earned is reinvested into social causes — educating children, providing rural support, and running our cow ranch to promote sustainable living.</p>
-      <a href="contact.html" class="btn btn-ghost1" style="margin-top:12px;display:inline-block">Support Our Cause</a>
-    </section>
-
-    <!-- Why choose -->
-    <section class="why">
-      <h2>Why Choose SBB Foundation?</h2>
-      <div class="why-grid" style="margin-top:12px">
-        <div class="why-card">
-          <h3>Tech + Humanity</h3>
-          <p class="muted">Your project delivers ROI — and real social outcomes.</p>
-        </div>
-        <div class="why-card">
-          <h3>Professional Expertise</h3>
-          <p class="muted">Led by seasoned engineers and product leads.</p>
-        </div>
-        <div class="why-card">
-          <h3>Transparent Impact</h3>
-          <p class="muted">We openly report how work funds our programs.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+  <!-- Why -->
+  <section class="why">
+    <h2>Why Choose SBB Foundation?</h2>
+    <p>Tech + Humanity, Professional Expertise, Transparent Impact</p>
+  </section>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2016 SBB Foundation | Software & Social Impact</p>
   </footer>
 
-  <!-- JS: mobile menu toggle, reveal, gentle parallax, chevron scroll -->
+  <!-- JS -->
   <script>
-  (function(){
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const btn = document.getElementById('mobileMenuBtn');
+  const panel = document.getElementById('mobilePanel');
 
-    // Mobile panel logic
-    const btn = document.getElementById('mobileMenuBtn');
-    const panel = document.getElementById('mobilePanel');
+  function closePanel() {
+    if(!panel) return;
+    panel.classList.remove('open');
+    if(btn){ btn.setAttribute('aria-expanded', 'false'); }
+  }
+  function openPanel() {
+    if(!panel) return;
+    panel.classList.add('open');
+    if(btn){ btn.setAttribute('aria-expanded', 'true'); }
+  }
 
-    function closePanel() {
-      if(!panel) return;
-      panel.classList.remove('open');
-      if(btn){
-        btn.setAttribute('aria-expanded', 'false');
-      }
+  if(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      const isOpen = panel.classList.contains('open');
+      if(isOpen) closePanel(); else openPanel();
+    });
+  }
+
+  document.addEventListener('click', function(e){
+    if(panel && panel.classList.contains('open') && !panel.contains(e.target) && e.target !== btn){
+      closePanel();
     }
-    function openPanel() {
-      if(!panel) return;
-      panel.classList.add('open');
-      if(btn){
-        btn.setAttribute('aria-expanded', 'true');
-        btn.focus();
-      }
-    }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closePanel();
+  });
+  const panelLinks = panel ? panel.querySelectorAll('a') : [];
+  panelLinks.forEach(link => {
+    link.addEventListener('click', closePanel);
+  });
 
-    // Toggle on button click
-    if(btn){
-      btn.addEventListener('click', function(e){
-        e.stopPropagation();
-        const isOpen = panel.classList.contains('open');
-        if(isOpen) closePanel(); else openPanel();
-      });
-      // keyboard: open with Enter/Space
-      btn.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          btn.click();
-        } else if(e.key === 'Escape') {
-          closePanel();
-        }
-      });
-    }
-
-    // Close when clicking outside
-    document.addEventListener('click', function(e){
-      if(!panel) return;
-      if(panel.classList.contains('open') && !panel.contains(e.target) && e.target !== btn) {
-        closePanel();
+  function revealHero() {
+    const title = document.querySelector('.hero-title');
+    const lead  = document.querySelector('.hero-lead');
+    if(title){ title.style.opacity = 1; title.style.transform = 'translateY(0)'; }
+    if(lead){ lead.style.opacity = 1; lead.style.transform = 'translateY(0)'; }
+  }
+  const chevron = document.getElementById('scrollChevron');
+  if(chevron){
+    chevron.addEventListener('click', function(e){
+      e.preventDefault();
+      const target = document.querySelector('#mission');
+      if(target){
+        target.scrollIntoView({behavior: prefersReduced ? 'auto' : 'smooth', block:'start'});
+        if(!prefersReduced) setTimeout(()=>{ target.focus({preventScroll:true}); }, 500);
       }
     });
-
-    // Close on Esc
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') closePanel();
-    });
-
-    // Make panel links keyboard accessible (close after click)
-    const panelLinks = panel ? panel.querySelectorAll('a') : [];
-    panelLinks.forEach(link => {
-      link.addEventListener('click', function(){
-        closePanel();
-      });
-    });
-
-    // staged reveal for hero text
-    function revealHero() {
-      const title = document.querySelector('.hero-title') || document.querySelector('.hero h1');
-      const lead  = document.querySelector('.hero-lead') || document.querySelector('.hero p');
-      if(title){ title.style.opacity = 1; title.style.transform = 'translateY(0)'; }
-      if(lead){ lead.style.opacity = 1; lead.style.transform = 'translateY(0)'; }
+  }
+  function attachParallax(){
+    const hero = document.querySelector('.hero');
+    if(!hero || prefersReduced) return;
+    const intensity = 12;
+    function onMove(e){
+      const rect = hero.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top + rect.height/2;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const dx = (clientX - cx) / rect.width;
+      const dy = (clientY - cy) / rect.height;
+      hero.style.transform = `translate3d(${dx * intensity * 0.12}px, ${dy * intensity * 0.05}px, 0)`;
+      const posX = 50 + dx * 4;
+      const posY = 35 + dy * 3;
+      hero.style.backgroundPosition = `${posX}% ${posY}%`;
     }
+    function onLeave(){ hero.style.transform=''; hero.style.backgroundPosition=''; }
+    hero.addEventListener('mousemove', onMove);
+    hero.addEventListener('mouseleave', onLeave);
+    hero.addEventListener('touchmove', function(ev){ if(ev.touches && ev.touches[0]) onMove(ev.touches[0]); }, {passive:true});
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(revealHero, 120);
+    attachParallax();
+  });
+})();
+</script>
 
-    // chevron smooth scroll with focus for accessibility
-    const chevron = document.getElementById('scrollChevron');
-    if(chevron){
-      chevron.addEventListener('click', function(e){
-        e.preventDefault();
-        const target = document.querySelector('#mission') || document.querySelector('main');
-        if(target){
-          target.scrollIntoView({behavior: prefersReduced ? 'auto' : 'smooth', block:'start'});
-          if(!prefersReduced) setTimeout(()=>{ target.focus({preventScroll:true}); }, 500);
-        }
-      });
-    }
-
-    // gentle parallax (background position + small translate)
-    function attachParallax(){
-      const hero = document.querySelector('.hero');
-      if(!hero || prefersReduced) return;
-      const intensity = 12;
-      function onMove(e){
-        const rect = hero.getBoundingClientRect();
-        const cx = rect.left + rect.width/2;
-        const cy = rect.top + rect.height/2;
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        const dx = (clientX - cx) / rect.width;
-        const dy = (clientY - cy) / rect.height;
-        hero.style.transform = `translate3d(${dx * intensity * 0.12}px, ${dy * intensity * 0.05}px, 0)`;
-        const posX = 50 + dx * 4;
-        const posY = 35 + dy * 3;
-        hero.style.backgroundPosition = `${posX}% ${posY}%`;
-      }
-      function onLeave(){ hero.style.transform=''; hero.style.backgroundPosition=''; }
-      hero.addEventListener('mousemove', onMove);
-      hero.addEventListener('mouseleave', onLeave);
-      hero.addEventListener('touchmove', function(ev){
-        if(ev.touches && ev.touches[0]) onMove(ev.touches[0]);
-      }, {passive:true});
-    }
-
-    document.addEventListener('DOMContentLoaded', function(){
-      setTimeout(revealHero, 120);
-      attachParallax();
-    });
-  })();
-  </script>
 </body>
 </html>

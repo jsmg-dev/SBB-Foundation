@@ -32,68 +32,89 @@
     }
     nav a:hover { color: #ffeb3b; }
 
-    /* three-dot mobile menu button */
+    /* Hamburger button */
     .mobile-menu {
-      display: none;           /* hidden on desktop */
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 28px;
-      line-height: 1;
-      padding: 6px 8px;
-      border-radius: 8px;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-    }
-    .mobile-menu:focus { outline: 2px solid #ffeb3b; outline-offset: 2px; }
-
-    /* dropdown panel that appears under the three dots on mobile */
-    .mobile-panel {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 5%;
-      background: white;
-      color: #10203a;
-      min-width: 160px;
-      border-radius: 10px;
-      box-shadow: 0 12px 34px rgba(8,30,80,0.16);
-      overflow: hidden;
-      transform-origin: top right;
-      z-index: 1200;
-      border: 1px solid rgba(0,0,0,0.06);
       display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1300;
     }
-    .mobile-panel.open { display: block; animation: panel-in .15s ease; }
-    @keyframes panel-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity:1; transform: translateY(0) scale(1); } }
+    .hamburger {
+      width: 24px;
+      height: 18px;
+      position: relative;
+      display: block;
+    }
+    .hamburger::before,
+    .hamburger::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: white;
+      border-radius: 1px;
+      transition: all 0.3s ease;
+    }
+    .hamburger::before {
+      top: 0;
+    }
+    .hamburger::after {
+      bottom: 0;
+    }
+    .hamburger::before,
+    .hamburger::after {
+      left: 0;
+    }
+    .hamburger::before,
+    .hamburger::after {
+      transform-origin: center;
+    }
+    .hamburger-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: white;
+      border-radius: 1px;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+    }
 
+    /* Slide-in mobile panel */
+    .mobile-panel {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 260px;
+      height: 100%;
+      background: white;
+      box-shadow: -2px 0 12px rgba(0,0,0,0.2);
+      border-left: 1px solid rgba(0,0,0,0.06);
+      z-index: 1200;
+      padding-top: 4rem;
+      transition: right 0.3s ease;
+    }
+    .mobile-panel.open { right: 0; }
     .mobile-panel a {
       display: block;
-      padding: 12px 14px;
+      padding: 14px 20px;
       color: #10203a;
       text-decoration: none;
       font-weight: 600;
-      border-bottom: 1px solid rgba(16,32,58,0.04);
+      border-bottom: 1px solid rgba(16,32,58,0.06);
     }
-    .mobile-panel a:last-child { border-bottom: none; }
-    .mobile-panel a:hover, .mobile-panel a:focus {
-      background: #f4f7ff;
-      outline: none;
-    }
+    .mobile-panel a:hover { background: #f4f7ff; }
 
-    /* Hide desktop nav on small screens, show mobile three dots */
+    /* Show hamburger on small screens */
     @media (max-width: 880px) {
-      nav { display: none; }              /* hide full nav */
-      .mobile-menu { display: flex; }     /* show three-dot button */
-      header { padding-right: 14%; }      /* give space for dropdown */
+      nav { display: none; }
+      .mobile-menu { display: block; }
     }
 
-    /* On very small screens push the panel left a bit if right is constrained */
-    @media (max-width: 360px) {
-      .mobile-panel { right: 6%; left: 6%; min-width: unset; }
-    }
-
-    /* ---------- UPDATED HERO ---------- */
+    /* ---------- HERO ---------- */
     .hero {
       position: relative;
       min-height: 56vh;
@@ -108,7 +129,6 @@
       will-change: transform;
     }
 
-    /* overlay so hero text remains readable but background still visible */
     .hero::after{
       content:"";
       position:absolute;
@@ -144,8 +164,6 @@
       align-items:center;
       gap:14px;
     }
-
-    /* staged reveal for title + lead */
     .hero-title{
       font-size:2.6rem;
       font-weight:700;
@@ -163,14 +181,11 @@
       opacity:0;
       transition:all .7s .08s cubic-bezier(.2,.9,.2,1);
     }
-
     .hero-cta-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:center; margin-top:6px; }
-
     .btn{ border-radius:999px; padding:12px 18px; font-weight:700; text-decoration:none; cursor:pointer; display:inline-block; }
     .btn-primary{ background:#ffcf33; color:#10203a; box-shadow:0 10px 26px rgba(255,207,51,0.12); }
     .btn-ghost{ background:transparent; color:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.12); }
     .btn-primary:hover{ transform:translateY(-4px); }
-
     .chevron-wrap{ display:block; margin-top:12px; cursor:pointer; opacity:0.95; }
     .chev{ width:36px; height:36px; display:inline-block; transform-origin:center; animation:chev-bob 2s infinite; fill:rgba(255,255,255,0.95); }
     @keyframes chev-bob{ 0%{transform:translateY(0)}50%{transform:translateY(8px)}100%{transform:translateY(0)} }
@@ -204,6 +219,14 @@
     }
     .venture-card h3 { color: #2d6cdf; margin-bottom: 1rem; }
     .venture-card p { color: #555; }
+    
+    @media (max-width: 768px) {
+      .ventures { padding: 2rem 5%; }
+      .ventures h2 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+      .venture-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .venture-card { padding: 1.5rem; }
+      .venture-card img { height: 150px; }
+    }
 
     /* Highlight Section */
     .highlight {
@@ -212,6 +235,11 @@
     }
     .highlight h2 { margin-bottom: 1rem; }
     .highlight p { max-width: 800px; margin:auto; }
+    
+    @media (max-width: 768px) {
+      .highlight { padding: 2rem 5%; margin-top: 2rem; }
+      .highlight h2 { font-size: 1.5rem; }
+    }
 
     /* Footer */
     footer {
@@ -246,12 +274,14 @@
       <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Mobile three-dot menu button (visible on small screens) -->
+    <!-- Mobile hamburger -->
     <button class="mobile-menu" id="mobileMenuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="mobilePanel" title="Open menu">
-      <span aria-hidden="true">⋮</span>
+      <span class="hamburger">
+        <span class="hamburger-line"></span>
+      </span>
     </button>
 
-    <!-- Mobile dropdown panel -->
+    <!-- Slide-in panel -->
     <div class="mobile-panel" id="mobilePanel" role="menu" aria-labelledby="mobileMenuBtn">
       <a href="index.html" role="menuitem" tabindex="0">Home</a>
       <a href="about.html" role="menuitem" tabindex="0">About</a>
