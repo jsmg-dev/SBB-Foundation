@@ -37,10 +37,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            // Force show the target section on mobile
+            forceShowSection(target.id);
+            
+            // Small delay to ensure section is visible before scrolling
+            setTimeout(() => {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
         }
     });
 });
@@ -210,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Uncomment the line below to enable typing effect
         // typeWriter(heroTitle, originalText, 150);
     }
+    
 });
 
 // Add loading animation
@@ -228,6 +235,7 @@ window.addEventListener('load', () => {
             heroContent.style.transform = 'translateY(0)';
         }, 300);
     }
+    
 });
 
 // Counter animation for metrics
@@ -292,14 +300,37 @@ const sectionObserver = new IntersectionObserver((entries) => {
     rootMargin: '0px 0px -100px 0px'
 });
 
-// Apply reveal animation to sections
+// Apply reveal animation to sections (disable on mobile for better performance)
 document.querySelectorAll('section').forEach(section => {
-    if (section.id !== 'home') {
+    if (section.id !== 'home' && window.innerWidth > 768) {
         section.style.opacity = '0';
         section.style.transform = 'translateY(50px)';
         section.style.transition = 'all 0.8s ease';
         sectionObserver.observe(section);
     }
+});
+
+// Function to force show a section on mobile
+function forceShowSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section && window.innerWidth <= 768) {
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+        section.style.visibility = 'visible';
+        section.style.display = 'block';
+        section.style.transition = 'none';
+    }
+}
+
+// Handle window resize to ensure mobile sections stay visible
+window.addEventListener('resize', () => {
+    document.querySelectorAll('section').forEach(section => {
+        if (section.id !== 'home' && window.innerWidth <= 768) {
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+            section.style.transition = 'none';
+        }
+    });
 });
 
 // Add active navigation link highlighting
