@@ -386,3 +386,117 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Gallery Carousel Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const carouselTabs = document.querySelectorAll('.gallery-carousel-tab');
+    const carouselContainers = document.querySelectorAll('.carousel-container');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    
+    let currentIndex = 0;
+    let autoSlideInterval;
+    let currentCarousel = document.querySelector('.carousel-container.active');
+    
+    // Tab Switching
+    carouselTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs and containers
+            carouselTabs.forEach(t => t.classList.remove('active'));
+            carouselContainers.forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            
+            // Show corresponding carousel
+            const tabName = tab.getAttribute('data-tab');
+            const targetCarousel = document.getElementById(`${tabName}-carousel`);
+            if (targetCarousel) {
+                targetCarousel.classList.add('active');
+                currentCarousel = targetCarousel;
+                currentIndex = 0;
+                updateCarousel();
+                resetAutoSlide();
+            }
+        });
+    });
+    
+    // Update Carousel Position
+    function updateCarousel() {
+        const track = currentCarousel.querySelector('.carousel-track');
+        const slides = currentCarousel.querySelectorAll('.carousel-slide');
+        const slideWidth = slides[0].offsetWidth;
+        const gap = 20;
+        const offset = -(currentIndex * (slideWidth + gap));
+        track.style.transform = `translateX(${offset}px)`;
+    }
+    
+    // Next Button
+    nextBtn.addEventListener('click', () => {
+        const slides = currentCarousel.querySelectorAll('.carousel-slide');
+        const maxIndex = slides.length - getVisibleSlides();
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+            resetAutoSlide();
+        }
+    });
+    
+    // Previous Button
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+            resetAutoSlide();
+        }
+    });
+    
+    // Get number of visible slides based on screen width
+    function getVisibleSlides() {
+        if (window.innerWidth <= 480) return 1;
+        if (window.innerWidth <= 768) return 2;
+        return 4;
+    }
+    
+    // Auto Slide
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            const slides = currentCarousel.querySelectorAll('.carousel-slide');
+            const maxIndex = slides.length - getVisibleSlides();
+            
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop back to start
+            }
+            updateCarousel();
+        }, 3000); // Slide every 3 seconds
+    }
+    
+    // Reset Auto Slide
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+    }
+    
+    // Start auto slide
+    startAutoSlide();
+    
+    // Pause auto slide on hover
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    carouselWrapper.addEventListener('mouseenter', () => {
+        clearInterval(autoSlideInterval);
+    });
+    
+    carouselWrapper.addEventListener('mouseleave', () => {
+        startAutoSlide();
+    });
+    
+    // Update carousel on window resize
+    window.addEventListener('resize', () => {
+        updateCarousel();
+    });
+    
+    // Initial update
+    updateCarousel();
+});
