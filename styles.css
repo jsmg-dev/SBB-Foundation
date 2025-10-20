@@ -123,6 +123,7 @@ body {
     font-weight: 700;
     color: #1a1a1a;
     line-height: 1;
+    text-decoration: none;
 }
 
 .logo-tagline {
@@ -132,6 +133,7 @@ body {
     letter-spacing: 0.5px;
     line-height: 1;
     margin-top: 2px;
+    text-decoration: none;
 }
 
 .logo-image {
@@ -147,6 +149,23 @@ body {
     background-clip: text;
     font-weight: 700;
     font-size: 1.8rem;
+}
+
+/* Remove underlines from logo link */
+.nav-logo a {
+    text-decoration: none;
+}
+
+.nav-logo a:hover {
+    text-decoration: none;
+}
+
+.nav-logo a:focus {
+    text-decoration: none;
+}
+
+.nav-logo a:visited {
+    text-decoration: none;
 }
 
 .nav-menu {
