@@ -2000,6 +2000,25 @@ section {
         font-size: 8px;
     }
 
+    /* Ensure no underlines on mobile logo */
+    .logo-name {
+        text-decoration: none !important;
+    }
+
+    .logo-tagline {
+        text-decoration: none !important;
+    }
+
+    .nav-logo a {
+        text-decoration: none !important;
+    }
+
+    .nav-logo a:hover,
+    .nav-logo a:focus,
+    .nav-logo a:visited {
+        text-decoration: none !important;
+    }
+
     .hero {
         height: 100vh;
         min-height: 600px;
