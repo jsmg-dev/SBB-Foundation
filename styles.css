@@ -583,6 +583,79 @@ section {
     font-weight: 500;
 }
 
+/* Co-Founders Section */
+.co-founders-section {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.co-founders-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.co-founders-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.co-founder-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.co-founder-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.co-founder-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 5px 15px rgba(20, 184, 166, 0.3);
+}
+
+.co-founder-card h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #333;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.co-founder-role {
+    color: #14b8a6;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 /* Solutions Section */
 .solutions {
     background: #f8fafc;
@@ -1199,7 +1272,29 @@ section {
     width: 100%;
     height: 250px;
     object-fit: cover;
+    object-position: center;
     display: block;
+    background-color: #f8fafc;
+    border: none;
+    outline: none;
+}
+
+/* Fallback for images that don't load */
+.carousel-slide img:not([src]),
+.carousel-slide img[src=""],
+.carousel-slide img[src*="undefined"] {
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-slide img:not([src])::after,
+.carousel-slide img[src=""]::after,
+.carousel-slide img[src*="undefined"]::after {
+    content: "📷";
+    font-size: 2rem;
+    color: white;
 }
 
 /* Carousel Buttons */
@@ -1697,6 +1792,32 @@ section {
         height: 120px;
     }
 
+    /* Co-Founders Mobile */
+    .co-founders-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+
+    .co-founder-card {
+        padding: 1.5rem 1rem;
+        min-height: 160px;
+    }
+
+    .co-founder-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .co-founder-card h4 {
+        font-size: 1.1rem;
+    }
+
+    .co-founder-role {
+        font-size: 0.8rem;
+    }
+
     .skills-grid {
         justify-content: center;
     }
@@ -1784,11 +1905,16 @@ section {
         flex-direction: row;
         gap: 0.75rem;
         margin-bottom: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .gallery-carousel-tab {
         padding: 10px 20px;
         font-size: 0.9rem;
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
     }
 
     .gallery-carousel-tab i {
@@ -1797,14 +1923,28 @@ section {
 
     .carousel-wrapper {
         padding: 0 50px;
+        overflow: hidden;
+    }
+
+    .carousel-container {
+        overflow: visible;
+    }
+
+    .carousel-track {
+        gap: 15px;
     }
 
     .carousel-slide {
-        min-width: calc(50% - 10px);
+        min-width: calc(50% - 7.5px);
+        border-radius: 8px;
     }
 
     .carousel-slide img {
         height: 200px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
     }
 
     .carousel-btn {
@@ -1816,15 +1956,29 @@ section {
 
 @media (max-width: 480px) {
     .carousel-wrapper {
-        padding: 0 45px;
+        padding: 0 40px;
+        overflow: hidden;
+    }
+
+    .carousel-container {
+        overflow: visible;
+    }
+
+    .carousel-track {
+        gap: 10px;
     }
 
     .carousel-slide {
         min-width: 100%;
+        border-radius: 6px;
     }
 
     .carousel-slide img {
         height: 180px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
     }
 
     .carousel-btn {
@@ -1836,10 +1990,14 @@ section {
     .gallery-carousel-tab {
         padding: 8px 16px;
         font-size: 0.85rem;
+        min-width: 100px;
     }
-}
 
-@media (max-width: 480px) {
+    .gallery-carousel-tabs {
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
     .container {
         padding: 0 15px;
     }
@@ -1947,6 +2105,32 @@ section {
 
     .office-address {
         font-size: 0.9rem;
+    }
+
+    /* Co-Founders Very Small Screens */
+    .co-founders-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+
+    .co-founder-card {
+        padding: 1rem 0.5rem;
+        min-height: 140px;
+    }
+
+    .co-founder-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .co-founder-card h4 {
+        font-size: 0.9rem;
+    }
+
+    .co-founder-role {
+        font-size: 0.7rem;
     }
 }
 
