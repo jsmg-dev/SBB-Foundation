@@ -2297,6 +2297,122 @@ section {
         margin-bottom: 1.5rem;
     }
 
+    /* Contact Page Mobile Styles for Very Small Screens */
+    .ceo-profile-card {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .ceo-image img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .ceo-info h3 {
+        font-size: 1.6rem;
+    }
+
+    .ceo-title {
+        font-size: 1rem;
+    }
+
+    .ceo-description {
+        font-size: 0.9rem;
+    }
+
+    .ceo-achievements h4 {
+        font-size: 1rem;
+    }
+
+    .social-links-section h3 {
+        font-size: 1.3rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-link {
+        padding: 0.8rem;
+        min-width: 80px;
+    }
+
+    .contact h3 {
+        font-size: 1.3rem;
+    }
+
+    /* Contact Page Mobile Styles */
+    .ceo-profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .ceo-image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .ceo-image img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .ceo-info h3 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .ceo-title {
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .ceo-description {
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    .ceo-achievements h4 {
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .ceo-achievements ul {
+        text-align: left;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .social-links-section h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .social-link {
+        padding: 1rem;
+        min-width: 100px;
+    }
+
+    .contact h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .section-header h2 {
+        text-align: center;
+    }
+
+    .section-header p {
+        text-align: center;
+    }
+
     .container {
         padding: 0 15px;
     }
