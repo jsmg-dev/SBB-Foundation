@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /work.html
+Disallow: /work/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
 
 # Sitemap
 Sitemap: https://sbbf.in/sitemap.xml
@@ -7,26 +12,33 @@ Sitemap: https://sbbf.in/sitemap.xml
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Disallow admin or private areas (if any)
-Disallow: /admin/
-Disallow: /private/
-Disallow: /temp/
-
 # Allow all major search engines
 User-agent: Googlebot
 Allow: /
+Disallow: /work.html
+Disallow: /work/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /work.html
+Disallow: /work/
 
 User-agent: Slurp
 Allow: /
+Disallow: /work.html
+Disallow: /work/
 
 User-agent: DuckDuckBot
 Allow: /
+Disallow: /work.html
+Disallow: /work/
 
 User-agent: Baiduspider
 Allow: /
+Disallow: /work.html
+Disallow: /work/
 
 User-agent: YandexBot
 Allow: /
+Disallow: /work.html
+Disallow: /work/

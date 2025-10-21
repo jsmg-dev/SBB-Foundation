@@ -4,11 +4,19 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     
-    <!-- Homepage -->
+    <!-- Homepage - Primary Entry -->
     <url>
         <loc>https://sbbf.in/</loc>
         <lastmod>2025-01-27</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Homepage Alternative URL -->
+    <url>
+        <loc>https://www.sbbf.in/</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     
