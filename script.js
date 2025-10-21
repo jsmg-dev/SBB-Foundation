@@ -388,6 +388,43 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Gallery Carousel Functionality
+
+// Image Modal Functions
+function openImageModal(imageSrc, caption) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    
+    modal.style.display = 'block';
+    modalImage.src = imageSrc;
+    modalCaption.textContent = caption;
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside the image
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('imageModal');
+    if (event.target === modal) {
+        closeImageModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
 document.addEventListener('DOMContentLoaded', () => {
     const carouselTabs = document.querySelectorAll('.gallery-carousel-tab');
     const carouselContainers = document.querySelectorAll('.carousel-container');

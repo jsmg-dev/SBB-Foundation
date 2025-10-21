@@ -18,6 +18,72 @@
     border: 0;
 }
 
+/* Image Modal */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    max-width: 1200px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #14b8a6;
+}
+
+.modal-caption {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+/* Gallery Image Hover Effect */
+.carousel-slide img {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-slide img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -2227,6 +2293,7 @@ section {
     /* Leadership Team Mobile */
     .leadership-team {
         padding: 2rem;
+        overflow-x: hidden;
     }
 
     .leadership-title {
@@ -2271,26 +2338,56 @@ section {
         font-size: 1rem;
     }
 
+    /* Image Modal Mobile */
+    .modal-content {
+        width: 95%;
+        max-width: 100%;
+    }
+
+    .modal-content img {
+        max-height: 70vh;
+    }
+
+    .close {
+        top: -30px;
+        font-size: 30px;
+    }
+
+    .modal-caption {
+        font-size: 1rem;
+        margin-top: 15px;
+    }
+
     /* Co-Founders Mobile */
+    .co-founders-section {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
     .co-founders-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        max-width: 100%;
+        padding: 0 1rem;
     }
 
     .co-founder-card {
-        padding: 1.5rem 1rem;
-        min-height: 160px;
+        padding: 0.8rem;
+        min-height: auto;
+        min-width: 0;
+        overflow: hidden;
     }
 
     .co-founder-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
     }
 
     .co-founder-card h4 {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
     }
 
     .co-founder-role {
