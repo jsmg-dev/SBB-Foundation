@@ -455,10 +455,9 @@ section {
 }
 
 .about-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 }
 
 .about-main {
@@ -495,6 +494,150 @@ section {
     color: #666;
     line-height: 1.7;
     font-size: 1rem;
+}
+
+/* Leadership Team Section */
+.leadership-team {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Founder Section */
+.founder-section {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.founder-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid #e2e8f0;
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.founder-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #14b8a6;
+    box-shadow: 0 5px 15px rgba(20, 184, 166, 0.3);
+    flex-shrink: 0;
+}
+
+.founder-info {
+    text-align: center;
+}
+
+.founder-info h4 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 700;
+    text-align: center;
+}
+
+.founder-title {
+    color: #14b8a6;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.bio-summary {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* Co-Founders Section */
+.co-founders-section {
+    margin-top: 2rem;
+}
+
+.co-founders-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #333;
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.co-founders-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.co-founder-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border: 2px solid #f1f5f9;
+}
+
+.co-founder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-color: #14b8a6;
+}
+
+.co-founder-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 3px 10px rgba(20, 184, 166, 0.3);
+}
+
+.co-founder-card h5 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.co-founder-role {
+    color: #14b8a6;
+    font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .about-founder {
@@ -2081,14 +2224,51 @@ section {
         text-align: center;
     }
 
+    /* Leadership Team Mobile */
+    .leadership-team {
+        padding: 2rem;
+    }
+
+    .leadership-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Founder Section Mobile */
     .founder-card {
-        max-width: 100%;
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
         padding: 1.5rem;
     }
 
     .founder-image img {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .founder-info h4 {
+        font-size: 1.5rem;
+    }
+
+    /* Co-Founders Mobile */
+    .co-founders-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .co-founder-card {
+        padding: 1rem;
+    }
+
+    .co-founder-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .co-founder-card h5 {
+        font-size: 1rem;
     }
 
     /* Co-Founders Mobile */
