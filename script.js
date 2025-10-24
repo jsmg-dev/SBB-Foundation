@@ -31,6 +31,254 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Contact Form Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Validate required fields (check for empty strings and whitespace)
+            if (!data.name || !data.name.trim() || !data.email || !data.email.trim() || !data.message || !data.message.trim()) {
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+            submitBtn.disabled = true;
+            
+            // Send message to phone and email
+            sendMessage(data);
+            
+            // Reset button immediately
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // Show success message
+            showNotification('Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Log form data
+            console.log('Contact form submitted:', data);
+        });
+    }
+});
+
+// Function to send message to phone and email
+function sendMessage(formData) {
+    const phoneNumber = '9166010400';
+    const email = 'jiten.seng@gmail.com';
+    
+    try {
+        // Format the message
+        const message = formatMessage(formData);
+        
+        // Send WhatsApp message
+        sendWhatsAppMessage(phoneNumber, message);
+        
+        // Send email
+        sendEmail(email, formData);
+        
+        // Log the action
+        console.log('Message sent to:', { phone: phoneNumber, email: email });
+        
+    } catch (error) {
+        console.error('Error sending message:', error);
+        showNotification('There was an error sending the message. Please try again.', 'error');
+    }
+}
+
+// Function to format the message for WhatsApp
+function formatMessage(data) {
+    let message = `*New Contact Form Submission*\n\n`;
+    message += `*Name:* ${data.name}\n`;
+    message += `*Email:* ${data.email}\n\n`;
+    message += `*Message:*\n${data.message}\n\n`;
+    
+    return encodeURIComponent(message);
+}
+
+// Function to send WhatsApp message
+function sendWhatsAppMessage(phoneNumber, message) {
+    try {
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+        
+        // Open WhatsApp in new tab/window
+        const whatsappWindow = window.open(whatsappUrl, '_blank');
+        
+        if (whatsappWindow) {
+            console.log('WhatsApp message sent to:', phoneNumber);
+        } else {
+            console.error('Failed to open WhatsApp window');
+            showNotification('Please allow popups to send WhatsApp message.', 'error');
+        }
+    } catch (error) {
+        console.error('Error sending WhatsApp message:', error);
+    }
+}
+
+// Function to send email
+function sendEmail(email, data) {
+    try {
+        const subject = encodeURIComponent(`New Contact Form Submission - ${data.name}`);
+        const body = formatEmailBody(data);
+        
+        const mailtoUrl = `mailto:${email}?subject=${subject}&body=${encodeURIComponent(body)}`;
+        
+        // Create a temporary link and click it
+        const emailLink = document.createElement('a');
+        emailLink.href = mailtoUrl;
+        emailLink.style.display = 'none';
+        document.body.appendChild(emailLink);
+        emailLink.click();
+        document.body.removeChild(emailLink);
+        
+        console.log('Email sent to:', email);
+    } catch (error) {
+        console.error('Error sending email:', error);
+    }
+}
+
+// Function to format email body
+function formatEmailBody(data) {
+    let body = `New Contact Form Submission\n\n`;
+    body += `Name: ${data.name}\n`;
+    body += `Email: ${data.email}\n\n`;
+    body += `Message:\n${data.message}\n\n`;
+    body += `---\nThis message was sent from the SBB Foundation website contact form.`;
+    
+    return body;
+}
+
+// Notification system
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+            <span>${message}</span>
+            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        animation: slideIn 0.3s ease-out;
+    `;
+    
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .notification-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-left: auto;
+            padding: 0.25rem;
+            border-radius: 4px;
+        }
+        .notification-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// Test function to verify message sending
+function testMessageSending() {
+    const testData = {
+        name: 'Test User',
+        email: 'test@example.com',
+        message: 'This is a test message to verify the contact form functionality.'
+    };
+    
+    console.log('Testing message sending with data:', testData);
+    sendMessage(testData);
+}
+
+// Make test function available globally for debugging
+window.testMessageSending = testMessageSending;
+
+// Simple test function to check form validation
+function testFormValidation() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        console.log('Form found:', contactForm);
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+        console.log('Current form data:', data);
+        
+        // Test with sample data
+        document.getElementById('name').value = 'Test User';
+        document.getElementById('email').value = 'test@example.com';
+        document.getElementById('message').value = 'This is a test message.';
+        
+        console.log('Form filled with test data');
+        return true;
+    } else {
+        console.log('Form not found!');
+        return false;
+    }
+}
+
+window.testFormValidation = testFormValidation;
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
