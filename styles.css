@@ -242,6 +242,7 @@ body {
     align-items: center;
 }
 
+
 .nav-link {
     text-decoration: none;
     color: #333;
@@ -274,6 +275,11 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+    position: relative;
+    background: transparent;
+    border: none;
 }
 
 .hamburger span {
@@ -282,6 +288,8 @@ body {
     background: #333;
     margin: 3px 0;
     transition: 0.3s;
+    border-radius: 2px;
+    display: block;
 }
 
 /* Hero Section */
@@ -2214,24 +2222,27 @@ section {
 
     .nav-menu {
         position: fixed;
-        right: -60%;
-        top: 70px;
+        right: -100%;
+        top: 65px;
         flex-direction: column;
         background-color: white;
-        width: 60%;
-        max-width: 300px;
-        text-align: center;
-        transition: 0.3s ease;
+        width: 80%;
+        max-width: 320px;
+        text-align: left;
+        transition: right 0.3s ease;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
         padding: 1rem 0;
-        z-index: 1000;
-        height: calc(100vh - 70px);
+        z-index: 999;
+        height: calc(100vh - 65px);
         overflow-y: auto;
         border-radius: 0 0 0 15px;
+        gap: 0;
+        display: none;
     }
-
+    
     .nav-menu.active {
         right: 0;
+        display: flex;
     }
 
     /* Backdrop overlay */
@@ -2255,18 +2266,20 @@ section {
     }
 
     .nav-menu li {
-        margin: 0.3rem 0;
+        margin: 0;
+        width: 100%;
     }
 
     .nav-menu .nav-link {
         font-size: 0.9rem;
-        padding: 0.5rem 1rem;
+        padding: 0.75rem 1.5rem;
         display: block;
         width: 100%;
         border-bottom: 1px solid #f0f0f0;
-        margin: 0 0.5rem;
-        border-radius: 6px;
+        margin: 0;
+        border-radius: 0;
         transition: all 0.2s ease;
+        text-align: left;
     }
 
     .nav-menu .nav-link:hover {
@@ -3465,7 +3478,14 @@ section {
 
 .donation-section {
     background: #f9fafb;
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 65px);
+    padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+    .donation-section {
+        padding: 20px 0 !important;
+    }
 }
 
 .donation-container {
@@ -3486,6 +3506,8 @@ section {
     background: white;
     border-radius: 1rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .progress-step {
@@ -4002,45 +4024,265 @@ section {
 /* Responsive */
 @media (max-width: 968px) {
     .donation-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        padding: 0 1rem;
     }
     
     .donation-summary {
-        position: static;
-        margin-top: 2rem;
+        position: static !important;
+        margin-top: 2rem !important;
     }
     
     .donation-progress {
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.75rem;
+        padding: 1.5rem !important;
     }
     
     .progress-line {
         display: none;
     }
+    
+    .step-label {
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 15px !important;
+    }
+    
+    .donation-section {
+        padding: 20px 0 !important;
+        min-height: calc(100vh - 65px) !important;
+    }
+    
+    .donation-container {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+    
+    .donation-progress {
+        padding: 1rem !important;
+        margin-bottom: 1.5rem !important;
+        flex-wrap: wrap;
+        gap: 0.5rem !important;
+    }
+    
+    .progress-step {
+        flex: 0 0 auto;
+        min-width: 50px;
+    }
+    
+    .step-circle {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .step-label {
+        font-size: 0.65rem !important;
+        margin-top: 0.25rem !important;
+    }
+    
+    .progress-line {
+        display: none !important;
+    }
+    
     .donation-step {
-        padding: 1.5rem;
+        padding: 1.5rem 1rem !important;
+        margin: 0 !important;
+    }
+    
+    .section-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem !important;
+        margin-bottom: 1.5rem !important;
     }
     
     .causes-grid,
     .packages-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .cause-card {
+        padding: 1.5rem !important;
+    }
+    
+    .cause-icon {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .cause-card h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .cause-card p {
+        font-size: 0.85rem !important;
+    }
+    
+    .package-card {
+        padding: 1.5rem !important;
+    }
+    
+    .quantity-selector {
+        margin: 1.5rem 0 !important;
+    }
+    
+    .quantity-btn {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.25rem !important;
+    }
+    
+    #quantityInput {
+        width: 80px !important;
+        height: 45px !important;
+        font-size: 1.25rem !important;
+    }
+    
+    .package-summary {
+        padding: 1rem !important;
+        margin: 1.5rem 0 !important;
+    }
+    
+    .donor-form {
+        max-width: 100% !important;
+    }
+    
+    .form-group {
+        margin-bottom: 1.25rem !important;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 0.75rem !important;
+        font-size: 1rem !important;
+    }
+    
+    .payment-summary-card {
+        padding: 1rem !important;
+        margin-bottom: 1.5rem !important;
     }
     
     .payment-methods {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .payment-method-btn {
+        padding: 1.5rem !important;
+    }
+    
+    .payment-method-btn i {
+        font-size: 2rem !important;
+    }
+    
+    .payment-method-btn span {
+        font-size: 1rem !important;
+    }
+    
+    .success-content {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    .success-icon {
+        font-size: 4rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .success-content h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    .success-content p {
+        font-size: 1rem !important;
     }
     
     .success-actions {
-        flex-direction: column;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
     }
     
     .btn-primary,
     .btn-secondary {
-        width: 100%;
+        width: 100% !important;
+        padding: 0.75rem 1.5rem !important;
+    }
+    
+    .btn-back {
+        margin-bottom: 1rem !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .donation-summary {
+        position: static !important;
+        margin-top: 1.5rem !important;
+        padding: 1rem !important;
+    }
+    
+    .summary-item {
+        padding: 0.5rem 0 !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .summary-item.total {
+        font-size: 1.1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .donation-section {
+        padding: 15px 0 !important;
+    }
+    
+    .donation-progress {
+        padding: 0.75rem !important;
+    }
+    
+    .step-circle {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .step-label {
+        font-size: 0.6rem !important;
+    }
+    
+    .donation-step {
+        padding: 1rem 0.75rem !important;
+    }
+    
+    .section-title {
+        font-size: 1.25rem !important;
+    }
+    
+    .section-subtitle {
+        font-size: 0.85rem !important;
+    }
+    
+    .cause-card,
+    .package-card {
+        padding: 1rem !important;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.65rem 1.25rem !important;
+        font-size: 0.9rem !important;
     }
 }
 
